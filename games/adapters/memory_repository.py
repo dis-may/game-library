@@ -24,13 +24,15 @@ class MemoryRepository(AbstractRepository):
         return len(self.__games)
 
     def add_publisher(self, publisher: Publisher):
-        self.__publishers.append(publisher)
+        if isinstance(publisher, Publisher):
+            insort_left(self.__publishers, publisher)
 
     def get_publishers(self) -> List[Publisher]:
         return self.__publishers
 
     def add_genre(self, genre: Genre):
-        self.__genres.append(genre)
+        if isinstance(genre, Genre):
+            insort_left(self.__genres, genre)
 
     def get_genres(self):
         return self.__genres
