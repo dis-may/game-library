@@ -1,7 +1,7 @@
 import abc
 from typing import List  # check if this is needed
 
-from games.domainmodel.model import Game  # what about publisher and genre?
+from games.domainmodel.model import Game, Genre, Publisher
 
 repo_instance = None
 
@@ -18,9 +18,19 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_games(self) -> List[Game]:
+    def get_games_by_id(self) -> List[Game]:
         """Returns a list of Game objects"""
         raise NotImplementedError
+
+    # @abc.abstractmethod
+    # def get_games_by_release_date(self) -> List[Game]:
+    #     """Returns a list of Game objects ordered by release date"""
+    #     raise NotImplementedError
+    #
+    # @abc.abstractmethod
+    # def get_games_by_title(self) -> List[Game]:
+    #     """Returns a list of Game objects ordered by title in alphabetical order"""
+    #     raise NotImplementedError
 
     @abc.abstractmethod
     def get_number_of_games(self) -> int:
