@@ -17,17 +17,23 @@ class MemoryRepository(AbstractRepository):
         if isinstance(game, Game):
             insort_left(self.__games, game)  # games are ordered by game id
 
-    def get_games_by_id(self) -> List[Game]:
+    def get_games(self) -> List[Game]:
         return self.__games
 
     def get_number_of_games(self) -> int:
         return len(self.__games)
 
+    def add_publisher(self, publisher: Publisher):
+        self.__publishers.append(publisher)
+
+    def get_publishers(self) -> List[Publisher]:
+        return self.__publishers
+
     def add_genre(self, genre: Genre):
         self.__genres.append(genre)
 
-    def add_publisher(self, publisher: Publisher):
-        self.__publishers.append(publisher)
+    def get_genres(self):
+        return self.__genres
 
 
 def populate(repo: AbstractRepository):
