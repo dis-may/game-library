@@ -36,3 +36,13 @@ class AbstractRepository(abc.ABC):
     def get_number_of_games(self) -> int:
         """Returns the number of games in the repository"""
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def add_publisher(self, publisher):
+        """Adds a publisher to the repository"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def add_genre(self, genre):
+        """Adds a genre to the repository"""
+        raise NotImplementedError

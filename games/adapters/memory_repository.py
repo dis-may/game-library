@@ -4,12 +4,14 @@ import os
 
 from games.adapters.datareader.csvdatareader import GameFileCSVReader
 from games.adapters.repository import AbstractRepository
-from games.domainmodel.model import Game
+from games.domainmodel.model import Game, Genre, Publisher
 
 
 class MemoryRepository(AbstractRepository):
     def __init__(self):
         self.__games = []
+        self.__publishers = []
+        self.__genres = []
 
     def add_game(self, game: Game):
         if isinstance(game, Game):
@@ -20,6 +22,12 @@ class MemoryRepository(AbstractRepository):
 
     def get_number_of_games(self) -> int:
         return len(self.__games)
+
+    def add_genre(self, genre: Genre):
+        self.__genres.append(genre)
+
+    def add_publisher(self, publisher: Publisher):
+        self.__publishers.append(publisher)
 
 
 def populate(repo: AbstractRepository):
@@ -33,3 +41,13 @@ def populate(repo: AbstractRepository):
 
     for game in games:
         repo.add_game(game)
+
+    genres = reader.dataset_of_genres
+
+    for genre in genres:
+        repo.add_genre(genre)
+
+    publishers = reader.dataset_of_publishers
+
+    for pub in publishers:
+        repo.add_publisher(pub)
