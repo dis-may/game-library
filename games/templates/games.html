@@ -1,5 +1,5 @@
 {% extends 'layout.html' %} {% block content %}
-<div id="games_container">
+<div class="games_container">
     {% for game in games_list %}
     <div class="game_card {{ loop.cycle('odd', 'even') }}">
         <div class="image_container">
