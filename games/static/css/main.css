@@ -2,14 +2,47 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-#nav {
-    background-color: green;
+.header {
+    background-color: #a30262;
     text-align: center;
+    padding-bottom: 30px;
+    overflow: hidden;
 }
 
-#nav h1 {
-    color: purple;
-    font-family: 'Lato', sans-serif;
+.header h1 {
     font-weight: 900;
     font-size: 50px;
+}
+
+nav {
+    background-color: #b55690;
+    border: #3A7734;
+    padding: 15px;
+}
+
+nav a {
+    float: left;
+    text-decoration: none;
+    font-size: x-large;
+    padding: 15px;
+    display: block;
+}
+
+nav a:hover {
+  background-color: #ff9a56;
+  color: black;
+}
+
+nav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+nav input {
+    float: right;
+}
+
+#copyright {
+    text-align: center;
+    padding-bottom: 30px;
 }
