@@ -23,3 +23,7 @@
 .description img {
         vertical-align: top;
     }
+
+#nav {
+    color: green;
+}
