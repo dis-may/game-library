@@ -19,40 +19,39 @@ body {
     text-align: left;
     background-color: #d162a4;
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 15px;
 }
 
 #header {
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
     background-color: #a30262;
     padding-top: 5px;
     padding-bottom: 10px;
+    text-align: center;
 }
 
-#container h2 {
+#main h2 {
     color: #ffffff;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
 }
 
-#container p{
+#main p{
     color: #ffffff;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
     background-color: #d162a4;
-    text-align: right;
+    position: relative;
+    left: 600px;
 }
 
 #image p{
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
     background-color: #d162a4;
