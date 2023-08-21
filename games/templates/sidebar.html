@@ -1,3 +1,13 @@
-<div>
+<aside id="sidebar">
+    <header>
+        <h1>Browse by genre</h1>
+    </header>
 
-</div>
+    <ul>
+    {% for genre in genre_list %}
+        <li>
+            {{ genre.genre_name }}
+        </li>
+    {% endfor %}
+    </ul>
+</aside>
