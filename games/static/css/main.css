@@ -27,18 +27,18 @@ body {
     padding-bottom: 10px;
 }
 
-#container h2 {
+.container h2 {
     color: #ffffff;
     font-weight: 900;
     font-size: 20px;
 }
 
-#container p{
+.container p{
     color: #ffffff;
     font-weight: 900;
     font-size: 20px;
     background-color: #d162a4;
-    text-align: right;
+    text-align: left;
 }
 
 #image p{
@@ -108,7 +108,7 @@ footer {
 
 }
 
-#container {
+.container {
     display: flex;
     border-color: black;
     border-style: solid;
@@ -118,3 +118,43 @@ footer {
 #main p{
     text-align: center;
 }
+
+#games_container {
+    width: 100%;
+}
+
+.game_small {
+    display: flex;
+    padding: 20px;
+    margin: 20px;
+    background-color: #ff9a56;
+    border-radius: 10px;
+}
+
+.image_container {
+    width: 350px;
+    min-width: 300px;
+}
+
+.image_container img {
+    display: inline;
+    width: 100%;
+    height: auto;
+}
+
+.odd {
+    background-color: #ef7627;
+}
+
+.game_details {
+    padding-left: 5%;
+    border-color: white;
+    border-style: solid;
+    width: 100%;
+    display: inline;
+}
+
+.game_details h3 {
+    color: white;
+}
+

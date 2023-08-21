@@ -1,0 +1,18 @@
+{% extends 'layout.html' %} {% block content %}
+<div id="games_container">
+    {% for game in games_list %}
+    <div class="game_small {{ loop.cycle('odd', 'even') }}">
+        <div class="image_container">
+            <img src="{{ game.image_url }}" alt="game art" />
+        </div>
+        <div class="game_details">
+            <h3>{{ game.title }}</h3>
+            <p>{{ game.publisher.publisher_name }}</p>
+            <p class="release_date">{{ game.release_date }}</p>
+            <p class="price">{{ game.price }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

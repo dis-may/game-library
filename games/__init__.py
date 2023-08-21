@@ -42,6 +42,9 @@ def create_app():
         from .genres import genres
         app.register_blueprint(genres.genres_blueprint)
 
+        from .games import games
+        app.register_blueprint(games.games_blueprint)
+
     # @app.route('/')
     # def home():
     #     some_game = create_some_game()
