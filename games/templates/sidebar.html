@@ -1,12 +1,11 @@
 <aside id="sidebar">
-
     <header>
         <h1>Browse by genre</h1>
     </header>
     <ul>
     {% for genre in genre_list %}
         <li>
-            {{ genre.genre_name }}
+            <a>{{ genre.genre_name }}</a>
         </li>
     {% endfor %}
     </ul>
