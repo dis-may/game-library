@@ -69,8 +69,6 @@ nav a {
     text-align: center;
 }
 
-
-
 nav a:hover {
   background-color: #ff9a56;
   color: black;
@@ -121,14 +119,30 @@ footer {
 
 #games_container {
     width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 
-.game_small {
+.game_card {
     display: flex;
     padding: 20px;
     margin: 20px;
     background-color: #ff9a56;
     border-radius: 10px;
+    max-width: 50%;
+    min-height: 100%;
+}
+
+.game_details {
+    padding-left: 5%;
+    border-color: white;
+    border-style: solid;
+    width: 100%;
+    display: flex;
+}
+
+.game_details h3 {
+    color: white;
 }
 
 .image_container {
@@ -146,15 +160,5 @@ footer {
     background-color: #ef7627;
 }
 
-.game_details {
-    padding-left: 5%;
-    border-color: white;
-    border-style: solid;
-    width: 100%;
-    display: inline;
-}
 
-.game_details h3 {
-    color: white;
-}
 
