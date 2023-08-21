@@ -18,9 +18,36 @@ body {
     font-size: 50px;
 }
 
+<<<<<<< HEAD
 #footer {
     text-align: left;
     background-color: #d162a4;
+=======
+#header {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #a30262;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.container h2 {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.container p{
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #d162a4;
+    text-align: left;
+}
+
+#image p{
+>>>>>>> d9fe610b54d6ceb758a4d1067eb251989a53a76c
     color: #ffffff;
     font-weight: 900;
     font-size: 15px;
@@ -30,16 +57,25 @@ body {
 
 nav {
     background-color: #b55690;
-    padding: 50px;
     border-color: yellow;
     border-style: solid;
+    display: flex;
 }
 
 nav a {
     float: left;
     text-decoration: none;
     display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+    padding: 10px;
+    height: 100%;
+    width: 15%;
+    text-align: center;
 }
+
+
 
 nav a:hover {
   background-color: #ff9a56;
@@ -52,7 +88,7 @@ nav a.active {
 }
 
 nav input {
-    float: right;
+   margin-left: auto;
 }
 
 #copyright {
@@ -63,7 +99,9 @@ nav input {
 #sidebar {
     border-color: red;
     border-style: solid;
-    float: left;
+    min-width: 250px;
+    padding-left: 15px;
+    background-color: white;
 
 }
 
@@ -76,6 +114,19 @@ footer {
 
 }
 
+<<<<<<< HEAD
+
+#description {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2rem;
+}
+
 .description {
     height: 100%;
     width: 100%;
@@ -85,29 +136,80 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2rem;
-
 }
 
-#description-header{
-    text-align: center;
-    color: white;
-}
-
-section{
+.description-text {
     padding: 0 19%;
 }
 
-#description-text h2{
-    font-size: 50px;
-    font-weight: 900;
+.description-text h2 {
+    font-size: 14px;
+    font-weight: 400;
     color: white;
     margin-bottom: 40px;
-    text-align: center;
 }
 
-#description-text p{
+.description-text p {
     color: white;
     font-size: 15px;
     line-height: 1.9;
+    margin-bottom: 40px;
+}
+
+
+
+
+
+
+=======
+.container {
+    display: flex;
+    border-color: black;
+    border-style: solid;
+    background-color: #d162a4;
+}
+
+#main p{
+    text-align: center;
+}
+
+#games_container {
+    width: 100%;
+}
+
+.game_small {
+    display: flex;
+    padding: 20px;
+    margin: 20px;
+    background-color: #ff9a56;
+    border-radius: 10px;
+}
+
+.image_container {
+    width: 350px;
+    min-width: 300px;
+}
+
+.image_container img {
+    display: inline;
+    width: 100%;
+    height: auto;
+}
+
+.odd {
+    background-color: #ef7627;
+}
+
+.game_details {
+    padding-left: 5%;
+    border-color: white;
+    border-style: solid;
+    width: 100%;
+    display: inline;
+}
+
+.game_details h3 {
+    color: white;
+>>>>>>> d9fe610b54d6ceb758a4d1067eb251989a53a76c
 }
 
