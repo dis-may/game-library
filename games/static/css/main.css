@@ -10,6 +10,7 @@ body {
     overflow: hidden;
     border-color: blue;
     border-style: solid;
+    color: white;
 }
 
 .header h1 {
@@ -17,10 +18,45 @@ body {
     font-size: 50px;
 }
 
+#header {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #a30262;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+#container h2 {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+#container p{
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #d162a4;
+    text-align: right;
+}
+
+#image p{
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #d162a4;
+    text-align: left;
+}
+
 nav {
     background-color: #b55690;
-    padding: 15px;
-    border-color: black;
+    padding: 50px;
+    border-color: yellow;
     border-style: solid;
 }
 
@@ -52,9 +88,15 @@ nav input {
 #sidebar {
     border-color: red;
     border-style: solid;
+    float: left;
+
 }
 
 footer {
     border-color: green;
     border-style: solid;
+    text-align: center;
+    background-color: #d162a4;
+    color: #ffffff;
+
 }
