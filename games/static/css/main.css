@@ -20,7 +20,6 @@ body {
 
 #header {
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
     background-color: #a30262;
@@ -30,14 +29,12 @@ body {
 
 #container h2 {
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
 }
 
 #container p{
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
     background-color: #d162a4;
@@ -46,7 +43,6 @@ body {
 
 #image p{
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 20px;
     background-color: #d162a4;
@@ -55,16 +51,25 @@ body {
 
 nav {
     background-color: #b55690;
-    padding: 50px;
     border-color: yellow;
     border-style: solid;
+    display: flex;
 }
 
 nav a {
     float: left;
     text-decoration: none;
     display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+    padding: 10px;
+    height: 100%;
+    width: 15%;
+    text-align: center;
 }
+
+
 
 nav a:hover {
   background-color: #ff9a56;
@@ -77,7 +82,7 @@ nav a.active {
 }
 
 nav input {
-    float: right;
+   margin-left: auto;
 }
 
 #copyright {
@@ -88,7 +93,9 @@ nav input {
 #sidebar {
     border-color: red;
     border-style: solid;
-    float: left;
+    min-width: 250px;
+    padding-left: 15px;
+    background-color: white;
 
 }
 
@@ -99,4 +106,15 @@ footer {
     background-color: #d162a4;
     color: #ffffff;
 
+}
+
+#container {
+    display: flex;
+    border-color: black;
+    border-style: solid;
+    background-color: #d162a4;
+}
+
+#main p{
+    text-align: center;
 }
