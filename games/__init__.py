@@ -8,6 +8,9 @@ from games.adapters.memory_repository import MemoryRepository, populate
 #  stay here!
 from games.domainmodel.model import Game
 
+# delete the import statement below it is just for testing!
+from games.genres.services import get_list_of_genres
+
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
@@ -27,14 +30,23 @@ def create_app():
     # Create the Flask app object.
     app = Flask(__name__)
 
-    repo.repo_instance = MemoryRepository() # repo_instance is a global variable in repository.py
+    repo.repo_instance = MemoryRepository()  # repo_instance is a global variable in repository.py
     populate(repo.repo_instance)
 
-    @app.route('/')
-    def home():
-        some_game = create_some_game()
-        # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
-        # return render_template('gameDescription.html', game=some_game)
-        return render_template('layout.html')
-    return app
+    # Build the application - these steps require an application context.
+    with app.app_context():
+        # Register blueprints.
+        from .home import home
+        app.register_blueprint(home.home_blueprint)
 
+        from .genres import genres
+        app.register_blueprint(genres.genres_blueprint)
+
+    # @app.route('/')
+    # def home():
+    #     some_game = create_some_game()
+    #     # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
+    #     # return render_template('gameDescription.html', game=some_game)
+    #     return render_template('layout.html', genre_list=get_list_of_genres(repo.repo_instance))
+
+    return app

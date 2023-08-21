@@ -3,17 +3,11 @@
     <header>
         <h1>Browse by genre</h1>
     </header>
-
-        <ul>
-<!--    {% for genre in genres %}-->
-        <div id="article-container">
-            <a href="{{ article.hyperlink }}" >
-                <img src={{ article.image_hyperlink }} class="img-small">
-            </a>
-            <div id="article-description">
-                <p>{{ article.title }}, ({{ article.date }}).</p>
-            </div>
-        </div>
-<!--    {% endfor %}-->
-        </ul>
+    <ul>
+    {% for genre in genre_list %}
+        <li>
+            {{ genre.genre_name }}
+        </li>
+    {% endfor %}
+    </ul>
 </aside>
