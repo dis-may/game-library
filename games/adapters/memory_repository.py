@@ -20,6 +20,14 @@ class MemoryRepository(AbstractRepository):
     def get_games(self) -> List[Game]:
         return self.__games
 
+    def get_games_by_genre(self, genre: Genre) -> List[Game]:
+        game_list = []
+        for game in self.__games:
+            if genre in game.genres:
+                insort_left(game_list, game)
+
+        return game_list
+
     def get_number_of_games(self) -> int:
         return len(self.__games)
 
