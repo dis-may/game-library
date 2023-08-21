@@ -13,4 +13,4 @@ def home():
     genre_list = genre_services.get_list_of_genres(repo.repo_instance)
     # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
     # return render_template('gameDescription.html', game=some_game)
-    return render_template('layout.html', genre_list=genre_list)
+    return render_template('home.html', genre_list=genre_list)
