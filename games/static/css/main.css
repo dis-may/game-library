@@ -18,11 +18,12 @@ body {
     font-size: 50px;
 }
 
-<<<<<<< HEAD
+
 #footer {
-    text-align: left;
-    background-color: #d162a4;
-=======
+            text-align: left;
+            background-color: #d162a4;
+        }
+
 #header {
     color: #ffffff;
     font-weight: 900;
@@ -47,13 +48,11 @@ body {
 }
 
 #image p{
->>>>>>> d9fe610b54d6ceb758a4d1067eb251989a53a76c
+
     color: #ffffff;
     font-weight: 900;
     font-size: 15px;
 }
-
->>>>>>> d13d7b5eae1422d06f9622c9a2554b2188980187
 
 nav {
     background-color: #b55690;
@@ -66,9 +65,7 @@ nav a {
     float: left;
     text-decoration: none;
     display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 0px;
+    margin: 0;
     padding: 10px;
     height: 100%;
     width: 15%;
@@ -112,8 +109,6 @@ footer {
 
 }
 
-<<<<<<< HEAD
-
 #description {
     height: 100%;
     width: 100%;
@@ -154,12 +149,6 @@ footer {
     margin-bottom: 40px;
 }
 
-
-
-
-
-
-=======
 .container {
     display: flex;
     border-color: black;
@@ -214,11 +203,8 @@ footer {
 }
 
 
-<<<<<<< HEAD
 .game_details h3 {
     color: white;
->>>>>>> d9fe610b54d6ceb758a4d1067eb251989a53a76c
 }
-=======
->>>>>>> cd6071ca22ad84db9d105542e410430573e23db9
+
 
