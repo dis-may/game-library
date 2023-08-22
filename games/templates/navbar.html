@@ -4,8 +4,8 @@
 </div>
 <!--  <img id="logo" src="{{ url_for('static', filename='logo.png') }}" />-->
 <nav>
-    <a class="btn-nav" href="#">Home</a>
-    <a class="btn-nav" href="#">Games</a>
+    <a class="btn-nav" href="{{ url_for('home_bp.home') }}">Home</a>
+    <a class="btn-nav" href="{{ url_for('games_bp.games_page') }}">Games</a>
     <a class="btn-nav" href="#">Reviews</a>
     <a class="btn-nav" href="#">Wishlist</a>
     <input type="text" placeholder="Search..">

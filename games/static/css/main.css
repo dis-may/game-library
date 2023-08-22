@@ -75,8 +75,6 @@ nav a {
     text-align: center;
 }
 
-
-
 nav a:hover {
   background-color: #ff9a56;
   color: black;
@@ -169,20 +167,35 @@ footer {
     background-color: #d162a4;
 }
 
-#main p{
+.main p{
     text-align: center;
 }
 
-#games_container {
-    width: 100%;
+.games_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
 }
 
-.game_small {
+.game_card {
     display: flex;
+    flex-direction: column;
     padding: 20px;
     margin: 20px;
     background-color: #ff9a56;
     border-radius: 10px;
+}
+
+.game_details {
+    border-color: white;
+    border-style: solid;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.game_details h3 {
+    color: white;
 }
 
 .image_container {
@@ -191,7 +204,7 @@ footer {
 }
 
 .image_container img {
-    display: inline;
+    display: block;
     width: 100%;
     height: auto;
 }
@@ -200,16 +213,12 @@ footer {
     background-color: #ef7627;
 }
 
-.game_details {
-    padding-left: 5%;
-    border-color: white;
-    border-style: solid;
-    width: 100%;
-    display: inline;
-}
 
+<<<<<<< HEAD
 .game_details h3 {
     color: white;
 >>>>>>> d9fe610b54d6ceb758a4d1067eb251989a53a76c
 }
+=======
+>>>>>>> cd6071ca22ad84db9d105542e410430573e23db9
 
