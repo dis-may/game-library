@@ -62,6 +62,8 @@ nav {
 nav a {
     float: left;
     text-decoration: none;
+    color: white;
+    font-weight: bold;
     display: block;
     margin: 0;
     padding: 10px;
@@ -72,7 +74,7 @@ nav a {
 
 nav a:hover {
   background-color: #ff9a56;
-  color: black;
+  color: white;
 }
 
 nav input {
