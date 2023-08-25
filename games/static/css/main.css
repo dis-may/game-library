@@ -160,18 +160,22 @@ footer {
 }
 
 .games_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
     align-items: start;
 }
 
 .game_card {
     display: flex;
+    border: 1px solid green;
+    margin: auto;
     flex-direction: column;
-    padding: 20px;
-    margin: 20px;
+    padding: 0px;
     background-color: #ff9a56;
     border-radius: 10px;
+    width: 30%;
 }
 
 .game_details {
@@ -187,8 +191,10 @@ footer {
 }
 
 .image_container {
-    width: 350px;
-    min-width: 300px;
+    width: 90%;
+    min-width: 200px;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .image_container img {
