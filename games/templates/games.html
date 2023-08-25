@@ -3,14 +3,24 @@
     {% for game in games_list %}
     <div class="game_card {{ loop.cycle('odd', 'even') }}">
         <div class="image_container">
-            <img src="{{ game.image_url }}" alt="game art" />
+            <img src="{{ game.image_url }}" alt="Game art for {{ game.title }} " />
         </div>
 
         <div class="game_details">
-            <h3>{{ game.title }}</h3>
+            <p class="headings">TITLE</p>
+            <p>{{ game.title }}</p>
+
+            <p class="headings">PUBLISHER</p>
             <p>{{ game.publisher.publisher_name }}</p>
-            <p class="release_date">{{ game.release_date }}</p>
-            <p class="price">{{ game.price }}</p>
+
+            <p class="headings">RELEASE DATE</p>
+            <p>{{ game.release_date }}</p>
+
+            <p class="headings">PRICE</p>
+            <p>{{ game.price }}</p>
+
+            <p class="headings">GENRES</p>
+            <p>{{ game.genres }}</p>
         </div>
 
     </div>

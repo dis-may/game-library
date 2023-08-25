@@ -43,12 +43,10 @@ body {
     color: #ffffff;
     font-weight: 900;
     font-size: 20px;
-    background-color: #d162a4;
     text-align: left;
 }
 
 #image p{
-
     color: #ffffff;
     font-weight: 900;
     font-size: 15px;
@@ -77,11 +75,6 @@ nav a:hover {
   color: black;
 }
 
-nav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
 nav input {
    margin-left: auto;
 }
@@ -97,7 +90,11 @@ nav input {
     min-width: 250px;
     padding-left: 15px;
     background-color: white;
+}
 
+.sidebar-genres {
+    position: sticky;
+    top: 0;
 }
 
 footer {
@@ -202,9 +199,12 @@ footer {
     background-color: #ef7627;
 }
 
-
 .game_details h3 {
     color: white;
 }
 
-
+.headings {
+    font-family: "Baskerville Old Face";
+    font-size: x-small;
+    margin: 0;
+}
