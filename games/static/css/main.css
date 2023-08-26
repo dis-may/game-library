@@ -216,3 +216,30 @@ footer {
     font-size: x-small;
     margin: 0;
 }
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    border-color: #a30262;
+    border-style: solid;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.next-prev {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
