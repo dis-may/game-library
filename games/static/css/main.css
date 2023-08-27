@@ -1,6 +1,8 @@
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
+    color: white;
+    padding-bottom:60px
 }
 
 .header {
@@ -8,8 +10,6 @@ body {
     text-align: center;
     padding-bottom: 30px;
     overflow: hidden;
-    border-color: blue;
-    border-style: solid;
     color: white;
 }
 
@@ -17,12 +17,6 @@ body {
     font-weight: 900;
     font-size: 50px;
 }
-
-
-#footer {
-            text-align: left;
-            background-color: #d162a4;
-        }
 
 #header {
     color: #ffffff;
@@ -54,8 +48,6 @@ body {
 
 nav {
     background-color: #b55690;
-    border-color: yellow;
-    border-style: solid;
     display: flex;
 }
 
@@ -87,25 +79,25 @@ nav input {
 }
 
 #sidebar {
-    border-color: red;
-    border-style: solid;
     min-width: 250px;
     padding-left: 15px;
-    background-color: white;
+    background-color: #a30262;
 }
 
 .sidebar-genres {
     position: sticky;
     top: 0;
+    padding-top: 50%;
 }
 
 footer {
-    border-color: green;
-    border-style: solid;
     text-align: center;
-    background-color: #d162a4;
+    background-color: #a30262;
     color: #ffffff;
-
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
 }
 
 #description {
@@ -150,8 +142,6 @@ footer {
 
 .container {
     display: flex;
-    border-color: black;
-    border-style: solid;
     background-color: #d162a4;
 }
 
@@ -160,34 +150,39 @@ footer {
 }
 
 .games_container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
 }
 
 .game_card {
-    display: flex;
-    border: 1px solid green;
     margin: auto;
-    flex-direction: column;
-    padding: 0px;
     background-color: #ff9a56;
     border-radius: 10px;
-    width: 30%;
 }
 
 .game_details {
-    border-color: white;
-    border-style: solid;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
-.game_details h3 {
-    color: white;
+.info-block {
+    padding: 10px;
+}
+
+.headings {
+    font-family: "Baskerville Old Face";
+    font-size: x-small;
+    margin: 0;
+}
+
+.info {
+    margin: 0;
 }
 
 .image_container {
@@ -207,24 +202,15 @@ footer {
     background-color: #ef7627;
 }
 
-.game_details h3 {
-    color: white;
-}
-
-.headings {
-    font-family: "Baskerville Old Face";
-    font-size: x-small;
-    margin: 0;
-}
-
 .pagination {
     display: inline-block;
+    text-align: center;
 }
 
 .pagination a {
-    color: black;
     padding: 5px;
     text-decoration: none;
+    color: white;
     border-color: #a30262;
     border-style: solid;
 }
@@ -234,12 +220,22 @@ footer {
     color: white;
 }
 
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
+.pagination a:hover {
+    background-color: #ff9a56;
 }
 
-.next-prev {
+.prev-next {
     display: flex;
-    justify-content: space-between;
-    margin: 20px;
+    padding-top: 20px;
+    justify-content: center;
+}
+
+.prev {
+    display: inline-flex;
+    float: left;
+}
+
+.next {
+    display: inline-flex;
+    float: right;
 }
