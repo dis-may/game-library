@@ -1,5 +1,7 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="x">
+    <h2>{{ heading }}</h2>
+    <div class="games_container_container">
     <div class="games_container">
     {% for game in games_list %}
     <div class="game_card {{ loop.cycle('odd', 'even') }}">
@@ -45,25 +47,26 @@
     </div>
     {% endfor %}
     </div>
+    </div>
 
     <div class="pagination">
-        {% for i in range(1, total_pages + 1) %}
-            <a href="{{ url_for('games_bp.games_page', page=i) }}">{{ i }}</a>
+        {% for i in range(0, total_pages) %}
+            <a href="{{ pagination_urls[i] }}" class="{{ 'page_selected' if page == i+1 }}">{{ i+1 }}</a>
         {% endfor %}
 
         <div class="prev-next">
             <div class="prev">
                 {% if page > 1 %}
-                    <a href="{{ url_for('games_bp.games_page', page=page - 1) }}">Previous</a>
+                    <a href="{{ pagination_urls[page-2] }}">Previous</a>
                 {% endif %}
             </div>
 
             <div class="next">
                 {% if page < total_pages %}
-                    <a href="{{ url_for('games_bp.games_page', page=page + 1) }}">Next</a>
+                    <a href="{{ pagination_urls[page] }}">Next</a>
                 {% endif %}
             </div>
         </div>
     </div>
-{% endblock %}
 </div>
+{% endblock %}

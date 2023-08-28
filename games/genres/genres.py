@@ -20,7 +20,7 @@ genres_blueprint = Blueprint(
 
 
 @genres_blueprint.route('/genres', methods=['GET'])
-def get_game_list_by_genre():
+def games_by_genre_page():
     # Read query parameters.
     sort = request.args.get('sort')
     page = request.args.get('page', 1, type=int)
@@ -38,10 +38,16 @@ def get_game_list_by_genre():
     total_pages = ceil(len(all_games) / 21)
     print(total_pages)
 
+    pagination_urls = [url_for('genres_bp.games_by_genre_page',
+                               page=i,
+                               genre=target_genre) for i in range(1, total_pages+1)]
+
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+                           heading=target_genre,
                            page=page,
                            total_pages=total_pages,
-                           int=int
+                           int=int,
+                           pagination_urls=pagination_urls
                            )

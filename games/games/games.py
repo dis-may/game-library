@@ -30,10 +30,14 @@ def games_page():
     total_pages = ceil(len(all_games) / 21)
     print(total_pages)
 
+    pagination_urls = [url_for('games_bp.games_page', page=i) for i in range(1, total_pages+1)]
+
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+                           heading="All Games",
                            page=page,
                            total_pages=total_pages,
-                           int=int
+                           int=int,
+                           pagination_urls=pagination_urls
                            )
