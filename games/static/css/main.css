@@ -251,6 +251,10 @@ footer {
     background-color: #ff9a56;
 }
 
+.page_selected {
+    background-color:  #a30262;
+}
+
 .prev-next {
     display: flex;
     padding-top: 15px;
@@ -277,6 +281,8 @@ genre-link {
     text-decoration: none;
 }
 
+
+
 .genre-link a {
    color: white;
    display: block;
@@ -284,11 +290,18 @@ genre-link {
    margin-left: 10px;
    margin-top: 4px;
    text-align: center;
-   padding: 2px;
+   padding: 0px;
    text-decoration: none;
    border-radius: 10px;
    font-weight: bold;
    background-color: #ef7627;
+   border-color: #ef7627;
+   border-style: solid;
+   border-weight: 1px;
+}
+
+.genre-selected a {
+    background-color: #a30262;
 }
 
 .genre-link a:hover {

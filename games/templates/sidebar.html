@@ -6,7 +6,7 @@
 
         <ul >
         {% for genre in genre_url_dict %}
-            <li class="genre-link">
+            <li class="genre-link {{'genre-selected' if genre == heading}}">
                 <a href="{{ genre_url_dict[genre] }}">{{ genre }}</a>
             </li>
         {% endfor %}

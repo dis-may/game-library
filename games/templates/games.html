@@ -51,7 +51,7 @@
 
     <div class="pagination">
         {% for i in range(0, total_pages) %}
-            <a href="{{ pagination_urls[i] }}">{{ i+1 }}</a>
+            <a href="{{ pagination_urls[i] }}" class="{{ 'page_selected' if page == i+1 }}">{{ i+1 }}</a>
         {% endfor %}
 
         <div class="prev-next">
