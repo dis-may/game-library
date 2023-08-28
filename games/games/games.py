@@ -5,7 +5,6 @@ from math import ceil
 
 import games.games.services as services
 import games.adapters.repository as repo
-import games.genres.services
 import games.utilities.utilities as utilities
 
 games_blueprint = Blueprint(

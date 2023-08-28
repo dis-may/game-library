@@ -35,7 +35,7 @@
 
             <div class="info-block">
                 <p class="headings">M O R E  I N F O</p>
-                <p class="info">{{ game.genres }}</p>
+                <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id) }}">Click here</a>
             </div>
 
         </div>

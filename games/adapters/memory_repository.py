@@ -20,6 +20,14 @@ class MemoryRepository(AbstractRepository):
     def get_games(self) -> List[Game]:
         return self.__games
 
+    def get_game(self, game_id: int) -> Game:
+        game = None
+
+        try:
+            game = self.__games[game_id]
+        except IndexError:
+            pass
+
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
         game_list = []
         for game in self.__games:

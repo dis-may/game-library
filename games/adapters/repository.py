@@ -60,3 +60,8 @@ class AbstractRepository(abc.ABC):
     def get_genres(self):
         """Returns a list of Genre objects"""
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_game(self, game_id: int) -> Game:
+        """Returns a game with the specified id"""
+        raise NotImplementedError

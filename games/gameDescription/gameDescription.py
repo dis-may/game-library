@@ -7,7 +7,7 @@ import games.adapters.repository as repo
 gameDescription_blueprint = Blueprint('gameDescription_bp', __name__)
 
 
-@gameDescription_blueprint.route('/gamesDescription', methods=['GET'])
+@gameDescription_blueprint.route('/gameDescription', methods=['GET'])
 def game_desc_page():
     # Read query parameters.
     game_id = request.args.get('id')
