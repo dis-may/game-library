@@ -57,13 +57,13 @@
         <div class="prev-next">
             <div class="prev">
                 {% if page > 1 %}
-                    <a href="{{ pagination_urls[page-1] }}">Previous</a>
+                    <a href="{{ pagination_urls[page-2] }}">Previous</a>
                 {% endif %}
             </div>
 
             <div class="next">
                 {% if page < total_pages %}
-                    <a href="{{ pagination_urls[page+1] }}">Next</a>
+                    <a href="{{ pagination_urls[page] }}">Next</a>
                 {% endif %}
             </div>
         </div>
