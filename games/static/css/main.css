@@ -2,7 +2,8 @@ body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     color: white;
-    padding-bottom:60px
+    padding-bottom:60px;
+    position: relative;
 }
 
 .header {
@@ -176,7 +177,7 @@ footer {
 }
 
 .headings {
-    font-family: "Baskerville Old Face";
+    font-family: 'Stint Ultra Condensed', serif;
     font-size: x-small;
     margin: 0;
 }
