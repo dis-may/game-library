@@ -6,6 +6,7 @@ from math import ceil
 import games.games.services as services
 import games.adapters.repository as repo
 import games.genres.services
+import games.utilities.utilities as utilities
 
 games_blueprint = Blueprint(
     'games_bp', __name__)
@@ -16,6 +17,7 @@ def games_page():
     # Read query parameters.
     sort = request.args.get('sort')
     page = request.args.get('page', 1, type=int)
+    genre = request.args.get('genre')
 
     # Calculate the range of games to display on the current page.
     start_index = (page - 1) * 21
@@ -31,7 +33,7 @@ def games_page():
 
     return render_template('games.html',
                            games_list=games_list,
-                           genre_list=games.genres.services.get_list_of_genres(repo.repo_instance),
+                           genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
                            page=page,
                            total_pages=total_pages,
                            int=int

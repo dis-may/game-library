@@ -4,9 +4,9 @@
             <h1>Browse by genre</h1>
         </header>
         <ul>
-        {% for genre in genre_list %}
+        {% for genre in genre_url_dict %}
             <li>
-                <a>{{ genre.genre_name }}</a>
+                <a href="{{ genre_url_dict[genre] }}">{{ genre }}</a>
             </li>
         {% endfor %}
         </ul>
