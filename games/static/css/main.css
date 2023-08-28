@@ -157,8 +157,6 @@ footer {
 
 .games_container_container {
     display: flex;
-    border-color: red;
-    border-style: solid;
     width: 100%;
 }
 
