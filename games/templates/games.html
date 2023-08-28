@@ -30,7 +30,9 @@
 
             <div class="info-block">
                 <p class="headings">G E N R E S</p>
-                <p class="info">{{ game.genres }}</p>
+                {% for genre in game.genres %}
+                    <p class="info">{{ genre.genre_name }}</p>
+                {% endfor %}
             </div>
 
             <div class="info-block">
