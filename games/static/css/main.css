@@ -105,7 +105,6 @@ footer {
 #description {
     height: 100%;
     width: 100%;
-    min-height: 100vh;
     position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -116,16 +115,11 @@ footer {
 .description {
     height: 100%;
     width: 100%;
-    min-height: 100vh;
     position: relative;
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2rem;
-}
-
-.description-text {
-    padding: 0 19%;
 }
 
 .description-text h2 {
@@ -191,7 +185,7 @@ footer {
     width: 90%;
     min-width: 200px;
     margin: auto;
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .image_container img {
@@ -273,4 +267,16 @@ genre-link {
 #sidebar header {
     text-align: center;
     padding-top: 5%;
+}
+
+.deets {
+    background-color: #ff9a56;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.description-text {
+    background-color: #ff9a56;
+    border-radius: 10px;
+    flex: 2;
 }
