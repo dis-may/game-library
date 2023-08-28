@@ -12,6 +12,6 @@ def get_genre_url_dictionary(repo: AbstractRepository):
     genre_list = services.get_genre_names(repo)
     genre_url_dict = {}
     for genre in genre_list:
-        genre_url_dict[genre] = url_for('genres_bp.get_game_list_by_genre', genre=genre)
+        genre_url_dict[genre] = url_for('genres_bp.games_by_genre_page', genre=genre)
 
     return genre_url_dict

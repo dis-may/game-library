@@ -50,20 +50,20 @@
     </div>
 
     <div class="pagination">
-        {% for i in range(1, total_pages + 1) %}
-            <a href="{{ url_for('games_bp.games_page', page=i) }}">{{ i }}</a>
+        {% for i in range(0, total_pages) %}
+            <a href="{{ pagination_urls[i] }}">{{ i+1 }}</a>
         {% endfor %}
 
         <div class="prev-next">
             <div class="prev">
                 {% if page > 1 %}
-                    <a href="{{ url_for('games_bp.games_page', page=page - 1) }}">Previous</a>
+                    <a href="{{ pagination_urls[page-1] }}">Previous</a>
                 {% endif %}
             </div>
 
             <div class="next">
                 {% if page < total_pages %}
-                    <a href="{{ url_for('games_bp.games_page', page=page + 1) }}">Next</a>
+                    <a href="{{ pagination_urls[page+1] }}">Next</a>
                 {% endif %}
             </div>
         </div>
