@@ -28,6 +28,10 @@ body {
     padding-bottom: 10px;
 }
 
+.container {
+    width: 100%;
+}
+
 .container h2 {
     color: #ffffff;
     font-weight: 900;
@@ -151,6 +155,17 @@ footer {
     text-align: center;
 }
 
+.games_container_container {
+    display: flex;
+    border-color: red;
+    border-style: solid;
+    width: 100%;
+}
+
+.x {
+    width: 100%;
+}
+
 .games_container {
     max-width: 1200px;
     margin: 0 auto;
@@ -207,10 +222,14 @@ footer {
 .pagination {
     display: inline-block;
     text-align: center;
+    margin-top: 20px;
+    line-height: 40px;
+    width: 100%;
 }
 
 .pagination a {
     padding: 5px;
+    text-align: center;
     text-decoration: none;
     color: white;
     border-color: #a30262;
@@ -228,7 +247,7 @@ footer {
 
 .prev-next {
     display: flex;
-    padding-top: 20px;
+    padding-top: 15px;
     justify-content: center;
 }
 

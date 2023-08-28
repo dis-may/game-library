@@ -1,5 +1,6 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="x">
+    <div class="games_container_container">
     <div class="games_container">
     {% for game in games_list %}
     <div class="game_card {{ loop.cycle('odd', 'even') }}">
@@ -45,6 +46,7 @@
     </div>
     {% endfor %}
     </div>
+    </div>
 
     <div class="pagination">
         {% for i in range(1, total_pages + 1) %}
@@ -65,5 +67,5 @@
             </div>
         </div>
     </div>
-{% endblock %}
 </div>
+{% endblock %}
