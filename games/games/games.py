@@ -33,6 +33,7 @@ def games_page():
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+                           heading="All Games",
                            page=page,
                            total_pages=total_pages,
                            int=int
