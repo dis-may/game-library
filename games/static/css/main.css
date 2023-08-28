@@ -179,6 +179,20 @@ footer {
     margin: auto;
     background-color: #ff9a56;
     border-radius: 10px;
+    position: relative;
+}
+
+.game_card:hover {
+    box-shadow: 0 0 20px #a30262;
+    transition: 0.5s;
+}
+
+.card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .game_details {

@@ -5,6 +5,8 @@
     <div class="games_container">
     {% for game in games_list %}
     <div class="game_card {{ loop.cycle('odd', 'even') }}">
+        <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id) }}" class='card-link'></a>
+
         <div class="image_container">
             <img src="{{ game.image_url }}" alt="Game art for {{ game.title }} " />
         </div>
@@ -21,7 +23,7 @@
             </div>
 
             <div class="info-block">
-                <p class="headings">R E L E A S E   D A T E</p>
+                <p class="headings">R E L E A S E &nbsp D A T E</p>
                 <p class="info">{{ game.release_date }}</p>
             </div>
 
@@ -36,14 +38,7 @@
                     <p class="info">{{ genre.genre_name }}</p>
                 {% endfor %}
             </div>
-
-            <div class="info-block">
-                <p class="headings">M O R E  I N F O</p>
-                <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id) }}">Click here</a>
-            </div>
-
         </div>
-
     </div>
     {% endfor %}
     </div>
