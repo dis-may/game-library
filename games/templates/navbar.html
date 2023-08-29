@@ -9,7 +9,13 @@
     <a class="btn-nav" href="#">Reviews</a>
     <a class="btn-nav" href="#">Wishlist</a>
     <form method="GET" action={{url_for('search_bp.games_search_page')}} class="d-flex">
+                                <select name="search type" id="options">
+        <option value="title">Title</option>
+        <option value="publisher">Publisher</option>
+        <option value="description">Description</option>
+        </select>
           <input class="form-control me2" type="search" placeholder="Search" aria-label="Search" name="query">
           <button class="btn btn-outline-secondary" type="submit"> Search</button>
     </form>
+
 </nav>

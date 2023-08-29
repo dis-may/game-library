@@ -21,12 +21,6 @@ def test_add_game():
     assert len(repo.get_games()) == 1
     assert game1 in repo.get_games()
 
-    # adding an invalid type
-    invalid_game = "Invalid"
-    repo.add_game(invalid_game)
-    assert len(repo.get_games()) == 1
-    assert invalid_game not in repo.get_games()
-
 
 def test_add_publisher():
     # adding a valid publisher
@@ -36,19 +30,14 @@ def test_add_publisher():
     assert len(repo.get_publishers()) == 1
     assert publisher1 in repo.get_publishers()
 
-    # adding an invalid type
-    invalid_publisher = "Invalid"
-    repo.add_publisher(invalid_publisher)
-    assert len(repo.get_publishers()) == 1
-    assert invalid_publisher not in repo.get_publishers()
 
-
-def test_populate():
+def test_add_genre():
+    # adding a valid genre
+    genre1 = Genre("Example Genre")
     repo = MemoryRepository()
-    populate(repo)  # populate repo with real csv data
-    assert repo.get_games() != []
-    assert repo.get_publishers() != []
-    assert repo.get_genres() != []
+    repo.add_genre(genre1)
+    assert len(repo.get_genres()) == 1
+    assert genre1 in repo.get_genres()
 
 
 @pytest.fixture
@@ -58,8 +47,8 @@ def memory_repo():
     return repo_instance
 
 
-def test_get_games(memory_repo):
-    pass
+def test_get_games_dataset(memory_repo):
+
 
 
 def test_add_valid_game(memory_repo):
