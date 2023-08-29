@@ -8,8 +8,8 @@
     <a class="btn-nav" href="{{ url_for('games_bp.games_page') }}">Games</a>
     <a class="btn-nav" href="#">Reviews</a>
     <a class="btn-nav" href="#">Wishlist</a>
-    <form method = "GET" action = {{url_for('search_games', query=""}} class = "d-flex">
-          <input class = "form-control me2" type = "search" placeholder = "Search" aria-label = "Search" name = "searched">
-          <button class = "btn btn-outline-secondary" type = "submit"> Search</button>
+    <form method="GET" action={{url_for('search_bp.games_search_page', query=space)}} class="d-flex">
+          <input class="form-control me2" type = "search" placeholder = "Search" aria-label = "Search" name = "searched">
+          <button class="btn btn-outline-secondary" type="submit"> Search</button>
     </form>
 </nav>
