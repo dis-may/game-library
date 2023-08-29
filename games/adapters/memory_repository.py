@@ -73,3 +73,21 @@ def populate(repo: AbstractRepository):
 
     for pub in publishers:
         repo.add_publisher(pub)
+
+
+def sort_games(repo: AbstractRepository, sort: str, order: str):
+    games = repo.get_games()
+
+    if sort == 'title':
+        if order == 'asc':
+            games.sort(key=lambda game: game.title)
+        elif order == 'desc':
+            games.sort(key=lambda game: game.title, reverse=True)
+
+    if sort == 'price':
+        if order == 'asc':
+            games.sort(key=lambda game: game.price)
+        elif order == 'desc':
+            games.sort(key=lambda game: game.price, reverse=True)
+
+    return repo.sort_games(sort, order)
