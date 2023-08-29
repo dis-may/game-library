@@ -151,10 +151,15 @@ footer {
 
 .main-body h2 {
     display: block;
-    margin-left: 5%;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    margin: 3% auto;
     font-size: 1.5em;
+    overflow: hidden;
+    text-align: center;
+    background-color: #ef7627;
+    border-radius: 10px;
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .games_container {
