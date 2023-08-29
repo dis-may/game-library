@@ -74,29 +74,6 @@ nav a:hover {
   color: white;
 }
 
-.subnav {
-    visibility: hidden;
-    position: absolute;
-    top: 110%;
-    right: 0;
-    width: 200px;
-    height: auto;
-    opacity: 0;
-    transition: all 0.1s;
-}
-
-.subnav li {
-    float: none;
-}
-.subnav li a {
-    border-bottom: 1px solid #2e2e2e;
-}
-#options:hover .subnav {
-    visibility: visible;
-    top: 100%;
-    opacity: 1;
-}
-
 nav input {
    margin-left: auto;
 }
@@ -104,6 +81,13 @@ nav input {
 #copyright {
     text-align: center;
     padding-bottom: 30px;
+}
+
+#options {
+    background-color: #b55690;
+    color: white;
+    height: 100%;
+    width: 25%;
 }
 
 #sidebar {

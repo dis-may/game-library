@@ -13,7 +13,7 @@ def games_search_page():
     # Read query parameters.
     query = request.args.get('query').lower()
     page = request.args.get('page', 1, type=int)
-    # target_search = request.args.get('name')
+    search_type = request.args.get('search type')
 
     # Calculate the range of games to display on the current page.
     items_per_page = 21
@@ -21,7 +21,15 @@ def games_search_page():
     end_index = start_index + items_per_page
 
     # Get the list of games that match the search query.
-    search_results = services.get_games_by_search(repo.repo_instance, query)
+    if search_type == 'title':
+        search_results = services.get_games_by_search(repo.repo_instance, query)
+    elif search_type == 'publisher':
+        search_results = services.get_games_by_publisher(repo.repo_instance, query)
+    elif search_type == 'description':
+        search_results = services.get_games_by_description(repo.repo_instance, query)
+    else:
+        search_results = []
+
 
     # Get the list of games to display on the current page.
     games_list = search_results[start_index:end_index]
