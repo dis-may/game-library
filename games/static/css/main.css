@@ -137,7 +137,8 @@ footer {
 }
 
 .main p{
-    text-align: center;
+    width: 90%;
+    margin: 3% auto;
 }
 
 .games_container_container {
@@ -165,10 +166,10 @@ footer {
 .games_container {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
+    display: flex;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
+    align-items: start;
+    flex-wrap: wrap;
 }
 
 .game_card {
@@ -232,11 +233,11 @@ footer {
 }
 
 .pagination {
-    display: inline-block;
+    display: block;
     text-align: center;
-    margin-top: 20px;
     line-height: 40px;
-    width: 100%;
+    width: 90%;
+    margin: 3% auto;
 }
 
 .pagination a {
@@ -318,7 +319,7 @@ genre-link {
 }
 
 .deets {
-    background-color: #ff9a56;
+    background-color: #ef7627;
     border-radius: 10px;
     flex: 1;
 }

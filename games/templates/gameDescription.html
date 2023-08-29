@@ -2,7 +2,7 @@
 {% block content %}
 <div class="main-body">
     <div class="image_container">
-        <img src="{{ game.image_url }}" alt="Game art for {{ game.title }} " />
+        <img src="{{ game.image_url }}" onerror="this.onerror=null; this.src='../static/no-image.png'" alt="Game art for {{ game.title }} " />
     </div>
     <div class="description">
         <div class="deets">
