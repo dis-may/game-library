@@ -17,4 +17,7 @@ def game_desc_page():
 
     genre_url_dict = utilities.get_genre_url_dictionary(repo.repo_instance)
 
-    return render_template('gameDescription.html', game=game, genre_url_dict=genre_url_dict)
+    return render_template('gameDescription.html',
+                           game=game,
+                           genre_url_dict=genre_url_dict,
+                           heading=game.title)

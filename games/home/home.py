@@ -16,4 +16,6 @@ def home():
     # Use Jinja to customize a predefined html page rendering the layout
     # for showing a single game.
     # return render_template('gameDescription.html', game=some_game)
-    return render_template('home.html', genre_url_dict=genre_url_dict)
+    return render_template('home.html',
+                           genre_url_dict=genre_url_dict,
+                           heading="My Game Library")
