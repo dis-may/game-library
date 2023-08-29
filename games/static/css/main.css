@@ -104,26 +104,17 @@ footer {
     bottom: 0;
     width: 100%;
     height: 60px;
-}
-
-#description {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 2rem;
+    left: 0;
 }
 
 .description {
-    height: 100%;
-    width: 100%;
     position: relative;
     display: flex;
-    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2rem;
+    margin: auto;
+    width: 90%;
+    padding-bottom: 20px;
 }
 
 .description-text h2 {
@@ -154,11 +145,11 @@ footer {
     width: 100%;
 }
 
-.x {
+.main-body {
     width: 100%;
 }
 
-.x h2 {
+.main-body h2 {
     display: block;
     margin-left: 5%;
     margin-top: 3%;
@@ -221,12 +212,14 @@ footer {
     min-width: 200px;
     margin: auto;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .image_container img {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 10px;
 }
 
 .odd {
@@ -289,8 +282,6 @@ genre-link {
     text-decoration: none;
 }
 
-
-
 .genre-link a {
    color: white;
    display: block;
@@ -298,7 +289,7 @@ genre-link {
    margin-left: 10px;
    margin-top: 4px;
    text-align: center;
-   padding: 0px;
+   padding: 0;
    text-decoration: none;
    border-radius: 10px;
    font-weight: bold;
