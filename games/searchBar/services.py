@@ -7,6 +7,7 @@ def get_games_by_search(repo: AbstractRepository, target_name: str):
     games_by_search = []
 
     for game in games:
-        if games.name == target_name:
+        if target_name in game.title.lower():
             insort_left(games_by_search, game)
+    print(games_by_search)
     return games_by_search
