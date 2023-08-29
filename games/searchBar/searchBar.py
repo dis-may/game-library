@@ -48,5 +48,6 @@ def games_search_page():
                            page=page,
                            total_pages=total_pages,
                            int=int,
-                           pagination_urls=pagination_urls
+                           pagination_urls=pagination_urls,
+                           heading=f"'{query}'"
                            )

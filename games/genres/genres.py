@@ -45,9 +45,9 @@ def games_by_genre_page():
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
-                           heading=target_genre,
+                           heading=f"{target_genre} Games",
                            page=page,
                            total_pages=total_pages,
                            int=int,
-                           pagination_urls=pagination_urls
+                           pagination_urls=pagination_urls,
                            )
