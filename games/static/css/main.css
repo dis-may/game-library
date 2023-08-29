@@ -177,6 +177,8 @@ footer {
     background-color: #ff9a56;
     border-radius: 10px;
     position: relative;
+    width: 30%;
+    min-width: 300px;
 }
 
 .game_card:hover {
