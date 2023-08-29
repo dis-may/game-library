@@ -454,7 +454,6 @@ def test_publisher_dataset():
     publishers_set = reader.dataset_of_publishers
     sorted_publishers = sorted(publishers_set)
     sorted_publishers_str = str(sorted_publishers[:3])
-    print(sorted_publishers_str)
     assert sorted_publishers_str == "[<Publisher 13-lab,azimuth team>, <Publisher 2Awesome Studio>, <Publisher 2Frogs Software>]"
 
 
