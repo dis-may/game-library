@@ -51,6 +51,9 @@ def create_app():
         from .gameDescription import gameDescription
         app.register_blueprint(gameDescription.gameDescription_blueprint)
 
+        from .searchBar import searchBar
+        app.register_blueprint(searchBar.searchBar_blueprint)
+
     # @app.route('/')
     # def home():
     #     some_game = create_some_game()

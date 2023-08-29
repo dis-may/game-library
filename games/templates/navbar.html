@@ -1,6 +1,6 @@
 <div class="header">
   <h1>CS235 2023: My Game Library</h1>
-  <div id="copyright">&copy; ewu814 (Elizabeth) &nbsp&nbsp | &nbsp&nbsp mgan655 (May) &nbsp&nbsp | &nbsp&nbsp akim525 (Alex)</div>
+  <div id="copyright">&copy; ewu814 (Elizabeth) &nbsp;&nbsp; | &nbsp;&nbsp; mgan655 (May) &nbsp;&nbsp; | &nbsp;&nbsp; akim525 (Alex)</div>
 </div>
 <!--  <img id="logo" src="{{ url_for('static', filename='logo.png') }}" />-->
 <nav>
@@ -8,5 +8,8 @@
     <a class="btn-nav" href="{{ url_for('games_bp.games_page') }}">Games</a>
     <a class="btn-nav" href="#">Reviews</a>
     <a class="btn-nav" href="#">Wishlist</a>
-    <input type="text" placeholder="Search..">
+    <form method = "GET" action = {{url_for('search_games', query=""}} class = "d-flex">
+          <input class = "form-control me2" type = "search" placeholder = "Search" aria-label = "Search" name = "searched">
+          <button class = "btn btn-outline-secondary" type = "submit"> Search</button>
+    </form>
 </nav>
