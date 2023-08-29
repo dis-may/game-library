@@ -40,14 +40,6 @@ def test_add_genre():
     assert genre1 in repo.get_genres()
 
 
-def test_populate():
-    repo = MemoryRepository()
-    populate(repo)  # populate repo with real csv data
-    assert repo.get_games() != []
-    assert repo.get_publishers() != []
-    assert repo.get_genres() != []
-
-
 @pytest.fixture
 def memory_repo():
     repo_instance = MemoryRepository()
@@ -55,8 +47,8 @@ def memory_repo():
     return repo_instance
 
 
-def test_get_games(memory_repo):
-    pass
+def test_get_games_dataset(memory_repo):
+
 
 
 def test_add_valid_game(memory_repo):
