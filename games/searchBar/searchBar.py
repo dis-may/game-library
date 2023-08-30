@@ -13,7 +13,7 @@ def games_search_page():
     # Read query parameters.
     query = request.args.get('query').lower()
     page = request.args.get('page', 1, type=int)
-    search_type = request.args.get('search type')
+    search_type = request.args.get('search_type')
 
     # Calculate the range of games to display on the current page.
     items_per_page = 21
@@ -33,13 +33,15 @@ def games_search_page():
 
     # Get the list of games to display on the current page.
     games_list = search_results[start_index:end_index]
+    total_pages = ceil(len(search_results) / items_per_page)
 
-    total_pages = ceil(len(search_results) / 21)
-
-    pagination_urls = [url_for('search_bp.games_search_page',
-                               page=i,
-                               query=query,
-                               ) for i in range(1, total_pages+1)]
+    pagination_urls = [
+        url_for('search_bp.games_search_page',
+                page=i,
+                query=query,
+                search_type=search_type
+                ) for i in range(1, total_pages + 1)
+    ]
 
     return render_template('games.html',
                            games_list=games_list,
