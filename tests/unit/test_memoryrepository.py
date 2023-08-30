@@ -102,9 +102,14 @@ def test_get_game_by_id(memory_repo):
 
 
 def test_get_games_by_genre(memory_repo):
-    # checking a valid genre
+    # test for valid genre
     genre1 = Genre("Action")
     action_games = memory_repo.get_games_by_genre(genre1)
-    # finish this LATER pls
+    assert len(action_games) == 380
+    # test for invalid genre
+    genre2 = Genre("Invalid Genre")
+    invalid_games = memory_repo.get_games_by_genre(genre2)
+    assert len(invalid_games) == 0
+
 
 # write more tests for search functionality!!

@@ -66,4 +66,3 @@ def games_by_genre_page():
                            target_genre=target_genre,
                            sort_url=sort_url
                            )
-
