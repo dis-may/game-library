@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import request, render_template, url_for
+from flask import url_for
 from games.adapters.repository import AbstractRepository
 
 import games.utilities.services as services

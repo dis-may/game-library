@@ -1,5 +1,5 @@
 import pytest
-from games.domainmodel.model import Game, Publisher, Genre
+from games.domainmodel.model import Genre
 from games.adapters.memory_repository import MemoryRepository, populate
 from games.games import services as games_services
 from games.gameDescription import services as game_description_services
