@@ -57,5 +57,7 @@ def games_search_page():
                            pagination_urls=pagination_urls,
                            heading=f"'{query}'",
                            sort_url=sort_url,
-                           search_type=search_type
+                           search_type=search_type,
+                           sort=sort,
+                           order=order,
                            )

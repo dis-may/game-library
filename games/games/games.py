@@ -42,5 +42,6 @@ def games_page():
                            int=int,
                            pagination_urls=pagination_urls,
                            sort=sort,
+                           order=order,
                            sort_url=sort_url
                            )
