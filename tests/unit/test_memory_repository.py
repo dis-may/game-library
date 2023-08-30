@@ -137,7 +137,7 @@ def test_get_games_by_publisher_search(memory_repo):
     assert str(games_list2) == game_string
 
 
-def test_get_games_by_description(memory_repo):
+def test_get_games_by_description_search(memory_repo):
     query1 = "flavour"
     games_list1 = memory_repo.get_games_by_description_search(query1)
     game_string = "[<Game 437530, A Blind Legend>, <Game 1303170, MelDEV Power Boat Racing>]"
