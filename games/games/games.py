@@ -28,7 +28,6 @@ def games_page():
 
     # Total number of pages
     total_pages = ceil(len(all_games) / 21)
-    print(total_pages)
 
     pagination_urls = [url_for('games_bp.games_page', page=i, sort=sort, order=order) for i in range(1, total_pages+1)]
     sort_url = url_for('games_bp.games_page')
