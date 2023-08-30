@@ -4,10 +4,7 @@ from flask import request, render_template, url_for
 import games.genres.services as services
 import games.adapters.repository as repo
 import games.utilities.utilities as utilities
-import games.games.services as game_services
 from math import ceil
-
-from games.domainmodel.model import Genre
 
 genres_blueprint = Blueprint(
     'genres_bp', __name__)
@@ -29,13 +26,12 @@ def games_by_genre_page():
     page = request.args.get('page', 1, type=int)
     order = request.args.get('order')
     target_genre = request.args.get('genre')
-    target_genre_obj = Genre(target_genre)
 
     print(f"sort: {sort}")
     print(f"order: {order}")
 
-    all_games = game_services.sort_games(repo.repo_instance, sort, order, genre=target_genre_obj)
-
+    all_games = services.get_sorted_games_by_genre(repo.repo_instance, target_genre, sort, order)
+    print(all_games)
     # Calculate the range of games to display on the current page.
     start_index = (page - 1) * 21
     end_index = start_index + 21

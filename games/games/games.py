@@ -16,14 +16,13 @@ def games_page():
     # Read query parameters.
     sort = request.args.get('sort')
     page = request.args.get('page', 1, type=int)
-    # genre = request.args.get('genre')
     order = request.args.get('order')
 
     # Calculate the range of games to display on the current page
     start_index = (page - 1) * 21
     end_index = start_index + 21
 
-    all_games = services.sort_games(repo.repo_instance, sort, order)
+    all_games = services.get_sorted_game_list(repo.repo_instance, sort, order)
     # Get the list of games to display on the current page.
     games_list = all_games[start_index:end_index]
 
@@ -31,7 +30,7 @@ def games_page():
     total_pages = ceil(len(all_games) / 21)
     print(total_pages)
 
-    pagination_urls = [url_for('games_bp.games_page', page=i) for i in range(1, total_pages+1)]
+    pagination_urls = [url_for('games_bp.games_page', page=i, sort=sort, order=order) for i in range(1, total_pages+1)]
     sort_url = url_for('games_bp.games_page')
 
     return render_template('games.html',
