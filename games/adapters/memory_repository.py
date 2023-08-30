@@ -17,7 +17,7 @@ class MemoryRepository(AbstractRepository):
         if isinstance(game, Game):
             insort_left(self.__games, game)  # games are ordered by game id
 
-    def get_games_by_id(self) -> List[Game]:
+    def get_all_games(self) -> List[Game]:
         return self.__games
 
     def get_game(self, game_id: int) -> Game:
@@ -36,14 +36,14 @@ class MemoryRepository(AbstractRepository):
     def get_games_by_title_search(self, query: str) -> List[Game]:
         games_that_match = []
         for game in self.__games:
-            if query in game.title.lower():
+            if query.lower() in game.title.lower():
                 games_that_match.append(game)
         return games_that_match
 
     def get_games_by_publisher_search(self, query: str) -> List[Game]:
         games_that_match = []
         for game in self.__games:
-            if query in game.publisher.publisher_name.lower():
+            if query.lower() in game.publisher.publisher_name.lower():
                 games_that_match.append(game)
         return games_that_match
 
@@ -51,7 +51,7 @@ class MemoryRepository(AbstractRepository):
         games_that_match = []
         for game in self.__games:
             if game.description is not None:
-                if query in game.description.lower():
+                if query.lower() in game.description.lower():
                     games_that_match.append(game)
         return games_that_match
 

@@ -18,7 +18,7 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_games_by_id(self) -> List[Game]:
+    def get_all_games(self) -> List[Game]:
         """Returns a list of Game objects"""
         raise NotImplementedError
 
