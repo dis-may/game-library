@@ -64,5 +64,7 @@ def games_by_genre_page():
                            int=int,
                            pagination_urls=pagination_urls,
                            target_genre=target_genre,
-                           sort_url=sort_url
+                           sort_url=sort_url,
+                           sort=sort,
+                           order=order
                            )

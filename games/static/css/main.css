@@ -2,7 +2,7 @@ body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     color: white;
-    padding-bottom:60px;
+    padding-bottom: 60px;
     position: relative;
 }
 
@@ -27,10 +27,6 @@ body {
     padding-bottom: 10px;
 }
 
-.container {
-    width: 100%;
-}
-
 .container h2 {
     font-weight: 900;
     font-size: 20px;
@@ -40,11 +36,6 @@ body {
     font-weight: 900;
     font-size: 20px;
     text-align: left;
-}
-
-#image p{
-    font-weight: 900;
-    font-size: 15px;
 }
 
 nav {
@@ -88,8 +79,13 @@ nav input {
 
 #sidebar {
     min-width: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     background-color: #a30262;
+}
+
+#sidebar header {
+    text-align: center;
+    padding-top: 5%;
 }
 
 .sidebar-genres {
@@ -97,7 +93,6 @@ nav input {
     top: 0;
     padding-top: 5%;
 }
-
 
 footer {
     text-align: center;
@@ -119,6 +114,7 @@ footer {
 }
 
 .container {
+    width: 100%;
     display: flex;
     background-color: #d162a4;
 }
@@ -135,19 +131,6 @@ footer {
 
 .main-body {
     width: 100%;
-}
-
-.main-body h2 {
-    display: block;
-    margin: 3% auto;
-    font-size: 1.5em;
-    overflow: hidden;
-    text-align: center;
-    background-color: #ef7627;
-    border-radius: 10px;
-    width: 90%;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .games_container {
@@ -274,25 +257,21 @@ footer {
   padding: 0;
 }
 
-genre-link {
+.genre-link {
     text-decoration: none;
 }
 
 .genre-link a {
-   color: white;
-   display: block;
-   margin-right: 10px;
-   margin-left: 10px;
-   margin-top: 4px;
-   text-align: center;
-   padding: 0;
-   text-decoration: none;
-   border-radius: 10px;
-   font-weight: bold;
-   background-color: #ef7627;
-   border-color: #ef7627;
-   border-style: solid;
-   border-weight: 1px;
+    background-color: #ef7627;
+    border: 2px solid #ef7627;
+    border-radius: 10px;
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin: 4px 10px 0 10px;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
 }
 
 .genre-selected a {
@@ -303,12 +282,7 @@ genre-link {
     background-color: #ff9a56;
 }
 
-#sidebar header {
-    text-align: center;
-    padding-top: 5%;
-}
-
-.deets {
+.description-info {
     background-color: #ef7627;
     border-radius: 10px;
     flex: 1;
@@ -321,6 +295,7 @@ genre-link {
     flex: 2;
 }
 
+.main-body h2,
 .sort {
     display: block;
     margin: 3% auto;
