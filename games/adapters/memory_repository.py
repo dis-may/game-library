@@ -20,14 +20,6 @@ class MemoryRepository(AbstractRepository):
     def get_games_by_id(self) -> List[Game]:
         return self.__games
 
-    def get_games_by_title(self) -> List[Game]:
-        sorted_list = sorted(self.__games, key=lambda game: game.title)
-        return sorted_list
-
-    def get_games_by_price(self) -> List[Game]:
-        sorted_list = sorted(self.__games, key=lambda game: game.price)
-        return sorted_list
-
     def get_game(self, game_id: int) -> Game:
         for game in self.__games:
             if game.game_id == game_id:
@@ -37,9 +29,31 @@ class MemoryRepository(AbstractRepository):
         game_list = []
         for game in self.__games:
             if genre in game.genres:
-                insort_left(game_list, game)
+                game_list.append(game)
 
         return game_list
+
+    def get_games_by_title_search(self, query: str) -> List[Game]:
+        games_that_match = []
+        for game in self.__games:
+            if query in game.title.lower():
+                games_that_match.append(game)
+        return games_that_match
+
+    def get_games_by_publisher_search(self, query: str) -> List[Game]:
+        games_that_match = []
+        for game in self.__games:
+            if query in game.publisher.publisher_name.lower():
+                games_that_match.append(game)
+        return games_that_match
+
+    def get_games_by_description_search(self, query: str) -> List[Game]:
+        games_that_match = []
+        for game in self.__games:
+            if game.description is not None:
+                if query in game.description.lower():
+                    games_that_match.append(game)
+        return games_that_match
 
     def get_number_of_games(self) -> int:
         return len(self.__games)

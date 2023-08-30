@@ -13,7 +13,7 @@ def games_search_page():
     # Read query parameters.
     sort = request.args.get('sort')
     order = request.args.get('order')
-    query = request.args.get('query').lower()
+    query = request.args.get('query').lower() if request.args.get('query') is not None else ""
     page = request.args.get('page', 1, type=int)
     search_type = request.args.get('search_type')
 

@@ -36,9 +36,9 @@ def games_by_genre_page():
     start_index = (page - 1) * 21
     end_index = start_index + 21
 
-    #all_games = services.get_games_by_genre_name(repo.repo_instance, target_genre)
+    # all_games = services.get_games_by_genre_name(repo.repo_instance, target_genre)
 
-    #all_games = game_services.sort_games(repo.repo_instance, sort, order, genre=target_genre)
+    # all_games = game_services.sort_games(repo.repo_instance, sort, order, genre=target_genre)
 
     # Get the list of games to display on the current page.
     games_list = all_games[start_index:end_index]

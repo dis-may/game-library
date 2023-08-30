@@ -1,19 +1,8 @@
 from games.adapters.repository import AbstractRepository
+import games.utilities.utilities as utilities
 
-def get_sorted_game_list(repo: AbstractRepository, sort_by='id', order='asc'):
-    if sort_by == 'title':
-        if order == 'asc':
-            return repo.get_games_by_title()
-        elif order == 'desc':
-            games = repo.get_games_by_title()
-            games.reverse()
-            return games
-    elif sort_by == 'price':
-        if order == 'asc':
-            return repo.get_games_by_price()
-        elif order == 'desc':
-            games = repo.get_games_by_price()
-            games.reverse()
-            return games
-    else:
-        return repo.get_games_by_id()
+
+def get_sorted_game_list(repo: AbstractRepository, sort='id', order='asc'):
+    all_games = repo.get_games_by_id()
+    all_games_sorted = utilities.sort_a_games_list(all_games, sort, order)
+    return all_games_sorted

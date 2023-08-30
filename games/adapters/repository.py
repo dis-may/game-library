@@ -23,27 +23,22 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_games_by_title(self) -> List[Game]:
-        """Returns a list of Game objects ordered by title alphabetically"""
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_games_by_price(self) -> List[Game]:
-        """Returns a list of Game objects ordered by price lowest to highest"""
-        raise NotImplementedError
-
-    # @abc.abstractmethod
-    # def get_games_by_release_date(self) -> List[Game]:
-    #     """Returns a list of Game objects ordered by release date"""
-    #     raise NotImplementedError
-    #
-    # @abc.abstractmethod
-    # def get_games_by_title(self) -> List[Game]:
-    #     """Returns a list of Game objects ordered by title in alphabetical order"""
-    #     raise NotImplementedError
-
-    @abc.abstractmethod
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
+        """Returns a list of Game objects with the specified Genre"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_games_by_title_search(self, query: str) -> List[Game]:
+        """Returns a list of Game objects with the specified Genre"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_games_by_publisher_search(self, query: str) -> List[Game]:
+        """Returns a list of Game objects with the specified Genre"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_games_by_description_search(self, query: str) -> List[Game]:
         """Returns a list of Game objects with the specified Genre"""
         raise NotImplementedError
 
