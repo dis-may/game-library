@@ -20,7 +20,6 @@ body {
 }
 
 #header {
-    color: #ffffff;
     font-weight: 900;
     font-size: 20px;
     background-color: #a30262;
@@ -33,20 +32,17 @@ body {
 }
 
 .container h2 {
-    color: #ffffff;
     font-weight: 900;
     font-size: 20px;
 }
 
 .container p{
-    color: #ffffff;
     font-weight: 900;
     font-size: 20px;
     text-align: left;
 }
 
 #image p{
-    color: #ffffff;
     font-weight: 900;
     font-size: 15px;
 }
@@ -59,7 +55,6 @@ nav {
 nav a {
     float: left;
     text-decoration: none;
-    color: white;
     font-weight: bold;
     display: block;
     margin: 0;
@@ -67,6 +62,7 @@ nav a {
     height: 100%;
     width: 15%;
     text-align: center;
+    color: white;
 }
 
 nav a:hover {
@@ -106,7 +102,6 @@ nav input {
 footer {
     text-align: center;
     background-color: #a30262;
-    color: #ffffff;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -117,25 +112,10 @@ footer {
 .description {
     position: relative;
     display: flex;
-    align-items: center;
     gap: 2rem;
     margin: auto;
     width: 90%;
     padding-bottom: 20px;
-}
-
-.description-text h2 {
-    font-size: 14px;
-    font-weight: 400;
-    color: white;
-    margin-bottom: 40px;
-}
-
-.description-text p {
-    color: white;
-    font-size: 15px;
-    line-height: 1.9;
-    margin-bottom: 40px;
 }
 
 .container {
@@ -187,11 +167,11 @@ footer {
     position: relative;
     width: 30%;
     min-width: 300px;
+    transition: box-shadow 0.5s
 }
 
 .game_card:hover {
     box-shadow: 0 0 20px #a30262;
-    transition: 0.5s;
 }
 
 .card-link {
@@ -332,6 +312,7 @@ genre-link {
     background-color: #ef7627;
     border-radius: 10px;
     flex: 1;
+    height: 100%;
 }
 
 .description-text {
