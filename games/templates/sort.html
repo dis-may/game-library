@@ -1,6 +1,8 @@
 <div class="sort">
     <form action="{{ sort_url }}" method="GET">
         <input type="hidden" name="genre" value="{{ target_genre }}">
+        <input type="hidden" name="query" value="{{ query }}">
+        <input type="hidden" name="search_type" value="{{ search_type }}">
         <label for="sort">Sort by:</label>
         <select name="sort" id="sort">
             <option value="title" {{ 'selected' if sort == 'title' }}>Title</option>
