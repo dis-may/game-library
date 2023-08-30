@@ -8,9 +8,6 @@ from games.adapters.memory_repository import MemoryRepository, populate
 #  stay here!
 from games.domainmodel.model import Game
 
-# delete the import statement below it is just for testing!
-from games.genres.services import get_list_of_genres
-
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!

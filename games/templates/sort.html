@@ -1,0 +1,22 @@
+<div class="sort">
+    <form action="{{ url_for('genres_bp.games_by_genre_page') }}" method="GET">
+        <input type="hidden" name="genre" value="{{ target_genre }}">
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort">
+            <option value="title" {{ 'selected' if sort == 'title' }}>Title</option>
+            <option value="price" {{ 'selected' if sort == 'price' }}>Price</option>
+        </select>
+
+        <br>
+
+        <label for="order">Order:</label>
+        <select name="order" id="order">
+            <option value="asc" {{ 'selected' if order == 'asc' }}>Ascending</option>
+            <option value="desc" {{ 'selected' if order == 'desc' }}>Descending</option>
+        </select>
+
+        <br>
+
+        <input type="submit" value="Sort">
+    </form>
+</div>
