@@ -25,7 +25,6 @@ class MemoryRepository(AbstractRepository):
             if game.game_id == game_id:
                 return game
 
-
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
         game_list = []
         for game in self.__games:
@@ -75,19 +74,3 @@ def populate(repo: AbstractRepository):
         repo.add_publisher(pub)
 
 
-def sort_games(repo: AbstractRepository, sort: str, order: str):
-    games = repo.get_games()
-
-    if sort == 'title':
-        if order == 'asc':
-            games.sort(key=lambda game: game.title)
-        elif order == 'desc':
-            games.sort(key=lambda game: game.title, reverse=True)
-
-    if sort == 'price':
-        if order == 'asc':
-            games.sort(key=lambda game: game.price)
-        elif order == 'desc':
-            games.sort(key=lambda game: game.price, reverse=True)
-
-    return repo.sort_games(sort, order)
