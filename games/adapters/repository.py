@@ -18,8 +18,18 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_games(self) -> List[Game]:
+    def get_games_by_id(self) -> List[Game]:
         """Returns a list of Game objects"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_games_by_title(self) -> List[Game]:
+        """Returns a list of Game objects ordered by title alphabetically"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_games_by_price(self) -> List[Game]:
+        """Returns a list of Game objects ordered by price lowest to highest"""
         raise NotImplementedError
 
     # @abc.abstractmethod
@@ -36,6 +46,7 @@ class AbstractRepository(abc.ABC):
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
         """Returns a list of Game objects with the specified Genre"""
         raise NotImplementedError
+
     @abc.abstractmethod
     def get_number_of_games(self) -> int:
         """Returns the number of games in the repository"""

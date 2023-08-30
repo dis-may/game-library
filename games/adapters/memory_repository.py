@@ -17,8 +17,16 @@ class MemoryRepository(AbstractRepository):
         if isinstance(game, Game):
             insort_left(self.__games, game)  # games are ordered by game id
 
-    def get_games(self) -> List[Game]:
+    def get_games_by_id(self) -> List[Game]:
         return self.__games
+
+    def get_games_by_title(self) -> List[Game]:
+        sorted_list = sorted(self.__games, key=lambda game: game.title)
+        return sorted_list
+
+    def get_games_by_price(self) -> List[Game]:
+        sorted_list = sorted(self.__games, key=lambda game: game.price)
+        return sorted_list
 
     def get_game(self, game_id: int) -> Game:
         for game in self.__games:

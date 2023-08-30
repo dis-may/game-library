@@ -16,7 +16,7 @@ def games_page():
     # Read query parameters.
     sort = request.args.get('sort')
     page = request.args.get('page', 1, type=int)
-    genre = request.args.get('genre')
+    # genre = request.args.get('genre')
     order = request.args.get('order')
 
     # Calculate the range of games to display on the current page
@@ -32,6 +32,7 @@ def games_page():
     print(total_pages)
 
     pagination_urls = [url_for('games_bp.games_page', page=i) for i in range(1, total_pages+1)]
+    sort_url = url_for('games_bp.games_page')
 
     return render_template('games.html',
                            games_list=games_list,
@@ -41,5 +42,6 @@ def games_page():
                            total_pages=total_pages,
                            int=int,
                            pagination_urls=pagination_urls,
-                           sort=sort
+                           sort=sort,
+                           sort_url=sort_url
                            )

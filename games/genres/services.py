@@ -7,7 +7,7 @@ def get_list_of_genres(repo: AbstractRepository):
 
 
 def get_games_by_genre_name(repo: AbstractRepository, target_name: str):
-    games = repo.get_games()
+    games = repo.get_games_by_id()
     games_by_genre = []
     for game in games:
         for genre in game.genres:

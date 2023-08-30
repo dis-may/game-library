@@ -57,6 +57,8 @@ def games_by_genre_page():
                                sort=sort,
                                order=order) for i in range(1, total_pages + 1)]
 
+    sort_url = url_for('genres_bp.games_by_genre_page')
+
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
@@ -65,6 +67,7 @@ def games_by_genre_page():
                            total_pages=total_pages,
                            int=int,
                            pagination_urls=pagination_urls,
-                           target_genre=target_genre
+                           target_genre=target_genre,
+                           sort_url=sort_url
                            )
 

@@ -8,7 +8,7 @@ def test_init():
     repo = MemoryRepository()
 
     # checking that the following methods work
-    assert repo.get_games() == []
+    assert repo.get_games_by_id() == []
     assert repo.get_publishers() == []
     assert repo.get_genres() == []
 
@@ -19,9 +19,9 @@ def test_add_game():
     repo = MemoryRepository()
     assert repo.get_number_of_games() == 0
     repo.add_game(game1)
-    assert len(repo.get_games()) == 1
+    assert len(repo.get_games_by_id()) == 1
     assert repo.get_number_of_games() == 1
-    assert game1 in repo.get_games()
+    assert game1 in repo.get_games_by_id()
 
 
 def test_add_publisher():
@@ -52,7 +52,7 @@ def memory_repo():
 
 def test_database_sizes(memory_repo):
     # test that they are the correct size
-    assert len(memory_repo.get_games()) == 877
+    assert len(memory_repo.get_games_by_id()) == 877
     assert memory_repo.get_number_of_games() == 877
     assert len(memory_repo.get_publishers()) == 798
     assert len(memory_repo.get_genres()) == 24
@@ -60,7 +60,7 @@ def test_database_sizes(memory_repo):
 
 def test_no_duplicate_items(memory_repo):
     # set removes duplicated elements, so if there are none, they have the same size
-    games = memory_repo.get_games()
+    games = memory_repo.get_games_by_id()
     publishers = memory_repo.get_publishers()
     genres = memory_repo.get_genres()
     assert len(set(games)) == len(games)
@@ -69,7 +69,7 @@ def test_no_duplicate_items(memory_repo):
 
 
 def test_get_games_dataset(memory_repo):
-    games = memory_repo.get_games()
+    games = memory_repo.get_games_by_id()
     # test that games are ordered by id
     assert games == sorted(games)
     first_three_games = str(games[:3])

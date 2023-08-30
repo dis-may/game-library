@@ -1,5 +1,5 @@
 <div class="sort">
-    <form action="{{ url_for('genres_bp.games_by_genre_page') }}" method="GET">
+    <form action="{{ sort_url }}" method="GET">
         <input type="hidden" name="genre" value="{{ target_genre }}">
         <label for="sort">Sort by:</label>
         <select name="sort" id="sort">
