@@ -1,34 +1,20 @@
 from games.adapters.repository import AbstractRepository
-from games.games.services import get_sorted_game_list
-from bisect import insort_left
+import games.utilities.utilities as utilities
 
 
 def get_games_by_title(repo: AbstractRepository, target_name: str, sort="id", order="asc"):
-    games = get_sorted_game_list(repo, sort, order)
-    games_by_search = []
-
-    for game in games:
-        if target_name in game.title.lower():
-            games_by_search.append(game)
-    return games_by_search
+    games_list = repo.get_games_by_title_search(target_name)
+    games_list_sorted = utilities.sort_a_games_list(games_list, sort, order)
+    return games_list_sorted
 
 
 def get_games_by_publisher(repo: AbstractRepository, target_name: str, sort="id", order="asc"):
-    games = get_sorted_game_list(repo, sort, order)
-    games_by_publisher = []
-
-    for game in games:
-        if target_name in game.publisher.publisher_name.lower():
-            games_by_publisher.append(game)
-    return games_by_publisher
+    games_list = repo.get_games_by_publisher_search(target_name)
+    games_list_sorted = utilities.sort_a_games_list(games_list, sort, order)
+    return games_list_sorted
 
 
 def get_games_by_description(repo: AbstractRepository, target_name: str, sort="id", order="asc"):
-    games = get_sorted_game_list(repo, sort, order)
-    games_by_description = []
-
-    for game in games:
-        if game.description is not None:
-            if target_name in game.description.lower():
-                games_by_description.append(game)
-    return games_by_description
+    games_list = repo.get_games_by_description_search(target_name)
+    games_list_sorted = utilities.sort_a_games_list(games_list, sort, order)
+    return games_list_sorted
