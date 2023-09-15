@@ -1,3 +1,5 @@
+# Authentication blueprint for the games web application.
+
 from flask import Blueprint, request, render_template, url_for, session, redirect
 
 import games.adapters.repository as repo
@@ -9,15 +11,19 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 from password_validator import PasswordValidator
 
+# set up the blueprint
 authentication_blueprint = Blueprint(
     'authentication_bp', __name__, url_prefix='/authentication')
 
 
+# login and registration
 @authentication_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     error = None
     username = None
+
+    # if the user is already logged in, redirect to home page
     if form.validate_on_submit():
         try:
             username = form.username.data
@@ -61,6 +67,7 @@ class PasswordValid:
              a lower case letter and a digit'
         self.message = message
 
+    # check if the password is valid
     def __call__(self, form, field):
         schema = PasswordValidator()
 
