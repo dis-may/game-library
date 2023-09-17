@@ -285,8 +285,8 @@ footer {
 .description-info {
     background-color: #ef7627;
     border-radius: 10px;
-    flex: 1;
-    height: 100%;
+    flex: 2;
+    width: 100%
 }
 
 .description-text {
@@ -307,4 +307,66 @@ footer {
     width: 90%;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.left-description {
+    display: block;
+    flex: 1.1;
+}
+
+.reviews-box {
+    background-color: #ef7627;
+    border-radius: 10px;
+    margin-top: 10%;
+    display: flex;
+    width: 100%;
+}
+
+.review-info-block {
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+}
+
+.review {
+    background-color: #b55690;
+    padding: 5px;
+    margin: 10px auto;
+    border-radius: 10px;
+    line-height: 0.6;
+    width: 90%;
+}
+
+.add-review-button {
+  background-color: white;
+  border-width: 3px;
+  border-color: white;
+  border-style: solid;
+  color: #d162a4;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  margin-left: 20px;
+
+}
+
+
+.heading-button-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+
+}
+
+.heading-button-container p{
+  margin: 10px;
+}
+
+.add-review-button:hover {
+    background-color: #d162a4;
+    color: white;
+    cursor: pointer;
 }
