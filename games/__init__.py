@@ -35,6 +35,16 @@ def create_app():
         from .searchBar import searchBar
         app.register_blueprint(searchBar.searchBar_blueprint)
 
+        from .wishlist import wishlist
+        app.register_blueprint(wishlist.wishlist_blueprint)
+
+    # @app.route('/')
+    # def home():
+    #     some_game = create_some_game()
+    #     # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
+    #     # return render_template('gameDescription.html', game=some_game)
+    #     return render_template('layout.html', genre_list=get_list_of_genres(repo.repo_instance))
+
         from .authentication import authentication
         app.register_blueprint(authentication.authentication_blueprint)
 
