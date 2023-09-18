@@ -33,7 +33,7 @@ body {
 }
 
 .container p{
-    font-weight: 900;
+    font-weight: 0;
     font-size: 20px;
     text-align: left;
 }
@@ -369,4 +369,28 @@ footer {
     background-color: #d162a4;
     color: white;
     cursor: pointer;
+}
+
+.review-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    line-height: 0.8;
+}
+
+.review-info p {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 0;
+    margin: 5px;
+
+}
+
+.date {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.comment {
+    line-height: 1;
 }
