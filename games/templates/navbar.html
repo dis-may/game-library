@@ -3,18 +3,22 @@
   <div id="copyright">&copy; ewu814 (Elizabeth) &nbsp;&nbsp; | &nbsp;&nbsp; mgan655 (May) &nbsp;&nbsp; | &nbsp;&nbsp; akim525 (Alex)</div>
 </div>
 <nav>
-    <a class="btn-nav" href="{{ url_for('home_bp.home') }}">Home</a>
-    <a class="btn-nav" href="{{ url_for('games_bp.games_page') }}">Games</a>
-    <a class="btn-nav" href="#">Reviews</a>
-    <a class="btn-nav" href="#">Wishlist</a>
-    <form method="GET" action={{url_for('search_bp.games_search_page')}} class="d-flex">
+    <div class="nav-left">
+        <a class="btn-nav" href="{{ url_for('home_bp.home') }}">Home</a>
+        <a class="btn-nav" href="{{ url_for('games_bp.games_page') }}">Games</a>
+    </div>
+
+    <div class="nav-right">
+        <form method="GET" action={{url_for('search_bp.games_search_page')}} class="d-flex">
         <select name="search_type" id="options">
-        <option value="title">Title</option>
-        <option value="publisher">Publisher</option>
-        <option value="description">Description</option>
+            <option value="title">Title</option>
+            <option value="publisher">Publisher</option>
+            <option value="description">Description</option>
         </select>
-          <input class="searchbar" type="search" placeholder="Search" aria-label="Search" name="query">
-          <button class="btn btn-outline-secondary" type="submit"> Search</button>
-    </form>
+            <input class="searchbar" type="search" placeholder="Search" aria-label="Search" name="query">
+            <button class="btn btn-outline-secondary" type="submit"> Search</button>
+        </form>
+        <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
+    </div>
 
 </nav>

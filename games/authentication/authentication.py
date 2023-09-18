@@ -50,16 +50,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log In')
 
 
-class RegistrationForm(FlaskForm):
-    user_name = StringField('Username', [
-        DataRequired(message='Your user name is required'),
-        Length(min=3, message='Your user name is too short')])
-    password = PasswordField('Password', [
-        DataRequired(message='Your password is required'),
-        PasswordValid()])
-    submit = SubmitField('Register')
-
-
 class PasswordValid:
     def __init__(self, message=None):
         if not message:
@@ -79,3 +69,13 @@ class PasswordValid:
 
         if not schema.validate(field.data):
             raise ValidationError(self.message)
+
+
+class RegistrationForm(FlaskForm):
+    user_name = StringField('Username', [
+        DataRequired(message='Your user name is required'),
+        Length(min=3, message='Your user name is too short')])
+    password = PasswordField('Password', [
+        DataRequired(message='Your password is required'),
+        PasswordValid()])
+    submit = SubmitField('Register')
