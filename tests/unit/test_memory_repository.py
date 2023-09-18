@@ -8,7 +8,7 @@ def test_init():
     repo = MemoryRepository()
 
     # checking that the following methods work
-    assert repo.get_games() == []
+    assert repo.get_all_games() == []
     assert repo.get_publishers() == []
     assert repo.get_genres() == []
 
@@ -19,9 +19,9 @@ def test_add_game():
     repo = MemoryRepository()
     assert repo.get_number_of_games() == 0
     repo.add_game(game1)
-    assert len(repo.get_games()) == 1
+    assert len(repo.get_all_games()) == 1
     assert repo.get_number_of_games() == 1
-    assert game1 in repo.get_games()
+    assert game1 in repo.get_all_games()
 
 
 def test_add_publisher():
@@ -46,13 +46,14 @@ def test_add_genre():
 def memory_repo():
     repo_instance = MemoryRepository()
     # populated with the real csv data
+    # tests if populate function works correctly essentially
     populate(repo_instance)
     return repo_instance
 
 
 def test_database_sizes(memory_repo):
     # test that they are the correct size
-    assert len(memory_repo.get_games()) == 877
+    assert len(memory_repo.get_all_games()) == 877
     assert memory_repo.get_number_of_games() == 877
     assert len(memory_repo.get_publishers()) == 798
     assert len(memory_repo.get_genres()) == 24
@@ -60,7 +61,7 @@ def test_database_sizes(memory_repo):
 
 def test_no_duplicate_items(memory_repo):
     # set removes duplicated elements, so if there are none, they have the same size
-    games = memory_repo.get_games()
+    games = memory_repo.get_all_games()
     publishers = memory_repo.get_publishers()
     genres = memory_repo.get_genres()
     assert len(set(games)) == len(games)
@@ -68,8 +69,8 @@ def test_no_duplicate_items(memory_repo):
     assert len(set(genres)) == len(genres)
 
 
-def test_get_games_dataset(memory_repo):
-    games = memory_repo.get_games()
+def test_get_games_by_id(memory_repo):
+    games = memory_repo.get_all_games()
     # test that games are ordered by id
     assert games == sorted(games)
     first_three_games = str(games[:3])
@@ -77,7 +78,7 @@ def test_get_games_dataset(memory_repo):
     assert first_three_games == "[<Game 3010, Xpand Rally>, <Game 7940, Call of Duty® 4: Modern Warfare®>, <Game 11370, Nikopol: Secrets of the Immortals>]"
 
 
-def test_get_publishers_dataset(memory_repo):
+def test_get_publishers(memory_repo):
     publishers = memory_repo.get_publishers()
     # test that publishers are ordered alphabetically
     assert publishers == sorted(publishers)
@@ -85,14 +86,14 @@ def test_get_publishers_dataset(memory_repo):
     assert first_three_publishers == "[<Publisher 13-lab,azimuth team>, <Publisher 2Awesome Studio>, <Publisher 2Frogs Software>]"
 
 
-def test_get_genres_dataset(memory_repo):
+def test_get_genres(memory_repo):
     genres = memory_repo.get_genres()
     assert genres == sorted(genres)
     first_three_genres = str(genres[:3])
     assert first_three_genres == "[<Genre Action>, <Genre Adventure>, <Genre Animation & Modeling>]"
 
 
-def test_get_game_by_id(memory_repo):
+def test_get_game_using_id(memory_repo):
     # test for valid game
     game1 = memory_repo.get_game(1671200)
     assert str(game1) == "<Game 1671200, Honkai Impact 3rd>"
@@ -102,9 +103,48 @@ def test_get_game_by_id(memory_repo):
 
 
 def test_get_games_by_genre(memory_repo):
-    # checking a valid genre
+    # test for valid genre
     genre1 = Genre("Action")
     action_games = memory_repo.get_games_by_genre(genre1)
-    # finish this LATER pls
+    assert len(action_games) == 380
+    # test for invalid genre
+    genre2 = Genre("Invalid Genre")
+    invalid_games = memory_repo.get_games_by_genre(genre2)
+    assert len(invalid_games) == 0
 
-# write more tests for search functionality!!
+
+def test_get_games_by_title_search(memory_repo):
+    query1 = "max"
+    games_list1 = memory_repo.get_games_by_title_search(query1)
+    # testing against a game string ensures the correct number of games and correct game objects
+    game_string = "[<Game 12140, Max Payne>, <Game 1470790, Doug Flutie's Maximum Football 2020>]"
+    assert str(games_list1) == game_string
+    # test no case sensitivity
+    query2 = "MAX"
+    games_list2 = memory_repo.get_games_by_title_search(query2)
+    assert str(games_list2) == game_string
+
+
+def test_get_games_by_publisher_search(memory_repo):
+    query1 = "sega"
+    games_list1 = memory_repo.get_games_by_publisher_search(query1)
+    game_string = "[<Game 34282, Shadow Dancer™>, <Game 546050, Puyo Puyo™Tetris®>]"
+    assert str(games_list1) == game_string
+    for game in games_list1:
+        assert "sega" in game.publisher.publisher_name.lower()
+    # test no case sensitivity
+    games_list2 = memory_repo.get_games_by_publisher_search("SEga")
+    assert str(games_list2) == game_string
+
+
+def test_get_games_by_description_search(memory_repo):
+    query1 = "flavour"
+    games_list1 = memory_repo.get_games_by_description_search(query1)
+    game_string = "[<Game 437530, A Blind Legend>, <Game 1303170, MelDEV Power Boat Racing>]"
+    assert str(games_list1 == game_string)
+    for game in games_list1:
+        assert query1.lower() in game.description.lower()
+    # test no case sensitivity
+    query2 = "FLAVOUR"
+    games_list2 = memory_repo.get_games_by_description_search(query2)
+    assert str(games_list2) == game_string

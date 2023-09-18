@@ -17,7 +17,7 @@ class MemoryRepository(AbstractRepository):
         if isinstance(game, Game):
             insort_left(self.__games, game)  # games are ordered by game id
 
-    def get_games(self) -> List[Game]:
+    def get_all_games(self) -> List[Game]:
         return self.__games
 
     def get_game(self, game_id: int) -> Game:
@@ -25,14 +25,35 @@ class MemoryRepository(AbstractRepository):
             if game.game_id == game_id:
                 return game
 
-
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
         game_list = []
         for game in self.__games:
             if genre in game.genres:
-                insort_left(game_list, game)
+                game_list.append(game)
 
         return game_list
+
+    def get_games_by_title_search(self, query: str) -> List[Game]:
+        games_that_match = []
+        for game in self.__games:
+            if query.lower() in game.title.lower():
+                games_that_match.append(game)
+        return games_that_match
+
+    def get_games_by_publisher_search(self, query: str) -> List[Game]:
+        games_that_match = []
+        for game in self.__games:
+            if query.lower() in game.publisher.publisher_name.lower():
+                games_that_match.append(game)
+        return games_that_match
+
+    def get_games_by_description_search(self, query: str) -> List[Game]:
+        games_that_match = []
+        for game in self.__games:
+            if game.description is not None:
+                if query.lower() in game.description.lower():
+                    games_that_match.append(game)
+        return games_that_match
 
     def get_number_of_games(self) -> int:
         return len(self.__games)
@@ -75,19 +96,3 @@ def populate(repo: AbstractRepository):
         repo.add_publisher(pub)
 
 
-def sort_games(repo: AbstractRepository, sort: str, order: str):
-    games = repo.get_games()
-
-    if sort == 'title':
-        if order == 'asc':
-            games.sort(key=lambda game: game.title)
-        elif order == 'desc':
-            games.sort(key=lambda game: game.title, reverse=True)
-
-    if sort == 'price':
-        if order == 'asc':
-            games.sort(key=lambda game: game.price)
-        elif order == 'desc':
-            games.sort(key=lambda game: game.price, reverse=True)
-
-    return repo.sort_games(sort, order)

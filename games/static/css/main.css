@@ -2,7 +2,7 @@ body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     color: white;
-    padding-bottom:60px;
+    padding-bottom: 60px;
     position: relative;
 }
 
@@ -27,10 +27,6 @@ body {
     padding-bottom: 10px;
 }
 
-.container {
-    width: 100%;
-}
-
 .container h2 {
     font-weight: 900;
     font-size: 20px;
@@ -42,36 +38,45 @@ body {
     text-align: left;
 }
 
-#image p{
-    font-weight: 900;
-    font-size: 15px;
-}
-
 nav {
     background-color: #b55690;
     display: flex;
+    justify-content: space-between;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-evenly;
 }
 
 nav a {
-    float: left;
     text-decoration: none;
     font-weight: bold;
     display: block;
-    margin: 0;
-    padding: 10px;
-    height: 100%;
-    width: 15%;
+    padding: 10px 40px 10px 40px;
     text-align: center;
     color: white;
 }
 
 nav a:hover {
-  background-color: #ff9a56;
-  color: white;
+    background-color: #ff9a56;
+    color: white;
 }
 
-nav input {
-   margin-left: auto;
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+#options {
+    background-color: #b55690;
+    color: white;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: medium;
+    border-color: white;
 }
 
 #copyright {
@@ -79,17 +84,15 @@ nav input {
     padding-bottom: 30px;
 }
 
-#options {
-    background-color: #b55690;
-    color: white;
-    height: 100%;
-    width: 25%;
-}
-
 #sidebar {
     min-width: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     background-color: #a30262;
+}
+
+#sidebar header {
+    text-align: center;
+    padding-top: 5%;
 }
 
 .sidebar-genres {
@@ -97,7 +100,6 @@ nav input {
     top: 0;
     padding-top: 5%;
 }
-
 
 footer {
     text-align: center;
@@ -119,6 +121,7 @@ footer {
 }
 
 .container {
+    width: 100%;
     display: flex;
     background-color: #d162a4;
 }
@@ -135,19 +138,6 @@ footer {
 
 .main-body {
     width: 100%;
-}
-
-.main-body h2 {
-    display: block;
-    margin: 3% auto;
-    font-size: 1.5em;
-    overflow: hidden;
-    text-align: center;
-    background-color: #ef7627;
-    border-radius: 10px;
-    width: 90%;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .games_container {
@@ -274,25 +264,21 @@ footer {
   padding: 0;
 }
 
-genre-link {
+.genre-link {
     text-decoration: none;
 }
 
 .genre-link a {
-   color: white;
-   display: block;
-   margin-right: 10px;
-   margin-left: 10px;
-   margin-top: 4px;
-   text-align: center;
-   padding: 0;
-   text-decoration: none;
-   border-radius: 10px;
-   font-weight: bold;
-   background-color: #ef7627;
-   border-color: #ef7627;
-   border-style: solid;
-   border-weight: 1px;
+    background-color: #ef7627;
+    border: 2px solid #ef7627;
+    border-radius: 10px;
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin: 4px 10px 0 10px;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
 }
 
 .genre-selected a {
@@ -303,16 +289,11 @@ genre-link {
     background-color: #ff9a56;
 }
 
-#sidebar header {
-    text-align: center;
-    padding-top: 5%;
-}
-
-.deets {
+.description-info {
     background-color: #ef7627;
     border-radius: 10px;
-    flex: 1;
-    height: 100%;
+    flex: 2;
+    width: 100%
 }
 
 .description-text {
@@ -321,6 +302,7 @@ genre-link {
     flex: 2;
 }
 
+.main-body h2,
 .sort {
     display: block;
     margin: 3% auto;
@@ -332,4 +314,67 @@ genre-link {
     width: 90%;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+
+.left-description {
+    display: block;
+    flex: 1.1;
+}
+
+.reviews-box {
+    background-color: #ef7627;
+    border-radius: 10px;
+    margin-top: 10%;
+    display: flex;
+    width: 100%;
+}
+
+.review-info-block {
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+}
+
+.review {
+    background-color: #b55690;
+    padding: 5px;
+    margin: 10px auto;
+    border-radius: 10px;
+    line-height: 0.6;
+    width: 90%;
+}
+
+.add-review-button {
+  background-color: white;
+  border-width: 3px;
+  border-color: white;
+  border-style: solid;
+  color: #d162a4;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  margin-left: 20px;
+
+}
+
+
+.heading-button-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+
+}
+
+.heading-button-container p{
+  margin: 10px;
+}
+
+.add-review-button:hover {
+    background-color: #d162a4;
+    color: white;
+    cursor: pointer;
 }

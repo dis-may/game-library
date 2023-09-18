@@ -1,0 +1,24 @@
+<div class="sort">
+    <form action="{{ sort_url }}" method="GET">
+        <input type="hidden" name="genre" value="{{ target_genre }}">
+        <input type="hidden" name="query" value="{{ query }}">
+        <input type="hidden" name="search_type" value="{{ search_type }}">
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort">
+            <option value="title" {{ 'selected' if sort == 'title' }}>Title</option>
+            <option value="price" {{ 'selected' if sort == 'price' }}>Price</option>
+        </select>
+
+        <br>
+
+        <label for="order">Order:</label>
+        <select name="order" id="order">
+            <option value="asc" {{ 'selected' if order == 'asc' }}>Ascending</option>
+            <option value="desc" {{ 'selected' if order == 'desc' }}>Descending</option>
+        </select>
+
+        <br>
+
+        <input type="submit" value="Sort">
+    </form>
+</div>

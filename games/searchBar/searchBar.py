@@ -11,7 +11,9 @@ searchBar_blueprint = Blueprint('search_bp', __name__)
 @searchBar_blueprint.route('/search_games', methods=['GET'])
 def games_search_page():
     # Read query parameters.
-    query = request.args.get('query').lower()
+    sort = request.args.get('sort')
+    order = request.args.get('order')
+    query = request.args.get('query').lower() if request.args.get('query') is not None else ""
     page = request.args.get('page', 1, type=int)
     search_type = request.args.get('search_type')
 
@@ -22,11 +24,11 @@ def games_search_page():
 
     # Get the list of games that match the search query.
     if search_type == 'title':
-        search_results = services.get_games_by_search(repo.repo_instance, query)
+        search_results = services.get_games_by_title(repo.repo_instance, query, sort, order)
     elif search_type == 'publisher':
-        search_results = services.get_games_by_publisher(repo.repo_instance, query)
+        search_results = services.get_games_by_publisher(repo.repo_instance, query, sort, order)
     elif search_type == 'description':
-        search_results = services.get_games_by_description(repo.repo_instance, query)
+        search_results = services.get_games_by_description(repo.repo_instance, query, sort, order)
     else:
         search_results = []
 
@@ -43,6 +45,8 @@ def games_search_page():
                 ) for i in range(1, total_pages + 1)
     ]
 
+    sort_url = url_for('search_bp.games_search_page')
+
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
@@ -51,5 +55,9 @@ def games_search_page():
                            total_pages=total_pages,
                            int=int,
                            pagination_urls=pagination_urls,
-                           heading=f"'{query}'"
+                           heading=f"'{query}'",
+                           sort_url=sort_url,
+                           search_type=search_type,
+                           sort=sort,
+                           order=order,
                            )

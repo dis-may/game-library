@@ -2,27 +2,7 @@
 <div class="main-body">
     <h2>{{ heading }}</h2>
 
-    <div class="sort">
-        <form action="{{ url_for('games_bp.games_page') }}" method="GET">
-            <label for="sort">Sort by:</label>
-            <select name="sort" id="sort">
-                <option value="title" {{ 'selected' if sort == 'title' }}>Title</option>
-                <option value="price" {{ 'selected' if sort == 'price' }}>Price</option>
-            </select>
-
-            <br>
-
-            <label for="order">Order:</label>
-            <select name="order" id="order">
-                <option value="asc" {{ 'selected' if order == 'asc' }}>Ascending</option>
-                <option value="desc" {{ 'selected' if order == 'desc' }}>Descending</option>
-            </select>
-
-            <br>
-
-            <input type="submit" value="Sort">
-        </form>
-    </div>
+    {% include 'sort.html' %}
 
     <div class="games_container_container">
     <div class="games_container">
