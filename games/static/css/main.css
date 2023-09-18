@@ -362,7 +362,8 @@ footer {
 
 
 .heading-button-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   width: 100%;
   align-items: center;
 
@@ -371,6 +372,11 @@ footer {
 
 .heading-button-container p{
   margin: 10px;
+}
+
+.button-container {
+    text-align: right;
+    margin: 10px;
 }
 
 .add-review-button:hover {
@@ -401,4 +407,23 @@ footer {
 
 .comment {
     line-height: 1;
+}
+
+.review-form {
+    margin: auto;
+    width: 90%;
+}
+
+.comment-box {
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.rating-input {
+    width: 45px;
+    height: 20px;
+    font-family: 'Lato', sans-serif;
 }
