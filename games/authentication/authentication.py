@@ -1,10 +1,15 @@
 # Authentication blueprint for the games web application.
 
 from flask import Blueprint, request, render_template, url_for, session, redirect
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Length, ValidationError
+from password_validator import PasswordValidator
 
 import games.adapters.repository as repo
 import games.authentication.services as services
 import games.utilities.utilities as utilities
+
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
