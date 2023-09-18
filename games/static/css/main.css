@@ -32,7 +32,7 @@ body {
 }
 
 .container p{
-    font-weight: 900;
+    font-weight: 0;
     font-size: 20px;
 }
 
@@ -356,7 +356,7 @@ footer {
     width: 90%;
 }
 
-.add-review-button {
+.add-review-button  {
   background-color: white;
   border-width: 3px;
   border-color: white;
@@ -367,13 +367,27 @@ footer {
   font-weight: bold;
   border-radius: 10px;
   font-family: 'Lato', sans-serif;
-  margin-left: 20px;
 
+}
+
+.review-submit {
+  background-color: #a30262;
+  border-width: 3px;
+  border-color: #a30262;
+  border-style: dashed;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  margin-top: 5px;
 }
 
 
 .heading-button-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   width: 100%;
   align-items: center;
 
@@ -384,11 +398,87 @@ footer {
   margin: 10px;
 }
 
+.button-container {
+    text-align: right;
+    margin: 10px;
+}
+
 .add-review-button:hover {
     background-color: #d162a4;
     color: white;
     cursor: pointer;
 }
+
+.review-submit:hover {
+    background-color: white;
+    color: #a30262;
+    cursor: pointer;
+}
+
+.review-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    line-height: 0.8;
+}
+
+.review-info p {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 0;
+    margin: 5px;
+
+}
+
+.date {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.comment {
+    line-height: 1;
+}
+
+.review-form {
+    margin: auto;
+    width: 90%;
+}
+
+.comment-box {
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 8px;
+    border: 2px solid #ff9a56;
+    border-radius: 4px;
+    resize: none;
+    color: #a30262;
+    font-weight: bold;
+}
+
+.rating-input {
+    width: 45px;
+    height: 30px;
+    border: 2px solid #ff9a56;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 10px;
+    color: #a30262;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.rating-input:focus, .comment-box:focus {
+    outline: 2px dashed #a30262;
+}
+
+.review-text {
+    background-color: #ff9a56;
+    border-radius: 5px;
+    padding: 2px;
+    font-weight: bold;
+}
+
 
 .authentication-block {
     background-color: #ff9a56;
