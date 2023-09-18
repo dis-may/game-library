@@ -7,7 +7,7 @@
     <a class="btn-nav" href="{{ url_for('home_bp.home') }}">Home</a>
     <a class="btn-nav" href="{{ url_for('games_bp.games_page') }}">Games</a>
     <a class="btn-nav" href="#">Reviews</a>
-    <a class="btn-nav" href="#">Wishlist</a>
+    <a class="btn-nav" href="{{url_for('wishlist_bp.games_wishlist'')}}">Wishlist</a>
     <form method="GET" action={{url_for('search_bp.games_search_page')}} class="d-flex">
         <select name="search_type" id="options">
         <option value="title">Title</option>
