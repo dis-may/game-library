@@ -30,27 +30,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="reviews-box ">
-                <div class="review-info-block">
-                    <div class="heading-button-container" >
-                        <p class="headings">R E V I E W S</p>
-                        <div class="button-container">
-                            <button class="add-review-button">Add review</button>
-                        </div>
-                    </div>
-                    <div class="review">
-                        <div class="review-info">
-<!--                                <td class="table-right">By: &nbsp; username</td>-->
-<!--                                <td class="table-right">Rating: &nbsp; ★★★★★</td>-->
-<!--                                <td class="table-right">Posted on: &nbsp; 17 September 2023</td>-->
-                            <p class="username" ><b>By:</b> &nbsp; username</p>
-                            <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>
-                            <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>
-                        </div>
-                        <p class="comment">I love this game so much! From the bottom of my heart</p>
-                    </div>
-                </div>
-            </div>
+            {% include 'reviewbox.html' %}
         </div>
         <div class="description-text">
             <div class="info-block">
