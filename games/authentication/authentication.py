@@ -10,16 +10,12 @@ import games.adapters.repository as repo
 import games.authentication.services as services
 import games.utilities.utilities as utilities
 
-<<<<<<< HEAD
 
-
-=======
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 from password_validator import PasswordValidator
 from functools import wraps
->>>>>>> 1526125ceea3efb077d140e9f4fb2b390e46c57c
 
 # set up the blueprint
 authentication_blueprint = Blueprint(

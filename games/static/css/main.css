@@ -341,7 +341,7 @@ footer {
     width: 90%;
 }
 
-.add-review-button {
+.add-review-button  {
   background-color: white;
   border-width: 3px;
   border-color: white;
@@ -352,8 +352,21 @@ footer {
   font-weight: bold;
   border-radius: 10px;
   font-family: 'Lato', sans-serif;
-  margin-left: 20px;
 
+}
+
+.review-submit {
+  background-color: #a30262;
+  border-width: 3px;
+  border-color: #a30262;
+  border-style: dashed;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  margin-top: 5px;
 }
 
 
@@ -378,6 +391,12 @@ footer {
 .add-review-button:hover {
     background-color: #d162a4;
     color: white;
+    cursor: pointer;
+}
+
+.review-submit:hover {
+    background-color: white;
+    color: #a30262;
     cursor: pointer;
 }
 
@@ -415,13 +434,36 @@ footer {
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     text-align: left;
-    margin-top: 5px;
+    margin-top: 8px;
+    border: 2px solid #ff9a56;
+    border-radius: 4px;
+    resize: none;
+    color: #a30262;
+    font-weight: bold;
 }
 
 .rating-input {
     width: 45px;
-    height: 20px;
+    height: 30px;
+    border: 2px solid #ff9a56;
     font-family: 'Lato', sans-serif;
+    margin-bottom: 10px;
+    color: #a30262;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.rating-input:focus, .comment-box:focus {
+    outline: 2px dashed #a30262;
+}
+
+.review-text {
+    background-color: #ff9a56;
+    border-radius: 5px;
+    padding: 2px;
+    font-weight: bold;
+}
+
 
 .authentication-block {
     background-color: #ff9a56;
