@@ -47,6 +47,7 @@ nav {
     align-items: center;
     height: 100%;
     justify-content: space-evenly;
+
 }
 
 nav a {
@@ -68,13 +69,26 @@ nav a:hover {
     align-items: center;
 }
 
-#options {
-    background-color: #b55690;
+.options {
     color: white;
     height: 100%;
     font-family: 'Lato', sans-serif;
     font-size: medium;
     border-color: white;
+    border-radius: 3px;
+}
+
+.options:hover {
+    cursor: pointer;
+}
+
+select.options {
+    background-color: #b55690;
+}
+
+select#sort,
+select#order {
+    background-color: #ef7627;
 }
 
 #copyright {
@@ -155,11 +169,12 @@ footer {
     position: relative;
     width: 30%;
     min-width: 300px;
-    transition: box-shadow 0.5s
+    transition: box-shadow 0.5s, transform 0.5s;
 }
 
 .game_card:hover {
     box-shadow: 0 0 20px #a30262;
+    transform: scale(1.03);
 }
 
 .card-link {
@@ -484,3 +499,20 @@ footer {
     display: flex;
     justify-content: center;
     padding: 10px;
+}
+
+.submit-button {
+    background-color: white;
+    border-color: white;
+    border-style: solid;
+    color: #d162a4;
+    font-weight: bold;
+    border-radius: 3px;
+    font-family: 'Lato', sans-serif;
+    transition: transform .2s;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

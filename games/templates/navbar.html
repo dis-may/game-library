@@ -10,13 +10,13 @@
 
     <div class="nav-right">
         <form method="GET" action={{url_for('search_bp.games_search_page')}} class="d-flex">
-        <select name="search_type" id="options">
+        <select name="search_type" class="options">
             <option value="title">Title</option>
             <option value="publisher">Publisher</option>
             <option value="description">Description</option>
         </select>
             <input class="searchbar" type="search" placeholder="Search" aria-label="Search" name="query">
-            <button class="btn btn-outline-secondary" type="submit"> Search</button>
+            <button class="submit-button" type="submit"> Search</button>
         </form>
         <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
         <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
