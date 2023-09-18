@@ -10,10 +10,36 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 from password_validator import PasswordValidator
+from functools import wraps
 
 # set up the blueprint
 authentication_blueprint = Blueprint(
     'authentication_bp', __name__, url_prefix='/authentication')
+
+
+@authentication_blueprint.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    username_error = None
+    password_error = None
+
+    if form.validate_on_submit():
+        if services.get_user(form.user_name.data, repo.repo_instance):
+            username_error = 'Sorry, this username is already taken. Please try again.'
+        else:
+            services.add_user(form.user_name.data, form.password.data, repo.repo_instance)
+            session.clear()
+            session['username'] = form.user_name.data
+            return redirect(url_for('home_bp.home'))
+    return render_template(
+        'register.html',
+        form=form,
+        username_error=username_error,
+        password_error=password_error,
+        handler_url=url_for('authentication_bp.register'),
+        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+        heading='Register'
+    )
 
 
 # login and registration
@@ -36,12 +62,28 @@ def login():
         except services.AuthenticationException:
             error = 'Incorrect username or password.'
     return render_template(
-        'authentication/login.html',
-        title='Log in',
+        'login.html',
         form=form,
         error=error,
-        username=username
+        username=username,
+        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+        heading='Log in'
     )
+
+@authentication_blueprint.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home_bp.home'))
+
+
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(**kwargs):
+        if 'user_name' not in session:
+            return redirect(url_for('authentication_bp.login'))
+        return view(**kwargs)
+    return wrapped_view
+
 
 
 class LoginForm(FlaskForm):
