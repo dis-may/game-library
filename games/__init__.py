@@ -35,4 +35,7 @@ def create_app():
         from .searchBar import searchBar
         app.register_blueprint(searchBar.searchBar_blueprint)
 
+        from .authentication import authentication
+        app.register_blueprint(authentication.authentication_blueprint)
+
     return app
