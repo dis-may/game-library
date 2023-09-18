@@ -1,6 +1,13 @@
 pytest
+<<<<<<< HEAD
 python-dotenv==0.19.0
 Flask==2.2.3
 better-profanity==0.7.0
 flask-wtf==0.15.0
 password-validator==1.0
+=======
+Flask==2.2.3
+flask-wtf==0.15.0
+password-validator==1.0
+python-dotenv==1.0.0
+>>>>>>> 1526125ceea3efb077d140e9f4fb2b390e46c57c

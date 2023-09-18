@@ -1,0 +1,25 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div class="main-body">
+    <h2>Register</h2>
+
+    <div class="authentication-block">
+        <div class="x">
+            <p class="headings">F I R S T &nbsp N A M E</p>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" />
+
+            <p class="headings">L A S T &nbsp N A M E</p>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" />
+        </div>
+
+        <div class="y">
+            <p class="headings">U S E R N A M E</p>
+            <input type="text" id="username" name="username" placeholder="Username" />
+
+            <p class="headings">P A S S W O R D</p>
+            <input type="password" id="password" name="password" placeholder="Password" />
+        </div>
+    </div>
+</div>
+
+{% endblock %}

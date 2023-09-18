@@ -5,11 +5,20 @@ import games.adapters.repository as repo
 from games.adapters.memory_repository import MemoryRepository, populate
 
 
-def create_app():
+def create_app(test_config=None):
     """Construct the core application."""
 
     # Create the Flask app object.
     app = Flask(__name__)
+
+    # Configure the app from configuration-file settings.
+    app.config.from_object('config.Config')
+    data_path = 'games/adapters/data'
+
+    if app.config['TESTING'] == 'True':
+        # Load test configuration, and override any configuration settings.
+        app.config.from_mapping(test_config)
+        data_path = app.config['TEST_DATA_PATH']
 
     repo.repo_instance = MemoryRepository()  # repo_instance is a global variable in repository.py
     populate(repo.repo_instance)
@@ -37,13 +46,6 @@ def create_app():
 
         from .wishlist import wishlist
         app.register_blueprint(wishlist.wishlist_blueprint)
-
-    # @app.route('/')
-    # def home():
-    #     some_game = create_some_game()
-    #     # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
-    #     # return render_template('gameDescription.html', game=some_game)
-    #     return render_template('layout.html', genre_list=get_list_of_genres(repo.repo_instance))
 
         from .authentication import authentication
         app.register_blueprint(authentication.authentication_blueprint)
