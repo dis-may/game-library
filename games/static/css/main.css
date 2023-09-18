@@ -440,6 +440,7 @@ footer {
     resize: none;
     color: #a30262;
     font-weight: bold;
+
 }
 
 .rating-input {
@@ -456,6 +457,7 @@ footer {
 .rating-input:focus, .comment-box:focus {
     outline: 2px dashed #a30262;
 }
+
 
 .review-text {
     background-color: #ff9a56;
