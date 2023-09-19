@@ -481,26 +481,53 @@ footer {
     font-weight: bold;
 }
 
+.authentication-title {
+    display: block;
+    margin: 3% auto;
+    overflow: hidden;
+    text-align: center;
+    background-color: #ef7627;
+    border-radius: 10px;
+    width: 40%;
+    font-weight: bold;
+}
 
 .authentication-block {
     background-color: #ff9a56;
-    width: 90%;
+    width: 40%;
     border-radius: 10px;
     margin: 3% auto;
     padding: 10px 0 10px 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.x {
+.authentication-block form {
     display: flex;
-    justify-content: center;
-    padding: 10px;
+    flex-direction: column;
 }
 
-.y {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+.authentication-field {
+    margin: 10px;
+    border: none;
+    border-bottom: #a30262 3px solid;
+    border-radius: 3px;
+    background-color: rgba(0,0,0,0);
+    color: white;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.authentication-field:focus {
+    outline: none;
+    background-color: #d162a4;
+}
+
+.authentication-field::placeholder {
+    color: white;
 }
 
 .submit-button {
