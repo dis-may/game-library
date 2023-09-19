@@ -25,25 +25,22 @@ authentication_blueprint = Blueprint(
 @authentication_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    username_error = None
-    password_error = None
+    user_name_not_unique = None
 
     if form.validate_on_submit():
-        if services.get_user(form.user_name.data, repo.repo_instance):
-            username_error = 'Sorry, this username is already taken. Please try again.'
-        else:
-            services.add_user(form.user_name.data, form.password.data, repo.repo_instance)
-            session.clear()
-            session['username'] = form.user_name.data
-            return redirect(url_for('home_bp.home'))
+        try:
+            services.add_user(form.name.data, form.user_name.data, form.password.data, repo.repo_instance)
+            return redirect(url_for('authentication_bp.register'))
+        except services.NameNotUniqueException:
+            user_name_not_unique = 'Your user name is already taken - please supply another'
+
     return render_template(
         'register.html',
         form=form,
-        username_error=username_error,
-        password_error=password_error,
+        heading='Register',
+        user_name_error_message=user_name_not_unique,
         handler_url=url_for('authentication_bp.register'),
-        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
-        heading='Register'
+        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance)
     )
 
 
@@ -52,28 +49,29 @@ def register():
 def login():
     form = LoginForm()
     error = None
-    username = None
+    user_name = None
 
     # if the user is already logged in, redirect to home page
     if form.validate_on_submit():
         try:
-            username = form.username.data
+            user_name = form.user_name.data
             services.authenticate_user(
-                form.username.data, form.password.data, repo.repo_instance
+                form.user_name.data, form.password.data, repo.repo_instance
             )
             session.clear()
-            session['username'] = username
+            session['user_name'] = user_name
             return redirect(url_for('home_bp.home'))
         except services.AuthenticationException:
             error = 'Incorrect username or password.'
     return render_template(
         'login.html',
+        heading='Log in',
         form=form,
         error=error,
-        username=username,
-        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
-        heading='Log in'
+        user_name=user_name,
+        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance)
     )
+
 
 @authentication_blueprint.route('/logout')
 def logout():
@@ -90,9 +88,8 @@ def login_required(view):
     return wrapped_view
 
 
-
 class LoginForm(FlaskForm):
-    username = StringField('Username', [DataRequired()])
+    user_name = StringField('Username', [DataRequired()])
     password = PasswordField('Password', [DataRequired(), Length(min=8)])
     submit = SubmitField('Log In')
 
@@ -119,10 +116,16 @@ class PasswordValid:
 
 
 class RegistrationForm(FlaskForm):
+    name = StringField('Name', [
+        DataRequired(message='Your name is required'),
+        Length(min=1, message='Your name is too short')])
+
     user_name = StringField('Username', [
         DataRequired(message='Your user name is required'),
         Length(min=3, message='Your user name is too short')])
+
     password = PasswordField('Password', [
         DataRequired(message='Your password is required'),
         PasswordValid()])
+
     submit = SubmitField('Register')
