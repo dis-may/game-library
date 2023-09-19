@@ -1,16 +1,19 @@
 {% extends 'layout.html' %} {% block content %}
 
 <div class="main-body">
-    <h2>Login</h2>
+    <div class="authentication-title">
+        <p>Login</p>
+    </div>
 
     <div class="authentication-block">
-        <p class="headings">U S E R N A M E</p>
-        <input type="text" id="username" name="username" placeholder="Username" />
+        <form method="POST" action="{{ handler_url }}">
+            {{ form.csrf_token }}
+            <input class="authentication-field" type="text" id="username" name="username" placeholder="Username" />
 
-        <p class="headings">P A S S W O R D</p>
-        <input type="password" id="password" name="password" placeholder="Password" />
+            <input class="authentication-field" type="password" id="password" name="password" placeholder="Password" />
 
-        <input type="submit" value="Login" class="btn btn-outline-secondary" />
+            <input class="submit-button authentication-field" type="submit" value="Login"/>
+        </form>
     </div>
 </div>
 
