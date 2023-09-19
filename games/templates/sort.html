@@ -4,7 +4,7 @@
         <input type="hidden" name="query" value="{{ query }}">
         <input type="hidden" name="search_type" value="{{ search_type }}">
         <label for="sort">Sort by:</label>
-        <select name="sort" id="sort">
+        <select name="sort" class="options" id="sort">
             <option value="title" {{ 'selected' if sort == 'title' }}>Title</option>
             <option value="price" {{ 'selected' if sort == 'price' }}>Price</option>
         </select>
@@ -12,13 +12,13 @@
         <br>
 
         <label for="order">Order:</label>
-        <select name="order" id="order">
+        <select name="order" class="options" id="order">
             <option value="asc" {{ 'selected' if order == 'asc' }}>Ascending</option>
             <option value="desc" {{ 'selected' if order == 'desc' }}>Descending</option>
         </select>
 
         <br>
 
-        <input type="submit" value="Sort">
+        <input type="submit" class="submit-button" value="Sort">
     </form>
 </div>
