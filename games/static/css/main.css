@@ -162,6 +162,10 @@ footer {
     justify-content: space-evenly;
 }
 
+.review_games_container {
+    width: 100%
+}
+
 .game_card {
     margin: 0;
     background-color: #ff9a56;
@@ -349,11 +353,15 @@ footer {
 
 .review {
     background-color: #b55690;
-    padding: 5px;
+    padding: 10px;
     margin: 10px auto;
     border-radius: 10px;
     line-height: 0.6;
     width: 90%;
+    display: flex;
+    align-items: unsafe center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .add-review-button  {
@@ -394,7 +402,7 @@ footer {
 
 }
 
-.heading-button-container p{
+.heading-button-container  p{
   margin: 10px;
 }
 
@@ -418,6 +426,7 @@ footer {
 .review-info {
     width: 100%;
     display: grid;
+    margin: 0px;
     grid-template-columns: auto auto;
     line-height: 0.8;
 }
@@ -428,6 +437,12 @@ footer {
     font-weight: 0;
     margin: 5px;
 
+}
+
+.review-info-info {
+    margin: 0px;
+    width: 50%;
+    min-width: 350px;
 }
 
 .date {
@@ -473,6 +488,11 @@ footer {
     outline: 2px dashed #a30262;
 }
 
+.rating {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
 
 .review-text {
     background-color: #ff9a56;
@@ -550,6 +570,7 @@ footer {
     background-color: #ff9a56;
     width: 50%;
     min-width: 300px;
+    max-width: 800px;
     border-radius: 20px;
     margin: 20px auto;
     padding: 20px;
@@ -595,4 +616,27 @@ footer {
 .game-name a:hover {
     color: white;
     background-color: #a30262;
+}
+
+.review-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.review-image-container {
+    width: 40%;
+    min-width: 200px;
+    margin-right: 10px;
+}
+
+.review-game-card {
+    background-color: #b55690;
+    width: 20%;
+    min-width: 210px;
+    margin: 0px;
+}
+
+.review_games_container_container {
+    margin-top: 10px;
 }
