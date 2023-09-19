@@ -550,6 +550,17 @@ footer {
     color: white;
 }
 
+.errors {
+    display: block;
+    margin: 3% auto;
+    text-align: center;
+    background-color: #ef7627;
+    border-radius: 10px;
+    width: 40%;
+    font-weight: bold;
+    padding: 10px;
+}
+
 .submit-button {
     background-color: white;
     border-color: white;
