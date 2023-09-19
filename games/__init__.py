@@ -1,4 +1,5 @@
 """Initialize Flask app."""
+from pathlib import Path
 
 from flask import Flask
 import games.adapters.repository as repo
@@ -13,7 +14,7 @@ def create_app(test_config=None):
 
     # Configure the app from configuration-file settings.
     app.config.from_object('config.Config')
-    data_path = 'games/adapters/data'
+    data_path = Path('games') / 'adapters' / 'data'
 
     if app.config['TESTING'] == 'True':
         # Load test configuration, and override any configuration settings.
@@ -49,5 +50,8 @@ def create_app(test_config=None):
 
         from .authentication import authentication
         app.register_blueprint(authentication.authentication_blueprint)
+
+        from .profile import profile
+        app.register_blueprint(profile.profile_blueprint)
 
     return app

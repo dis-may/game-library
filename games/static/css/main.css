@@ -455,6 +455,7 @@ footer {
     resize: none;
     color: #a30262;
     font-weight: bold;
+
 }
 
 .rating-input {
@@ -471,6 +472,7 @@ footer {
 .rating-input:focus, .comment-box:focus {
     outline: 2px dashed #a30262;
 }
+
 
 .review-text {
     background-color: #ff9a56;
@@ -515,4 +517,46 @@ footer {
 .submit-button:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.profile-background {
+    background-color: #ff9a56;
+    width: 50%;
+    min-width: 300px;
+    border-radius: 20px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.profile-heading {
+    background-color: #ef7627;
+    padding: 2px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.profile-heading h1 {
+    text-align: center;
+}
+
+.profile-details {
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-details tr td{
+    font-size: 20px;
+}
+
+.profile-review-heading {
+    background-color: #ef7627;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+.profile-review-heading h4 {
+    text-align: center;
+    margin: 0px;
+    font-size: 20px;
 }
