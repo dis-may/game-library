@@ -93,7 +93,7 @@ select#order {
 
 #copyright {
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 #sidebar {
@@ -586,4 +586,13 @@ footer {
     text-align: center;
     margin: 0px;
     font-size: 20px;
+}
+
+.game-name a{
+    color: white;
+}
+
+.game-name a:hover {
+    color: white;
+    background-color: #a30262;
 }
