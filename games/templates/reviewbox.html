@@ -7,8 +7,8 @@
             </div>
         </div>
         <div class="review-form">
-            <form>
-                <label><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>
+            <form method="POST" action={{url_for('search_bp.games_search_page')}}>
+                <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>
                 <select class="rating-input" name="rating" id="rating">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -17,16 +17,13 @@
                     <option value="5">5</option>
                 </select>
                 <br>
-                <label><span class="review-text">Comment: &nbsp</span></label>
-                <textarea class="comment-box" rows="4" cols="50"></textarea>
+                <label for="comment"><span class="review-text">Comment: &nbsp</span></label>
+                <textarea id="comment" name="comment" class="comment-box" rows="4" cols="50"></textarea>
                 <input class="review-submit" type="submit">
             </form>
         </div>
         <div class="review">
             <div class="review-info">
-<!--                                <td class="table-right">By: &nbsp; username</td>-->
-<!--                                <td class="table-right">Rating: &nbsp; ★★★★★</td>-->
-<!--                                <td class="table-right">Posted on: &nbsp; 17 September 2023</td>-->
                 <p class="username" ><b>By:</b> &nbsp; username</p>
                 <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>
                 <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>
