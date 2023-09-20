@@ -18,8 +18,13 @@
             <input class="searchbar" type="search" placeholder="Search" aria-label="Search" name="query">
             <button class="submit-button" type="submit"> Search</button>
         </form>
-        <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
-        <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
+        {% if not 'user_name' in session %}
+            <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
+            <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
+            {% else %}
+                <a class="btn-nav" href="{{ url_for('profile_bp.profile_page') }}">Profile</a>
+                <a class="btn-nav" href="{{ url_for('authentication_bp.logout') }}">Logout</a>
+        {% endif %}
     </div>
 
 </nav>

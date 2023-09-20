@@ -531,7 +531,7 @@ footer {
 }
 
 .authentication-field {
-    margin: 10px;
+    margin-bottom: 10px;
     border: none;
     border-bottom: #a30262 3px solid;
     border-radius: 3px;
