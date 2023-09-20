@@ -378,3 +378,28 @@ footer {
     color: white;
     cursor: pointer;
 }
+
+.wishlist-heading {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.wishlist-table table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 20px;
+
+}
+
+.wishlist-table table thead{
+    font-weight: 700;
+}
+
+.wishlist-table table thead td{
+    background-color: #ff9a56;
+    border: none;
+}
+

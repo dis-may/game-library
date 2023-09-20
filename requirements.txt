@@ -1,4 +1,4 @@
 pytest
-Flask==2.3.2
-Flask-WTF==1.1.1
+Flask==2.2.3
+flask-wtf==0.15.0
 password-validator==1.0
