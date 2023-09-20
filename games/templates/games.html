@@ -32,7 +32,13 @@
 
             <div class="info-block">
                 <p class="headings">P R I C E &nbsp (U S D)</p>
-                <p class="info">${{ game.price }}</p>
+                <p class="info">
+                    {% if game.price == 0.0 %}
+                        FREE!
+                    {% else %}
+                        ${{ game.price }}
+                    {% endif %}
+                </p>
             </div>
 
             <div class="info-block">

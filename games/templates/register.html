@@ -1,0 +1,40 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div class="main-body">
+
+    <div class="authentication-title">
+        <p>Register</p>
+    </div>
+
+    <div class="authentication-block">
+        <form method="POST" action="{{ handler_url }}">
+            {{ form.csrf_token }}
+
+            {{ form.name(class="authentication-field", placeholder="Name") }}
+
+            {{ form.user_name(class="authentication-field", placeholder="Username") }}
+
+            {{ form.password(class="authentication-field", placeholder="Password") }}
+
+            {{ form.submit(class="submit-button") }}
+        </form>
+    </div>
+
+    {% if form.user_name.errors %}
+        <div class="errors">
+            {% for error in form.user_name.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if form.password.errors %}
+        <div class="errors">
+            {% for error in form.password.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
