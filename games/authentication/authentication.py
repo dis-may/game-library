@@ -32,7 +32,7 @@ def register():
             services.add_user(form.name.data, form.user_name.data, form.password.data, repo.repo_instance)
             return redirect(url_for('authentication_bp.register'))
         except services.NameNotUniqueException:
-            user_name_not_unique = 'Your user name is already taken - please supply another'
+            user_name_not_unique = 'Your username is already taken - please supply another'
 
     return render_template(
         'register.html',
