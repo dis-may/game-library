@@ -1,9 +1,6 @@
 pytest
 Flask==2.2.3
 flask-wtf==0.15.0
-<<<<<<< HEAD
 password-validator==1.0
-=======
 password-validator==1.0
 python-dotenv==1.0.0
->>>>>>> 5994dea2c97a5c5dea2fbdf5db24b037233feb4e
