@@ -1,17 +1,19 @@
 {% extends 'layout.html' %} {% block content %}
 
 <div class="profile-background">
-    <div class="profile-heading"><h1>Person1's Profile</h1></div>
+    <div class="profile-heading"><h1>My Profile</h1></div>
+    {% if 'user_name' in session %}
     <table class="profile-details">
         <tr>
             <td><b>Name:</b></td>
-            <td>May</td>
+            <td>{{ session['name'] }}</td>
         </tr>
         <tr>
             <td><b>Username: &nbsp</b></td>
-            <td>blhablah</td>
+            <td>{{ session['user_name'] }}</td>
         </tr>
     </table>
+    {% endif %}
     <div class="profile-review-heading"><h4>Recently added: </h4></div>
     <div class="review_games_container_container games_container_container">
     <div class="review_games_container games_container">
