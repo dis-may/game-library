@@ -1,30 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<div class="wishlist">
-        <div class="wishlist-heading">
-        <p class="wishlist-heading">My WishList</p>
-    </div>
-    <div class="wishlist_info">
-        <div class="info_box">
-            <p class="image">Image</p>
-        </div>
-        <div class="info_box">
-            <p class="price">Price</p>
-        </div>
-        <div class="info_box">
-            <p class="release_date">Release date</p>
-        </div>
-        <div class="info_box">
-            <p class="genre">Genre</p>
-        </div>
-        <div class="info_box">
-            <p class="publisher">Publisher</p>
-        </div>
+{% extends 'layout.html' %}
+{% block content %}
+<div class="wishlist-heading">My Wishlist
+    <div class="wishlist-table">
+        <table>
+            <thead>
+            <tr>
+                <td>Image</td>
+                <td>Price</td>
+                <td>Release date</td>
+                <td>Game</td>
+                <td>Publisher</td>
+                <td>Remove</td>
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+
 
