@@ -9,13 +9,9 @@
     <div class="authentication-block">
         <form method="POST" action="{{ handler_url }}">
             {{ form.csrf_token }}
-
             {{ form.name(class="authentication-field", placeholder="Name") }}
-
             {{ form.user_name(class="authentication-field", placeholder="Username") }}
-
             {{ form.password(class="authentication-field", placeholder="Password") }}
-
             {{ form.submit(class="submit-button") }}
         </form>
     </div>

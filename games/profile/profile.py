@@ -6,6 +6,7 @@ import games.utilities.utilities as utilities
 
 profile_blueprint = Blueprint('profile_bp', __name__)
 
+
 @profile_blueprint.route('/profile', methods=['GET'])
 def profile_page():
     genre_url_dict = utilities.get_genre_url_dictionary(repo.repo_instance)

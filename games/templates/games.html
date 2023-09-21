@@ -1,6 +1,6 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="main-body">
-    <h2>{{ heading }}</h2>
+    <h2>Search results for {{ heading }}</h2>
 
     {% include 'sort.html' %}
 
@@ -15,6 +15,15 @@
         </div>
 
         <div class="game_details">
+            {% if 'user_name' in session %}
+            <a href="#" class="wishlist-image">
+                <img src="../static/wishlist-plain.png"
+                     onmouseover="this.src='../static/wishlist-hover.png'"
+                     onmouseout="this.src='../static/wishlist-plain.png'"
+                     alt="Add to wishlist">
+            </a>
+            {% endif %}
+
             <div class="info-block">
                 <p class="headings">T I T L E</p>
                 <p class="info">{{ game.title }}</p>

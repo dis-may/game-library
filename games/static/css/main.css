@@ -651,3 +651,14 @@ footer {
 .review_games_container_container {
     margin-top: 10px;
 }
+
+.wishlist-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transition: transform 0.5s;
+}
+
+.wishlist-image:hover {
+    transform: scale(2);
+}
