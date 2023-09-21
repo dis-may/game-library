@@ -11,15 +11,20 @@
     <div class="nav-right">
         <form method="GET" action={{url_for('search_bp.games_search_page')}} class="d-flex">
         <select name="search_type" class="options">
-            <option value="title">Title</option>
-            <option value="publisher">Publisher</option>
-            <option value="description">Description</option>
+            <option value="title" {{ 'selected' if search_type == 'title' }}>Title</option>
+            <option value="publisher" {{ 'selected' if search_type == 'publisher' }}>Publisher</option>
+            <option value="description" {{ 'selected' if search_type == 'description' }}>Description</option>
         </select>
             <input class="searchbar" type="search" placeholder="Search" aria-label="Search" name="query">
             <button class="submit-button" type="submit"> Search</button>
         </form>
-        <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
-        <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
+        {% if not 'user_name' in session %}
+            <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
+            <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
+            {% else %}
+                <a class="btn-nav" href="{{ url_for('profile_bp.profile_page') }}">Profile</a>
+                <a class="btn-nav" href="{{ url_for('authentication_bp.logout') }}">Logout</a>
+        {% endif %}
     </div>
 
 </nav>

@@ -30,9 +30,9 @@ def register():
     if form.validate_on_submit():
         try:
             services.add_user(form.name.data, form.user_name.data, form.password.data, repo.repo_instance)
-            return redirect(url_for('authentication_bp.register'))
+            return redirect(url_for('authentication_bp.login'))
         except services.NameNotUniqueException:
-            user_name_not_unique = 'Your user name is already taken - please supply another'
+            user_name_not_unique = 'Your username is already taken - please supply another'
 
     return render_template(
         'register.html',
@@ -50,6 +50,7 @@ def login():
     form = LoginForm()
     error = None
     user_name = None
+    name = None
 
     # if the user is already logged in, redirect to home page
     if form.validate_on_submit():
@@ -60,6 +61,7 @@ def login():
             )
             session.clear()
             session['user_name'] = user_name
+            session['name'] = name
             return redirect(url_for('home_bp.home'))
         except services.AuthenticationException:
             error = 'Incorrect username or password.'
@@ -69,6 +71,7 @@ def login():
         form=form,
         error=error,
         user_name=user_name,
+        name=name,
         genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance)
     )
 
