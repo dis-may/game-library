@@ -554,7 +554,7 @@ footer {
 }
 
 .authentication-field {
-    margin: 10px;
+    margin-bottom: 10px;
     border: none;
     border-bottom: #a30262 3px solid;
     border-radius: 3px;
@@ -683,5 +683,16 @@ footer {
     margin-right: 60px;
     margin-left: 60px;
     border-radius: 30px;
+}
+
+.wishlist-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transition: transform 0.5s;
+}
+
+.wishlist-image:hover {
+    transform: scale(2);
 }
 

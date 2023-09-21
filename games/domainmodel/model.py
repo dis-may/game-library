@@ -210,11 +210,16 @@ class Game:
 
 
 class User:
-    def __init__(self, username: str, password: str):
-        if not isinstance(username, str) or username.strip() == "":
+    def __init__(self, name: str, user_name: str, password: str):
+        if not isinstance(name, str) or name.strip() == "":
+            raise ValueError('Name cannot be empty or non-string!')
+        else:
+            self.__name = name.strip()
+
+        if not isinstance(user_name, str) or user_name.strip() == "":
             raise ValueError('Username cannot be empty or non-string!')
         else:
-            self.__username = username.lower().strip()
+            self.__user_name = user_name.lower().strip()
 
         if isinstance(password, str) and len(password) >= 7:
             self.__password = password
@@ -225,8 +230,12 @@ class User:
         self.__favourite_games: list[Game] = []
 
     @property
-    def username(self):
-        return self.__username
+    def name(self):
+        return self.__name
+
+    @property
+    def user_name(self):
+        return self.__user_name
 
     @property
     def password(self) -> str:
@@ -261,20 +270,20 @@ class User:
         self.__favourite_games.remove(game)
 
     def __repr__(self):
-        return f"<User {self.__username}>"
+        return f"<User {self.__user_name}>"
 
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        return self.__username == other.username
+        return self.__user_name == other.user_name
 
     def __hash__(self):
-        return hash(self.__username)
+        return hash(self.__user_name)
 
     def __lt__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        return self.__username < other.username
+        return self.__user_name < other.user_name
 
 
 class Review:

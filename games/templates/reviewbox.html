@@ -6,6 +6,7 @@
                 <button class="add-review-button">Add review</button>
             </div>
         </div>
+        {% if 'user_name' in session %}
         <div class="review-form">
             <form method="POST" action={{url_for('search_bp.games_search_page')}}>
                 <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>
@@ -22,6 +23,7 @@
                 <input class="review-submit" type="submit">
             </form>
         </div>
+        {% endif %}
         <div class="review">
             <div class="review-info">
                 <p class="username" ><b>By:</b> &nbsp; username</p>
