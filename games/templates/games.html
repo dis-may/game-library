@@ -16,13 +16,15 @@
 
         <div class="game_details">
             {% if 'user_name' in session %}
-            <a href="#" class="wishlist-image">
                 <img src="../static/wishlist-plain.png"
-                     onmouseover="this.src='../static/wishlist-hover.png'"
-                     onmouseout="this.src='../static/wishlist-plain.png'"
+                     class="wishlist-image"
                      alt="Add to wishlist">
-            </a>
-            {% endif %}
+
+                <img src="../static/wishlist-clicked.png"
+                     class="wishlist-image-clicked"
+                     alt="Remove from wishlist"
+                     style="display: none">
+                {% endif %}
 
             <div class="info-block">
                 <p class="headings">T I T L E</p>

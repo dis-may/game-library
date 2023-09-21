@@ -480,6 +480,7 @@ footer {
 #review-form {
     margin: auto;
     width: 90%;
+    display: none;
 }
 
 .comment-box {
@@ -693,14 +694,15 @@ footer {
     border-radius: 30px;
 }
 
-
-.wishlist-image {
+.wishlist-image,
+.wishlist-image-clicked{
     position: absolute;
     top: 5px;
     right: 5px;
-    transition: transform 0.5s;
+    transition: transform 1s;
 }
 
 .wishlist-image:hover {
     transform: scale(2);
+    cursor: pointer;
 }
