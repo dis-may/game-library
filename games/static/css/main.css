@@ -47,7 +47,6 @@ nav {
     align-items: center;
     height: 100%;
     justify-content: space-evenly;
-
 }
 
 nav a {
@@ -308,8 +307,8 @@ footer {
 .description-info {
     background-color: #ef7627;
     border-radius: 10px;
-    flex: 2;
-    width: 100%
+    width: 100%;
+    position: relative;
 }
 
 .description-text {
@@ -365,17 +364,17 @@ footer {
 }
 
 .add-review-button  {
-  background-color: white;
-  border-width: 3px;
-  border-color: white;
-  border-style: solid;
-  color: #d162a4;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 10px;
-  font-family: 'Lato', sans-serif;
-
+    background-color: white;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    color: #d162a4;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
 }
 
 .review-submit {
@@ -417,6 +416,30 @@ footer {
     cursor: pointer;
 }
 
+.wishlist-heading {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.wishlist-table table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 20px;
+
+}
+
+.wishlist-table table thead{
+    font-weight: 700;
+}
+
+.wishlist-table table thead td{
+    background-color: #ef7627;
+    border: none;
+}
+
 .review-submit:hover {
     background-color: white;
     color: #a30262;
@@ -454,9 +477,10 @@ footer {
     line-height: 1;
 }
 
-.review-form {
+#review-form {
     margin: auto;
     width: 90%;
+    display: none;
 }
 
 .comment-box {
@@ -470,7 +494,14 @@ footer {
     resize: none;
     color: #a30262;
     font-weight: bold;
+}
 
+.searchbar {
+    font-family: 'Lato', sans-serif;
+    border: white 2px solid;
+    border-radius: 3px;
+    color: #a30262;
+    margin: 0 3px 0 3px;
 }
 
 .rating-input {
@@ -652,13 +683,26 @@ footer {
     margin-top: 10px;
 }
 
-.wishlist-image {
+
+.wishlist_box {
+    color: white;
+    text-align: center;
+    background-color: #ff9a56;
+    margin-bottom: 20px;
+    margin-right: 60px;
+    margin-left: 60px;
+    border-radius: 30px;
+}
+
+.wishlist-image,
+.wishlist-image-clicked{
     position: absolute;
     top: 5px;
     right: 5px;
-    transition: transform 0.5s;
+    transition: transform 1s;
 }
 
 .wishlist-image:hover {
     transform: scale(2);
+    cursor: pointer;
 }

@@ -2,12 +2,21 @@
     <div class="review-info-block">
         <div class="heading-button-container" >
             <p class="headings">R E V I E W S</p>
-            <div class="button-container">
-                <button class="add-review-button">Add review</button>
-            </div>
+
+            {% if 'user_name' not in session %}
+                <div class="button-container">
+                    <a href="{{ url_for('authentication_bp.login') }}" class="add-review-button">Add review</a>
+                </div>
+
+                {% else %}
+                    <div class="button-container">
+                        <button onclick="showReviewBox()" class="add-review-button">Add review</button>
+                    </div>
+            {% endif %}
         </div>
+
         {% if 'user_name' in session %}
-        <div class="review-form">
+        <div id="review-form">
             <form method="POST" action={{url_for('search_bp.games_search_page')}}>
                 <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>
                 <select class="rating-input" name="rating" id="rating">
@@ -24,6 +33,7 @@
             </form>
         </div>
         {% endif %}
+
         <div class="review">
             <div class="review-info">
                 <p class="username" ><b>By:</b> &nbsp; username</p>

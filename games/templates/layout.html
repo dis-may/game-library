@@ -35,5 +35,48 @@
 
         {% include 'footer.html' %}
     </div>
+
+  <script>
+    function showReviewBox() {
+      var x = document.getElementById("review-form");
+      if (x.style.display === "none" || x.style.display === "") {
+          x.style.display = "block";
+      } else {
+          x.style.display = "none";
+      }
+    }
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all images with class 'wishlist-image'
+      var wishlistImages = document.querySelectorAll('.wishlist-image');
+
+      wishlistImages.forEach(function(wishlistImage) {
+          var isClicked = false;
+
+          // Change the image on hover
+          wishlistImage.addEventListener('mouseover', function() {
+              if (!isClicked) {
+                  this.src = '../static/wishlist-hover.png';
+              }
+          });
+
+          // Change the image back when the mouse leaves, unless it's been clicked
+          wishlistImage.addEventListener('mouseout', function() {
+              if (!isClicked) {
+                  this.src = '../static/wishlist-plain.png';
+              }
+          });
+
+          // Toggle the image when clicked
+          wishlistImage.addEventListener('click', function() {
+              isClicked = !isClicked;
+              this.src = isClicked ? '../static/wishlist-clicked.png' : '../static/wishlist-plain.png';
+          });
+      });
+  });
+  </script>
+
   </body>
 </html>
