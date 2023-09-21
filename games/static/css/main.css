@@ -308,8 +308,8 @@ footer {
 .description-info {
     background-color: #ef7627;
     border-radius: 10px;
-    flex: 2;
-    width: 100%
+    width: 100%;
+    position: relative;
 }
 
 .description-text {
@@ -365,17 +365,17 @@ footer {
 }
 
 .add-review-button  {
-  background-color: white;
-  border-width: 3px;
-  border-color: white;
-  border-style: solid;
-  color: #d162a4;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 10px;
-  font-family: 'Lato', sans-serif;
-
+    background-color: white;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    color: #d162a4;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
 }
 
 .review-submit {
@@ -454,7 +454,7 @@ footer {
     line-height: 1;
 }
 
-.review-form {
+#review-form {
     margin: auto;
     width: 90%;
 }
@@ -470,7 +470,14 @@ footer {
     resize: none;
     color: #a30262;
     font-weight: bold;
+}
 
+.searchbar {
+    font-family: 'Lato', sans-serif;
+    border: white 2px solid;
+    border-radius: 3px;
+    color: #a30262;
+    margin: 0 3px 0 3px;
 }
 
 .rating-input {
@@ -661,4 +668,5 @@ footer {
 
 .wishlist-image:hover {
     transform: scale(2);
+
 }

@@ -7,6 +7,15 @@
     <div class="description">
         <div class="left-description">
             <div class="description-info">
+                {% if 'user_name' in session %}
+                    <a href="#" class="wishlist-image">
+                        <img src="../static/wishlist-plain.png"
+                             onmouseover="this.src='../static/wishlist-hover.png'"
+                             onmouseout="this.src='../static/wishlist-plain.png'"
+                             alt="Add to wishlist">
+                    </a>
+                {% endif %}
+
                 <div class="info-block">
                     <p class="headings">T I T L E</p>
                     <p class="info">{{ game.title }}</p>
