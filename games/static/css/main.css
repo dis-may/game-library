@@ -352,6 +352,7 @@ footer {
     padding: 10px;
     width: 100%;
     margin: auto;
+
 }
 
 .review {
@@ -456,6 +457,10 @@ footer {
     margin: 0px;
     grid-template-columns: auto auto;
     line-height: 0.8;
+}
+
+.date {
+    line-height: 1;
 }
 
 .review-info p {

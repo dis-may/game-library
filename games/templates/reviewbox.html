@@ -60,6 +60,9 @@
                     {% for stars in range(review.rating) %}
                         <p class="star">★</p>
                     {% endfor %}
+                    {% for stars in range(5 - review.rating) %}
+                        <p class="star">☆</p>
+                    {% endfor %}
                 </div>
                 <p class="date"><b>Posted on:</b> &nbsp; {{ review.timestamp.strftime('%a %d %b %Y, %I:%M%p') }}</p>
             </div>
