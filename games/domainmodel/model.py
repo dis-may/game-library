@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Type
 
 
 class Publisher:
@@ -312,7 +313,7 @@ class Review:
 
         if not isinstance(timestamp, datetime):
             raise ValueError("Timestamp must be a datetime object")
-        self.__timestamp = datetime
+        self.__timestamp = timestamp
 
     @property
     def game(self) -> Game:
@@ -329,6 +330,10 @@ class Review:
     @property
     def user(self) -> User:
         return self.__user
+
+    @property
+    def timestamp(self) -> Type[datetime]:
+        return self.__timestamp
 
     @comment.setter
     def comment(self, new_text):
@@ -402,8 +407,8 @@ class Wishlist:
             return self.__list_of_games[self.__current - 1]
 
 
-def make_review(user: User, game: Game, rating: int, comment: str, timestamp: datetime = datetime.today()):
-    new_review = Review(user, game, rating, comment, timestamp)
+def make_review(user: User, game: Game, rating: int, comment: str):
+    new_review = Review(user, game, rating, comment, timestamp=datetime.now())
     user.add_review(new_review)
     game.add_review(new_review)
     return new_review
