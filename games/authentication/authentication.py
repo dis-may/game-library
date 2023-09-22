@@ -1,6 +1,6 @@
 # Authentication blueprint for the games web application.
 
-from flask import Blueprint, request, render_template, url_for, session, redirect
+from flask import Blueprint, request, render_template, url_for, session, redirect, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
@@ -33,6 +33,7 @@ def register():
             return redirect(url_for('authentication_bp.login'))
         except services.NameNotUniqueException:
             user_name_not_unique = 'Your username is already taken - please supply another'
+            flash(user_name_not_unique)
 
     return render_template(
         'register.html',
@@ -65,6 +66,7 @@ def login():
             return redirect(url_for('home_bp.home'))
         except services.AuthenticationException:
             error = 'Incorrect username or password.'
+            flash(error)
     return render_template(
         'login.html',
         heading='Log in',
@@ -93,7 +95,7 @@ def login_required(view):
 
 class LoginForm(FlaskForm):
     user_name = StringField('Username', [DataRequired()])
-    password = PasswordField('Password', [DataRequired(), Length(min=8)])
+    password = PasswordField('Password', [DataRequired()])
     submit = SubmitField('Log In')
 
 
