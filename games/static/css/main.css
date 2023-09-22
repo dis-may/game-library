@@ -165,6 +165,10 @@ footer {
     width: 100%
 }
 
+.star {
+    display: inline;
+}
+
 .game_card {
     margin: 0;
     background-color: #ff9a56;
@@ -458,7 +462,8 @@ footer {
     text-align: left;
     font-size: 16px;
     font-weight: 0;
-    margin: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 
 }
 
@@ -706,3 +711,4 @@ footer {
     transform: scale(2);
     cursor: pointer;
 }
+

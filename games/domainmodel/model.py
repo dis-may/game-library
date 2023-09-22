@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Type
 
 
 class Publisher:
@@ -192,6 +193,11 @@ class Game:
             print(f"Could not find {genre} in list of genres.")
             pass
 
+    def add_review(self, review):
+        if not isinstance(review, Review) or review in self.__reviews:
+            return
+        self.__reviews.append(review)
+
     def __repr__(self):
         return f"<Game {self.__game_id}, {self.__game_title}>"
 
@@ -287,7 +293,7 @@ class User:
 
 
 class Review:
-    def __init__(self, user: User, game: Game, rating: int, comment: str):
+    def __init__(self, user: User, game: Game, rating: int, comment: str, timestamp: datetime):
 
         if not isinstance(user, User):
             raise ValueError("User must be an instance of User class")
@@ -297,13 +303,17 @@ class Review:
             raise ValueError("Game must be an instance of Game class")
         self.__game = game
 
-        if not isinstance(rating, int) or not 0 <= rating <= 5:
-            raise ValueError("Rating must be an integer between 0 and 5")
+        if not isinstance(rating, int) or not 1 <= rating <= 5:
+            raise ValueError("Rating must be an integer between 1 and 5")
         self.__rating = rating
 
         if not isinstance(comment, str):
             raise ValueError("Comment must be a string")
         self.__comment = comment.strip()
+
+        if not isinstance(timestamp, datetime):
+            raise ValueError("Timestamp must be a datetime object")
+        self.__timestamp = timestamp
 
     @property
     def game(self) -> Game:
@@ -321,6 +331,10 @@ class Review:
     def user(self) -> User:
         return self.__user
 
+    @property
+    def timestamp(self) -> Type[datetime]:
+        return self.__timestamp
+
     @comment.setter
     def comment(self, new_text):
         if isinstance(new_text, str):
@@ -330,10 +344,10 @@ class Review:
 
     @rating.setter
     def rating(self, new_rating: int):
-        if isinstance(new_rating, int) and 0 <= new_rating <= 5:
+        if isinstance(new_rating, int) and 1 <= new_rating <= 5:
             self.__rating = new_rating
         else:
-            raise ValueError("Rating must be an integer between 0 and 5")
+            raise ValueError("Rating must be an integer between 1 and 5")
 
     def __repr__(self):
         return f"Review(User: {self.__user}, Game: {self.__game}, " \
@@ -391,3 +405,10 @@ class Wishlist:
         else:
             self.__current += 1
             return self.__list_of_games[self.__current - 1]
+
+
+def make_review(user: User, game: Game, rating: int, comment: str):
+    new_review = Review(user, game, rating, comment, timestamp=datetime.now())
+    user.add_review(new_review)
+    game.add_review(new_review)
+    return new_review

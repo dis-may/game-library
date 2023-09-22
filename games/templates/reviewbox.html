@@ -17,9 +17,17 @@
 
         {% if 'user_name' in session %}
         <div id="review-form">
-            <form method="POST" action={{url_for('search_bp.games_search_page')}}>
+            <form method="POST" action={{ submit_url }}>
+                {{ form.game_id }}
+                {{ form.csrf_token }}
+                {{ form.rating.label }}
+                {{ form.rating }}
+                {{ form.comment.label }}
+                {{ form.comment }}
+                {{ form.submit }}
                 <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>
                 <select class="rating-input" name="rating" id="rating">
+                    <option disabled selected value> -- </option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -33,6 +41,22 @@
             </form>
         </div>
         {% endif %}
+
+        {% for review in reviews %}
+        <div class="review">
+            <div class="review-info">
+                <p class="username" ><b>By:</b> &nbsp; {{ review.user.user_name }}</p>
+                <div class="rating"><p class="star"><b>Rating:</b> &nbsp</p>
+
+                    {% for stars in range(review.rating) %}
+                        <p class="star">★</p>
+                    {% endfor %}
+                </div>
+                <p class="date"><b>Posted on:</b> &nbsp; {{ review.timestamp.strftime('%a %d %b %Y, %I:%M%p') }}</p>
+            </div>
+            <p class="comment">{{ review.comment }}</p>
+        </div>
+        {% endfor %}
 
         <div class="review">
             <div class="review-info">

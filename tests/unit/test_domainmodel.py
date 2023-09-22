@@ -344,6 +344,9 @@ def test_review_initialization():
     with pytest.raises(ValueError):
         review2 = Review(user, game, 6, "Great game!")
 
+    with pytest.raises(ValueError):
+        review2 = Review(user, game, 0, "Great game!")
+
 
 def test_review_eq():
     user = User("Shyamli", "pw12345")
