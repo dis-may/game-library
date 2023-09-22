@@ -73,6 +73,10 @@
           wishlistImage.addEventListener('click', function() {
               isClicked = !isClicked;
               this.src = isClicked ? '../static/wishlist-clicked.png' : '../static/wishlist-plain.png';
+              if (isClicked) {
+                alert("Added to wishlist")
+              }
+              else {alert("Removed from wishlist")}
           });
       });
   });

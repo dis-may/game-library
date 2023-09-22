@@ -16,21 +16,16 @@
         </form>
     </div>
 
-    {% if form.user_name.errors %}
-        <div class="errors">
-            {% for error in form.user_name.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="errors">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
-    {% if form.password.errors %}
-        <div class="errors">
-            {% for error in form.password.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
 </div>
 
 {% endblock %}
