@@ -165,6 +165,10 @@ footer {
     width: 100%
 }
 
+.star {
+    display: inline;
+}
+
 .game_card {
     margin: 0;
     background-color: #ff9a56;
@@ -307,8 +311,8 @@ footer {
 .description-info {
     background-color: #ef7627;
     border-radius: 10px;
-    flex: 2;
-    width: 100%
+    width: 100%;
+    position: relative;
 }
 
 .description-text {
@@ -364,17 +368,17 @@ footer {
 }
 
 .add-review-button  {
-  background-color: white;
-  border-width: 3px;
-  border-color: white;
-  border-style: solid;
-  color: #d162a4;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 10px;
-  font-family: 'Lato', sans-serif;
-
+    background-color: white;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    color: #d162a4;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
 }
 
 .review-submit {
@@ -458,7 +462,8 @@ footer {
     text-align: left;
     font-size: 16px;
     font-weight: 0;
-    margin: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 
 }
 
@@ -477,9 +482,10 @@ footer {
     line-height: 1;
 }
 
-.review-form {
+#review-form {
     margin: auto;
     width: 90%;
+    display: none;
 }
 
 .comment-box {
@@ -493,7 +499,14 @@ footer {
     resize: none;
     color: #a30262;
     font-weight: bold;
+}
 
+.searchbar {
+    font-family: 'Lato', sans-serif;
+    border: white 2px solid;
+    border-radius: 3px;
+    color: #a30262;
+    margin: 0 3px 0 3px;
 }
 
 .rating-input {
@@ -668,7 +681,7 @@ footer {
     background-color: #b55690;
     width: 20%;
     min-width: 210px;
-    margin: 0px;
+    margin: 0;
 }
 
 .review_games_container_container {
@@ -685,14 +698,16 @@ footer {
     border-radius: 30px;
 }
 
-.wishlist-image {
+.wishlist-image,
+.wishlist-image-clicked{
     position: absolute;
     top: 5px;
     right: 5px;
-    transition: transform 0.5s;
+    transition: transform 1s;
 }
 
 .wishlist-image:hover {
     transform: scale(2);
+    cursor: pointer;
 }
 
