@@ -13,5 +13,10 @@ def add_to_wishlist():
     username = session['user_name']
     current_game_id = int(request.form['current_game'])
     services.add_to_wishlist(current_game_id, username, repo.repo_instance)
+    return redirect(request.referrer)
 
+def remove_from_wishlist():
+    username = session['user_name']
+    current_game_id = int(request.form['current_game'])
+    services.remove_from_wishlist(current_game_id, username, repo.repo_instance)
     return redirect(request.referrer)
