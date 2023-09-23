@@ -19,3 +19,8 @@ def get_wishlist(username: str, repo: AbstractRepository):
     if user is not None:
         return user.wishlist
     return None
+
+def get_user(self, user_name) -> User:
+    for user in self.__users:
+        if user.user_name == user_name:
+            return user

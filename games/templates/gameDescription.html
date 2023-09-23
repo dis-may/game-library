@@ -8,14 +8,18 @@
         <div class="left-description">
             <div class="description-info">
                 {% if 'user_name' in session %}
-                    <img src="../static/wishlist-plain.png"
-                         class="wishlist-image"
-                         alt="Add to wishlist">
-
-                    <img src="../static/wishlist-clicked.png"
-                         class="wishlist-image-clicked"
-                         alt="Remove from wishlist"
-                         style="display: none">
+                    <form method="post" action={{ url_for('wishlist_bp.add_to_wishlist') }}>
+                    <input type="hidden" name="current_game" value={{ game.game_id }} >
+                    <input type="submit" class="wishlist-image">
+{#                        <img src="../static/wishlist-plain.png"#}
+{#                             class="wishlist-image"#}
+{#                             alt="Add to wishlist">#}
+{##}
+{#                        <img src="../static/wishlist-clicked.png"#}
+{#                            class="wishlist-image-clicked"#}
+{#                            alt="Remove from wishlist"#}
+{#                            style="display: none"/>#}
+                    </form>
                 {% endif %}
 
                 <div class="info-block">
