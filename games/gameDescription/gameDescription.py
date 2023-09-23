@@ -45,8 +45,10 @@ def game_desc_page():
     # getting the reviews
     reviews = services.get_reviews(game_id, repo.repo_instance)
     submit_url = url_for('gameDescription_bp.game_desc_page', game_id=game_id)
-    user_logged_in = services.is_valid_user(session['user_name'], repo.repo_instance)
-    has_posted = services.has_posted(game_id, session['user_name'], repo.repo_instance)
+    try:
+        has_posted = services.has_posted(game_id, session['user_name'], repo.repo_instance)
+    except KeyError:
+        has_posted = False
     return render_template('gameDescription.html',
                            game=game,
                            genre_url_dict=genre_url_dict,
@@ -54,7 +56,7 @@ def game_desc_page():
                            heading=game.title,
                            reviews=reversed(reviews),
                            submit_url=submit_url,
-                           user_logged_in=user_logged_in,
+                           user_logged_in=utilities.is_valid_user(repo.repo_instance),
                            add_review_clicked=add_review_clicked,
                            has_posted=has_posted
                            )

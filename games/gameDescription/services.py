@@ -40,6 +40,8 @@ def get_reviews(game_id, repo: AbstractRepository):
 
 def has_posted(game_id: int, username: str, repo: AbstractRepository):
     user = repo.get_user(username)
+    if user is None:
+        return False
     for review in user.reviews:
         if review.game.game_id == game_id:
             return True

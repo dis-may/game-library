@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import request, render_template, url_for
+from flask import request, render_template, url_for, session
 
 from math import ceil
 
@@ -29,7 +29,8 @@ def games_page():
     # Total number of pages
     total_pages = ceil(len(all_games) / 21)
 
-    pagination_urls = [url_for('games_bp.games_page', page=i, sort=sort, order=order) for i in range(1, total_pages+1)]
+    pagination_urls = [url_for('games_bp.games_page', page=i, sort=sort, order=order) for i in
+                       range(1, total_pages + 1)]
     sort_url = url_for('games_bp.games_page')
 
     return render_template('games.html',
@@ -42,5 +43,6 @@ def games_page():
                            pagination_urls=pagination_urls,
                            sort=sort,
                            order=order,
-                           sort_url=sort_url
+                           sort_url=sort_url,
+                           user_logged_in=utilities.is_valid_user(repo.repo_instance)
                            )
