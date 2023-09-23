@@ -1,14 +1,17 @@
 from flask import Blueprint, request, render_template, session
-import games.adapters.repository as repo
 import games.utilities.utilities as utilities
+import games.wishlist.services as services
 from games.authentication.authentication import login_required
+import games.adapters.repository as repo
 
 wishlist_blueprint = Blueprint('wishlist_bp', __name__)
 
 @wishlist_blueprint.route('/add_to_wishlist', methods=['POST'])
 @login_required
 def add_to_wishlist():
-    current_game_id = request.form['current_game']
+    username = session['user_name']
+    current_game_id = int(request.form['current_game'])
+    services.add_to_wishlist(current_game_id, username, repo.repo_instance)
 
 
 

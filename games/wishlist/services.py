@@ -7,12 +7,14 @@ class UnknownUserException(Exception):
     pass
 
 def add_to_wishlist(game_id: int, username: str, repo: AbstractRepository):
-    game = repo.get_game(game_id)
-    if game is None:
+    current_game = repo.get_game(game_id)
+    if current_game is None:
         raise NonExistentGameException
     user = repo.get_user(username)
     if user is None:
         raise UnknownUserException
+    user.add_favourite_game(current_game)
+    print(user.favourite_games)
 
 def get_wishlist(username: str, repo: AbstractRepository):
     user = repo.get_user(username)
@@ -20,7 +22,5 @@ def get_wishlist(username: str, repo: AbstractRepository):
         return user.wishlist
     return None
 
-def get_user(self, user_name) -> User:
-    for user in self.__users:
-        if user.user_name == user_name:
-            return user
+
+
