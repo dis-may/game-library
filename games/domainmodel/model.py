@@ -412,3 +412,8 @@ def make_review(user: User, game: Game, rating: int, comment: str):
     user.add_review(new_review)
     game.add_review(new_review)
     return new_review
+
+def add_to_wishlist(user: User, game: Game):
+    new_wishlist = Wishlist(list_of_games, size, add_game, first_game_in_list, remove_game, select_game)
+    user.add_wishlist(new_wishlist)
+    game.add_wishlist(new_wishlist)
