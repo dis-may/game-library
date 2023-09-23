@@ -412,3 +412,5 @@ def make_review(user: User, game: Game, rating: int, comment: str):
     user.add_review(new_review)
     game.add_review(new_review)
     return new_review
+
+
