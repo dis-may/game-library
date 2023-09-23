@@ -764,3 +764,19 @@ footer {
     color: transparent;
     background-color: transparent;
 }
+
+.wishlist-image-background {
+    background-color: #ff9a56;
+    opacity: 0.75;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+}
+
+.wish-odd {
+    background-color: #ef7627;
+}
