@@ -20,3 +20,10 @@ def remove_from_wishlist():
     current_game_id = int(request.form['current_game'])
     services.remove_from_wishlist(current_game_id, username, repo.repo_instance)
     return redirect(request.referrer)
+
+@wishlist_blueprint.route('/wishlist')
+@login_required
+def get_wishlist():
+    wishlist = get_wishlist
+    return render_template('wishlist.html', wishlist = wishlist)
+
