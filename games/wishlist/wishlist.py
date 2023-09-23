@@ -1,8 +1,9 @@
-from flask import Blueprint, request, render_template, session
+from flask import Blueprint, request, render_template, session, redirect
 import games.utilities.utilities as utilities
 import games.wishlist.services as services
 from games.authentication.authentication import login_required
 import games.adapters.repository as repo
+
 
 wishlist_blueprint = Blueprint('wishlist_bp', __name__)
 
@@ -13,10 +14,4 @@ def add_to_wishlist():
     current_game_id = int(request.form['current_game'])
     services.add_to_wishlist(current_game_id, username, repo.repo_instance)
 
-
-
-
-    genre_url_dict = utilities.get_genre_url_dictionary(repo.repo_instance)
-    return render_template('home.html',
-                           genre_url_dict=genre_url_dict,
-                           heading="My Game Library")
+    return redirect(request.referrer)
