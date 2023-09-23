@@ -87,7 +87,12 @@ def logout():
 def login_required(view):
     @wraps(view)
     def wrapped_view(**kwargs):
-        if 'user_name' not in session:
+        # if 'user_name' not in session:
+        #     return redirect(url_for('authentication_bp.login'))
+        # return view(**kwargs)
+        try:
+            services.get_user('user_name', repo.repo_instance)
+        except services.UnknownUserException:
             return redirect(url_for('authentication_bp.login'))
         return view(**kwargs)
     return wrapped_view
