@@ -20,24 +20,33 @@
             <form method="POST" action={{ submit_url }}>
                 {{ form.game_id }}
                 {{ form.csrf_token }}
-                {{ form.rating.label }}
-                {{ form.rating }}
-                {{ form.comment.label }}
-                {{ form.comment }}
-                {{ form.submit }}
-                <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>
-                <select class="rating-input" name="rating" id="rating">
-                    <option disabled selected value> -- </option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                {{ form.rating.label(class="review-text") }}
+<!--                {{ form.rating(class="rating-input") }}-->
+                <select name="rating" id="rating" class="rating-input">
+                    {% for option in form.rating %}
+                        {% if loop.first %}
+                            <option value="" disabled selected>--</option>
+                        {% endif %}
+                        {{ option }}
+                    {% endfor %}
                 </select>
                 <br>
-                <label for="comment"><span class="review-text">Comment: &nbsp</span></label>
-                <textarea id="comment" name="comment" class="comment-box" rows="4" cols="50"></textarea>
-                <input class="review-submit" type="submit">
+                {{ form.comment.label(class="review-text") }}
+                {{ form.comment(class="comment-box", size=100, placeholder="Write your review...", cols="35", rows="6", wrap="hard") }}
+                {{ form.submit(class="review-submit") }}
+<!--                <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>-->
+<!--                <select class="rating-input" name="rating" id="rating-rating">-->
+<!--                    <option disabled selected value> &#45;&#45; </option>-->
+<!--                    <option value="1">1</option>-->
+<!--                    <option value="2">2</option>-->
+<!--                    <option value="3">3</option>-->
+<!--                    <option value="4">4</option>-->
+<!--                    <option value="5">5</option>-->
+<!--                </select>-->
+<!--                <br>-->
+<!--                <label for="comment"><span class="review-text">Comment: &nbsp</span></label>-->
+<!--                <textarea id="comment" name="comment" class="comment-box" rows="4" cols="50"></textarea>-->
+<!--                <input class="review-submit" type="submit">-->
             </form>
         </div>
         {% endif %}

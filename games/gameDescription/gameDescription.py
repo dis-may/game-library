@@ -47,8 +47,9 @@ def game_desc_page():
 
 class ReviewForm(FlaskForm):
     game_id = HiddenField("Game ID")
-    rating = SelectField('Rating', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')])
-    comment = TextAreaField('Review', [
+    rating = SelectField('Rating:    ',
+                         choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')])
+    comment = TextAreaField('Comment: ', [
         DataRequired(),
         Length(min=3, message='Your comment is too short')])
 
