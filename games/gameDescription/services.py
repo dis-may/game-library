@@ -14,6 +14,12 @@ def get_game(game_id: int, repo: AbstractRepository):
     return repo.get_game(game_id)
 
 
+def is_valid_user(user_name: str, repo: AbstractRepository):
+    if repo.get_user(user_name) is not None:
+        return True
+    return False
+
+
 def add_review(game_id: int, username: str, rating: int, comment: str, repo: AbstractRepository):
     game = repo.get_game(game_id)
     if game is None:
@@ -30,3 +36,11 @@ def add_review(game_id: int, username: str, rating: int, comment: str, repo: Abs
 def get_reviews(game_id, repo: AbstractRepository):
     game = repo.get_game(game_id)
     return game.reviews
+
+
+def has_posted(game_id: int, username: str, repo: AbstractRepository):
+    user = repo.get_user(username)
+    for review in user.reviews:
+        if review.game.game_id == game_id:
+            return True
+    return False

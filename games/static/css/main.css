@@ -382,6 +382,20 @@ footer {
     text-decoration: none;
 }
 
+.add-review-button-clicked  {
+    background-color: #d162a4;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
 .review-submit {
   background-color: #a30262;
   border-width: 3px;
@@ -418,6 +432,12 @@ footer {
 .add-review-button:hover {
     background-color: #d162a4;
     color: white;
+    cursor: pointer;
+}
+
+.add-review-button-clicked:hover {
+    background-color: white;
+    color: #d162a4;
     cursor: pointer;
 }
 
@@ -490,7 +510,7 @@ footer {
 #review-form {
     margin: auto;
     width: 90%;
-    display: none;
+    display: block;
 }
 
 .comment-box {
