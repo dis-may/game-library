@@ -41,7 +41,8 @@ def register():
         heading='Register',
         user_name_error_message=user_name_not_unique,
         handler_url=url_for('authentication_bp.register'),
-        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance)
+        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+        user_logged_in=utilities.is_valid_user(repo.repo_instance)
     )
 
 
@@ -74,7 +75,8 @@ def login():
         error=error,
         user_name=user_name,
         name=name,
-        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance)
+        genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
+        user_logged_in=False
     )
 
 
@@ -89,7 +91,14 @@ def login_required(view):
     def wrapped_view(**kwargs):
         if 'user_name' not in session:
             return redirect(url_for('authentication_bp.login'))
-        return view(**kwargs)
+        # return view(**kwargs)
+        try:
+            services.get_user(session['user_name'], repo.repo_instance)
+            return view(**kwargs)
+        except services.UnknownUserException:
+            session.clear()
+            return redirect(url_for('authentication_bp.login'))
+
     return wrapped_view
 
 

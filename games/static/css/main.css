@@ -352,6 +352,7 @@ footer {
     padding: 10px;
     width: 100%;
     margin: auto;
+
 }
 
 .review {
@@ -373,6 +374,20 @@ footer {
     border-color: white;
     border-style: solid;
     color: #d162a4;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+.add-review-button-clicked  {
+    background-color: #d162a4;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    color: white;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -420,6 +435,12 @@ footer {
     cursor: pointer;
 }
 
+.add-review-button-clicked:hover {
+    background-color: white;
+    color: #d162a4;
+    cursor: pointer;
+}
+
 .wishlist-heading {
     margin-top: 15px;
     text-align: center;
@@ -458,6 +479,10 @@ footer {
     line-height: 0.8;
 }
 
+.date {
+    line-height: 1;
+}
+
 .review-info p {
     text-align: left;
     font-size: 16px;
@@ -485,7 +510,7 @@ footer {
 #review-form {
     margin: auto;
     width: 90%;
-    display: none;
+    display: block;
 }
 
 .comment-box {

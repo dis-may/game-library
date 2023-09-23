@@ -3,24 +3,33 @@
         <div class="heading-button-container" >
             <p class="headings">R E V I E W S</p>
 
-            {% if 'user_name' not in session %}
+            {% if not user_logged_in %}
                 <div class="button-container">
                     <a href="{{ url_for('authentication_bp.login') }}" class="add-review-button">Add review</a>
                 </div>
 
-                {% else %}
+                {% elif add_review_clicked and not has_posted %}
                     <div class="button-container">
-                        <button onclick="showReviewBox()" class="add-review-button">Add review</button>
+                        <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id, game_review_form='hide')}}">
+                            <button class="add-review-button">Add review</button>
+                        </a>
+                    </div>
+                {% elif not add_review_clicked and not has_posted %}
+                    <div class="button-container">
+                        <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id, game_review_form='show')}}">
+                            <button class="add-review-button-clicked">Add review</button>
+                        </a>
                     </div>
             {% endif %}
         </div>
 
-        {% if 'user_name' in session %}
+        {% if add_review_clicked is true %}
         <div id="review-form">
-            <form method="POST" action={{ submit_url }}>
+            <form method="POST" action={{ submit_url }} >
                 {{ form.game_id }}
                 {{ form.csrf_token }}
                 {{ form.rating.label(class="review-text") }}
+
 <!--                {{ form.rating(class="rating-input") }}-->
                 <select name="rating" id="rating" class="rating-input">
                     {% for option in form.rating %}
@@ -30,9 +39,16 @@
                         {{ option }}
                     {% endfor %}
                 </select>
+                {% for err in form.rating.errors %}
+                    {{ err }}
+                {% endfor %}
+
                 <br>
                 {{ form.comment.label(class="review-text") }}
                 {{ form.comment(class="comment-box", size=100, placeholder="Write your review...", cols="35", rows="6", wrap="hard") }}
+                {% for err in form.comment.errors %}
+                    {{ err }}
+                {% endfor %}
                 {{ form.submit(class="review-submit") }}
 <!--                <label for="rating"><span class="review-text">Rating: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></label>-->
 <!--                <select class="rating-input" name="rating" id="rating-rating">-->
@@ -60,6 +76,9 @@
                     {% for stars in range(review.rating) %}
                         <p class="star">★</p>
                     {% endfor %}
+                    {% for stars in range(5 - review.rating) %}
+                        <p class="star">☆</p>
+                    {% endfor %}
                 </div>
                 <p class="date"><b>Posted on:</b> &nbsp; {{ review.timestamp.strftime('%a %d %b %Y, %I:%M%p') }}</p>
             </div>
@@ -67,13 +86,13 @@
         </div>
         {% endfor %}
 
-        <div class="review">
-            <div class="review-info">
-                <p class="username" ><b>By:</b> &nbsp; username</p>
-                <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>
-                <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>
-            </div>
-            <p class="comment">I love this game so much! From the bottom of my heart</p>
-        </div>
+<!--        <div class="review">-->
+<!--            <div class="review-info">-->
+<!--                <p class="username" ><b>By:</b> &nbsp; username</p>-->
+<!--                <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>-->
+<!--                <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>-->
+<!--            </div>-->
+<!--            <p class="comment">I love this game so much! From the bottom of my heart</p>-->
+<!--        </div>-->
     </div>
 </div>

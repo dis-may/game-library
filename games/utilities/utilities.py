@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import url_for
+from flask import url_for, session
 from games.adapters.repository import AbstractRepository
 
 import games.utilities.services as services
@@ -33,4 +33,12 @@ def sort_a_games_list(games_list, sort: str, order: str):
             sorted_list = sorted(games_list, key=lambda game: game.price, reverse=True)
             return sorted_list
     else:
-        return games_list # will sort by id as default
+        return games_list  # will sort by id as default
+
+
+def is_valid_user(repo: AbstractRepository):
+    try:
+        username = session['user_name']
+        return services.is_valid_user(username, repo)
+    except KeyError: # i.e. the session hasn't been created yet
+        return False

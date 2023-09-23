@@ -7,7 +7,7 @@
     <div class="description">
         <div class="left-description">
             <div class="description-info">
-                {% if 'user_name' in session %}
+                {% if user_logged_in %}
                     <form method="post" action={{ url_for('wishlist_bp.add_to_wishlist') }}>
                     <input type="hidden" name="current_game" value={{ game.game_id }} >
                     <input type="submit" class="wishlist-image">

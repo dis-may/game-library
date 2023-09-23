@@ -18,7 +18,7 @@
             <input class="searchbar" type="search" placeholder="Search" aria-label="Search" name="query">
             <button class="submit-button" type="submit"> Search</button>
         </form>
-        {% if not 'user_name' in session %}
+        {% if not user_logged_in %}
             <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
             <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
             {% else %}
