@@ -693,7 +693,6 @@ footer {
     margin-top: 10px;
 }
 
-
 .wishlist_box {
     color: white;
     text-align: center;
@@ -712,8 +711,36 @@ footer {
     transition: transform 1s;
 }
 
+.wishlist-image {
+    background-image: url('../wishlist-plain.png');
+    background-size: cover;
+    border: none;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    color: transparent;
+    background-color: transparent;
+}
+
 .wishlist-image:hover {
     transform: scale(2);
     cursor: pointer;
+    background-image: url('../wishlist-hover.png');
+    background-size: cover;
+    border: none;
+    height: 40px;
+    width: 40px;
+    color: transparent;
+    background-color: transparent;
 }
 
+.wishlist-image-clicked {
+    background-image: url('../wishlist-clicked.png');
+    background-size: cover;
+    border: none;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    color: transparent;
+    background-color: transparent;
+}

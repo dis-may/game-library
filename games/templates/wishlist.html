@@ -1,22 +1,25 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="wishlist-heading">My Wishlist
-    <div class="wishlist-table">
+    <div id="top-div">
+        <form action = "/" method="POST">
+            <input type = "text" id = "item" name = "item">
+            <input type = "submit" value = "add" name = "addbutton">
+        </form>
+    </div>
+    <div id="botton-div">
         <table>
-            <thead>
             <tr>
-                <td>Image</td>
-                <td>Price</td>
-                <td>Release date</td>
-                <td>Game</td>
-                <td>Publisher</td>
-                <td>Remove</td>
+                <th>Game Image</th>
+                <th>Remove</th>
             </tr>
-            </thead>
+            {% for item in wishlist %}
+            <tr>
+                <td>{{item}}</td>
+                <td><a href="#">Delete</a></td>
+            </tr>
+            {% endfor %}
         </table>
     </div>
 </div>
 {% endblock %}
-
-
-
