@@ -22,6 +22,7 @@
             <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
             <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
             {% else %}
+                <a class="btn-nav" href="{{ url_for('wishlist_bp.get_wishlist') }}">Wishlist</a>
                 <a class="btn-nav" href="{{ url_for('profile_bp.profile_page') }}">Profile</a>
                 <a class="btn-nav" href="{{ url_for('authentication_bp.logout') }}">Logout</a>
         {% endif %}
