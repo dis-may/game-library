@@ -40,8 +40,9 @@ def is_valid_user(repo: AbstractRepository):
     try:
         username = session['user_name']
         return services.is_valid_user(username, repo)
-    except KeyError: # i.e. the session hasn't been created yet
+    except KeyError:  # i.e. the session hasn't been created yet
         return False
+
 
 def get_user_wishlist(user_name: str, repo: AbstractRepository):
     user = repo.get_user(user_name)
