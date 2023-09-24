@@ -1,5 +1,5 @@
 import pytest
-from games.domainmodel.model import Genre
+from games.domainmodel.model import Genre, User
 
 from games.games import services as games_services
 from games.gameDescription import services as game_description_services
@@ -112,3 +112,5 @@ def test_get_games_by_description(memory_repo):
     query2 = "FLAVOUR"
     games_list2 = search_services.get_games_by_description(memory_repo, query2)
     assert str(games_list2) == game_string
+
+
