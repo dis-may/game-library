@@ -1,18 +1,10 @@
 import pytest
 from games.domainmodel.model import Genre
-from games.adapters.memory_repository import MemoryRepository, populate
+
 from games.games import services as games_services
 from games.gameDescription import services as game_description_services
 from games.genres import services as genre_services
 from games.searchBar import services as search_services
-
-
-@pytest.fixture
-def memory_repo():
-    repo_instance = MemoryRepository()
-    # populated with the real csv data
-    populate(repo_instance)
-    return repo_instance
 
 
 # test game description service layer returns an existing game object
@@ -39,6 +31,7 @@ def test_sort_by_id_games_list(memory_repo):
         assert previous_id <= current_id
         previous_id = current_id
 
+
 def test_sort_by_title_games_list(memory_repo):
     # test that games are sorted by title when fetched (still browsing all games)
     sorted_title_games_list = games_services.get_sorted_game_list(memory_repo, 'title', 'asc')
@@ -53,6 +46,7 @@ def test_sort_by_title_games_list(memory_repo):
     sorted_reversed_title_games_list = games_services.get_sorted_game_list(memory_repo, 'title', 'desc')
     sorted_reversed_title_games_list.reverse()
     assert sorted_reversed_title_games_list == sorted_title_games_list
+
 
 def test_sort_by_price_games_list(memory_repo):
     # test that games are sorted by price when fetched (browsing all games)
@@ -72,6 +66,8 @@ def test_sort_by_price_games_list(memory_repo):
         current_price = game.price
         assert previous_price >= current_price
         previous_price = current_price
+
+
 def test_get_games_by_genre(memory_repo):
     genre_name = 'Action'
     genre = Genre('Action')
