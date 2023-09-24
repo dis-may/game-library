@@ -81,3 +81,9 @@ class AbstractRepository(abc.ABC):
     def get_user(self, user_name) -> User:
         """Returns a user with the specified user name"""
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_all_users(self):
+        """Returns all users registered in the repository"""
+        raise NotImplementedError
+

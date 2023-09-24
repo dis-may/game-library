@@ -43,15 +43,6 @@ def test_add_genre():
     assert genre1 in repo.get_genres()
 
 
-@pytest.fixture
-def memory_repo():
-    repo_instance = MemoryRepository()
-    # populated with the real csv data
-    # tests if populate function works correctly essentially
-    populate(repo_instance)
-    return repo_instance
-
-
 def test_database_sizes(memory_repo):
     # test that they are the correct size
     assert len(memory_repo.get_all_games()) == 877
