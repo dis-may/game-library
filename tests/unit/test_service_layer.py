@@ -1,10 +1,12 @@
 import pytest
-from games.domainmodel.model import Genre
+from games.domainmodel.model import Genre, User, Game, Publisher, Review, Wishlist
 
 from games.games import services as games_services
 from games.gameDescription import services as game_description_services
 from games.genres import services as genre_services
 from games.searchBar import services as search_services
+from games.wishlist import services as wishlist_services
+from games.authentication import services as auth_services
 
 
 # test game description service layer returns an existing game object
@@ -112,3 +114,60 @@ def test_get_games_by_description(memory_repo):
     query2 = "FLAVOUR"
     games_list2 = search_services.get_games_by_description(memory_repo, query2)
     assert str(games_list2) == game_string
+
+
+def test_can_add_to_wishlist(memory_repo):
+    # test that a game can be added to a user's wishlist
+    game_id = 3010
+    username = 'harry'
+
+    # Create a new user and add it to the repository
+    new_user = User('Harry', username, 'Password123')
+    memory_repo.add_user(new_user)
+
+    wishlist_services.add_to_wishlist(game_id, username, memory_repo)
+
+    # Get the user's wishlist from the repository
+    user = memory_repo.get_user(username)
+
+    assert len(user.favourite_games) == 1
+    assert user.favourite_games[0].game_id == game_id
+
+
+def test_can_remove_from_wishlist(memory_repo):
+    # test that a game can be removed from a user's wishlist
+    game_id = 3010
+    username = 'harry'
+
+    # Create a new user and add it to the repository
+    new_user = User('Harry', username, 'Password123')
+    memory_repo.add_user(new_user)
+    # Add a game to the user's wishlist
+    wishlist_services.add_to_wishlist(game_id, username, memory_repo)
+    # Remove the game from the user's wishlist
+    wishlist_services.remove_from_wishlist(game_id, username, memory_repo)
+    # Get the user's wishlist from the repository
+    user = memory_repo.get_user(username)
+    # Check that the wishlist is empty
+    assert len(user.favourite_games) == 0
+
+
+def test_can_get_wishlist(memory_repo):
+    username = 'harry'
+    new_user = User('Harry', username, 'Password123')
+    memory_repo.add_user(new_user)
+    user = memory_repo.get_user(username)
+    wishlist_services.add_to_wishlist(3010, username, memory_repo)
+    user_favourite_games = user.favourite_games
+    expected_result = "<Game 3010, Xpand Rally>"
+    assert str(user_favourite_games[0]) == expected_result
+
+
+def test_can_get_sorted_game_list(memory_repo):
+    sorted_id_games_list = games_services.get_sorted_game_list(memory_repo)
+    assert len(sorted_id_games_list) == memory_repo.get_number_of_games()
+    previous_id = sorted_id_games_list[0].game_id
+    for game in sorted_id_games_list:
+        current_id = game.game_id
+        assert previous_id <= current_id
+        previous_id = current_id
