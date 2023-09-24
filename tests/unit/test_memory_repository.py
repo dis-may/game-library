@@ -1,6 +1,7 @@
 import pytest
 from games.adapters.memory_repository import MemoryRepository, populate
-from games.domainmodel.model import Game, Publisher, Genre
+from games.domainmodel.model import Game, Publisher, Genre, Review, Wishlist, User
+from datetime import datetime
 
 
 def test_init():
@@ -148,3 +149,7 @@ def test_get_games_by_description_search(memory_repo):
     query2 = "FLAVOUR"
     games_list2 = memory_repo.get_games_by_description_search(query2)
     assert str(games_list2) == game_string
+
+
+
+
