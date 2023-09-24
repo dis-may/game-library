@@ -26,6 +26,19 @@
         {% endif %}
     {% endwith %}
 
+
+    {% for error in form.name.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    {% for error in form.user_name.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    {% for error in form.password.errors %}
+        <div class="errors">
+            <p>{{ error }}</p>
+        </div>
+    {% endfor %}
+
 </div>
 
 {% endblock %}
