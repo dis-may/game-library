@@ -2,6 +2,7 @@ import pytest
 import os
 from games.domainmodel.model import Publisher, Genre, Game, Review, User, Wishlist
 from games.adapters.datareader.csvdatareader import GameFileCSVReader
+from datetime import datetime
 
 
 def test_publisher_init():
@@ -312,9 +313,9 @@ def test_user_add_remove_favourite_games():
 def test_user_add_remove_reviews():
     user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
-    review1 = Review(user, game, 3, "Great game!")
-    review2 = Review(user, game, 4, "Superb game!")
-    review3 = Review(user, game, 2, "Boring game!")
+    review1 = Review(user, game, 3, "Great game!", datetime.today())
+    review2 = Review(user, game, 4, "Superb game!", datetime.today())
+    review3 = Review(user, game, 2, "Boring game!", datetime.today())
     assert len(user.reviews) == 0
     user.add_review(review1)
     user.add_review(review2)
@@ -335,26 +336,26 @@ def test_user_add_remove_reviews():
 def test_review_initialization():
     user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
-    review = Review(user, game, 4, "Great game!")
+    review = Review(user, game, 4, "Great game!", datetime.today())
     assert review.user == user
     assert review.game == game
     assert review.rating == 4
     assert review.comment == "Great game!"
 
     with pytest.raises(ValueError):
-        review2 = Review(user, game, 6, "Great game!")
+        review2 = Review(user, game, 6, "Great game!", datetime.today())
 
     with pytest.raises(ValueError):
-        review2 = Review(user, game, 0, "Great game!")
+        review2 = Review(user, game, 0, "Great game!", datetime.today())
 
 
 def test_review_eq():
     user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
-    review1 = Review(user, game, 4, "Great game!")
-    review2 = Review(user, game, 4, "Superb game!")
-    review3 = Review(user, game, 5, "Boring game!")
-    review4 = Review(user, game, 2, "Classic game!")
+    review1 = Review(user, game, 4, "Great game!", datetime.today())
+    review2 = Review(user, game, 4, "Superb game!", datetime.today())
+    review3 = Review(user, game, 5, "Boring game!", datetime.today())
+    review4 = Review(user, game, 2, "Classic game!", datetime.today())
     assert review1 == review1
     assert review1 != review3
     assert review1 != review4
@@ -365,7 +366,7 @@ def test_review_eq():
 
 @pytest.fixture
 def user():
-    user = User("Shyamli", "shyamli1", "pw12345")
+    return User("Shyamli", "shyamli1", "pw12345")
 
 
 @pytest.fixture
@@ -379,6 +380,8 @@ def wishlist(user):
 
 
 def test_wishlist_initialization(wishlist):
+    user = User("YourName", "YourUsername", "YourPassword")
+    wishlist = Wishlist(user)
     assert len(wishlist.list_of_games()) == 0
 
 

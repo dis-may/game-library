@@ -292,73 +292,6 @@ class User:
         return self.__user_name < other.user_name
 
 
-class Review:
-    def __init__(self, user: User, game: Game, rating: int, comment: str, timestamp: datetime):
-
-        if not isinstance(user, User):
-            raise ValueError("User must be an instance of User class")
-        self.__user = user
-
-        if not isinstance(game, Game):
-            raise ValueError("Game must be an instance of Game class")
-        self.__game = game
-
-        if not isinstance(rating, int) or not 1 <= rating <= 5:
-            raise ValueError("Rating must be an integer between 1 and 5")
-        self.__rating = rating
-
-        if not isinstance(comment, str):
-            raise ValueError("Comment must be a string")
-        self.__comment = comment.strip()
-
-        if not isinstance(timestamp, datetime):
-            raise ValueError("Timestamp must be a datetime object")
-        self.__timestamp = timestamp
-
-    @property
-    def game(self) -> Game:
-        return self.__game
-
-    @property
-    def comment(self) -> str:
-        return self.__comment
-
-    @property
-    def rating(self) -> int:
-        return self.__rating
-
-    @property
-    def user(self) -> User:
-        return self.__user
-
-    @property
-    def timestamp(self) -> Type[datetime]:
-        return self.__timestamp
-
-    @comment.setter
-    def comment(self, new_text):
-        if isinstance(new_text, str):
-            self.__comment = new_text.strip()
-        else:
-            raise ValueError("New comment must be a string")
-
-    @rating.setter
-    def rating(self, new_rating: int):
-        if isinstance(new_rating, int) and 1 <= new_rating <= 5:
-            self.__rating = new_rating
-        else:
-            raise ValueError("Rating must be an integer between 1 and 5")
-
-    def __repr__(self):
-        return f"Review(User: {self.__user}, Game: {self.__game}, " \
-               f"Rating: {self.__rating}, Comment: {self.__comment})"
-
-    def __eq__(self, other):
-        if not isinstance(other, self.__class__):
-            return False
-        return other.user == self.__user and other.game == self.__game and other.comment == self.__comment
-
-
 class Wishlist:
     def __init__(self, user: User):
         if not isinstance(user, User):
@@ -407,8 +340,75 @@ class Wishlist:
             return self.__list_of_games[self.__current - 1]
 
 
+class Review:
+    def __init__(self, user: User, game: Game, rating: int, comment: str, timestamp: datetime):
+
+        if not isinstance(user, User):
+            raise ValueError("User must be an instance of User class")
+        self.__user = user
+
+        if not isinstance(game, Game):
+            raise ValueError("Game must be an instance of Game class")
+        self.__game = game
+
+        if not isinstance(rating, int) or not 1 <= rating <= 5:
+            raise ValueError("Rating must be an integer between 1 and 5")
+        self.__rating = rating
+
+        if not isinstance(comment, str):
+            raise ValueError("Comment must be a string")
+        self.__comment = comment.strip()
+
+        if not isinstance(timestamp, datetime):
+            raise ValueError("Timestamp must be a datetime object")
+        self.__timestamp = timestamp
+
+    @property
+    def game(self) -> Game:
+        return self.__game
+
+    @property
+    def comment(self) -> str:
+        return self.__comment
+
+    @property
+    def rating(self) -> int:
+        return self.__rating
+
+    @property
+    def user(self) -> User:
+        return self.__user
+
+    @property
+    def timestamp(self) -> datetime:
+        return self.__timestamp
+
+    @comment.setter
+    def comment(self, new_text):
+        if isinstance(new_text, str):
+            self.__comment = new_text.strip()
+        else:
+            raise ValueError("New comment must be a string")
+
+    @rating.setter
+    def rating(self, new_rating: int):
+        if isinstance(new_rating, int) and 1 <= new_rating <= 5:
+            self.__rating = new_rating
+        else:
+            raise ValueError("Rating must be an integer between 1 and 5")
+
+    def __repr__(self):
+        return f"Review(User: {self.__user}, Game: {self.__game}, " \
+               f"Rating: {self.__rating}, Comment: {self.__comment})"
+
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        return other.user == self.__user and other.game == self.__game and other.comment == self.__comment
+
+
 def make_review(user: User, game: Game, rating: int, comment: str):
-    new_review = Review(user, game, rating, comment, timestamp=datetime.now())
+    new_review = Review(user, game, rating, comment, datetime.now())
     user.add_review(new_review)
     game.add_review(new_review)
     return new_review
