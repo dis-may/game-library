@@ -493,6 +493,7 @@ footer {
 
 .review-info-info {
     margin: 0px;
+    margin-right: 10px;
     width: 50%;
     min-width: 350px;
 }
