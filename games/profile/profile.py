@@ -14,4 +14,6 @@ def profile_page():
     genre_url_dict = utilities.get_genre_url_dictionary(repo.repo_instance)
     return render_template('profile.html',
                            genre_url_dict=genre_url_dict,
-                           heading="My Game Library")
+                           heading="My Game Library",
+                           user_logged_in=utilities.is_valid_user(repo.repo_instance),
+                           )

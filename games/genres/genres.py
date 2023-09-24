@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import request, render_template, url_for
+from flask import request, render_template, url_for, session
 
 import games.genres.services as services
 import games.adapters.repository as repo
@@ -49,5 +49,6 @@ def games_by_genre_page():
                            target_genre=target_genre,
                            sort_url=sort_url,
                            sort=sort,
-                           order=order
+                           order=order,
+                           user_logged_in=utilities.is_valid_user(repo.repo_instance)
                            )
