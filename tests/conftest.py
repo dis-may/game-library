@@ -16,8 +16,8 @@ def memory_repo():
 @pytest.fixture
 def client():
     my_app = create_app({
-        'TESTING': True,  # we are testing
-        'WTF_CSRF_ENABLED': False  # so test_client does not send a CSRF token
+        'TESTING': True,
+        'WTF_CSRF_ENABLED': False,
     })
 
     return my_app.test_client()
