@@ -243,33 +243,33 @@ def test_game_add_remove_genre():
 
 
 def test_user_initialization():
-    user1 = User("Shyamli", "pw12345")
-    user2 = User("asma", "pw67890")
-    user3 = User("JeNNy  ", "pw87465")
-    assert repr(user1) == "<User shyamli>"
-    assert repr(user2) == "<User asma>"
-    assert repr(user3) == "<User jenny>"
+    user1 = User("Shyamli", "shyamli1", "pw12345")
+    user2 = User("asma", "asma1", "pw67890")
+    user3 = User("JeNNy  ", "jenny_slay", "pw87465")
+    assert repr(user1) == "<User shyamli1>"
+    assert repr(user2) == "<User asma1>"
+    assert repr(user3) == "<User jenny_slay>"
     assert user2.password == "pw67890"
     with pytest.raises(ValueError):
-        user4 = User("xyz  ", "")
+        user4 = User("xyz  ", "", "")
     with pytest.raises(ValueError):
-        user4 = User("    ", "qwerty12345")
+        user4 = User("    ", "qwerty12345", "")
 
 
 def test_user_eq():
-    user1 = User("Shyamli", "pw12345")
-    user2 = User("asma", "pw67890")
-    user3 = User("JeNNy  ", "pw87465")
-    user4 = User("Shyamli", "pw12345")
+    user1 = User("Shyamli", "shyamli1", "pw12345")
+    user2 = User("asma", "asma1", "pw67890")
+    user3 = User("JeNNy  ", "jenny_slay", "pw87465")
+    user4 = User("Shyamli", "shyamli1", "pw12345")
     assert user1 == user4
     assert user1 != user2
     assert user2 != user3
 
 
 def test_user_hash():
-    user1 = User("   Shyamli", "pw12345")
-    user2 = User("asma", "pw67890")
-    user3 = User("JeNNy  ", "pw87465")
+    user1 = User("Shyamli", "   shyamli1", "pw12345")
+    user2 = User("asma", "asma1", "pw67890")
+    user3 = User("JeNNy  ", "jenny_slay", "pw87465")
     user_set = set()
     user_set.add(user1)
     user_set.add(user2)
@@ -281,9 +281,9 @@ def test_user_hash():
 
 
 def test_user_lt():
-    user1 = User("Shyamli", "pw12345")
-    user2 = User("asma", "pw67890")
-    user3 = User("JeNNy  ", "pw87465")
+    user1 = User("Shyamli", "shyamli1", "pw12345")
+    user2 = User("asma", "asma1", "pw67890")
+    user3 = User("JeNNy  ", "jenny_slay", "pw87465")
     assert user1 > user2
     assert user2 < user3
     assert user3 < user1
@@ -292,7 +292,7 @@ def test_user_lt():
 
 
 def test_user_add_remove_favourite_games():
-    user1 = User("Shyamli", "pw12345")
+    user1 = User("Shyamli", "shyamli1", "pw12345")
     game1 = Game(1, "Domino Game")
     game2 = Game(2, "Deer Journey")
     game3 = Game(3, "Fat City")
@@ -310,7 +310,7 @@ def test_user_add_remove_favourite_games():
 
 
 def test_user_add_remove_reviews():
-    user = User("Shyamli", "pw12345")
+    user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
     review1 = Review(user, game, 3, "Great game!")
     review2 = Review(user, game, 4, "Superb game!")
@@ -333,7 +333,7 @@ def test_user_add_remove_reviews():
 
 
 def test_review_initialization():
-    user = User("Shyamli", "pw12345")
+    user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
     review = Review(user, game, 4, "Great game!")
     assert review.user == user
@@ -349,7 +349,7 @@ def test_review_initialization():
 
 
 def test_review_eq():
-    user = User("Shyamli", "pw12345")
+    user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
     review1 = Review(user, game, 4, "Great game!")
     review2 = Review(user, game, 4, "Superb game!")
@@ -365,7 +365,7 @@ def test_review_eq():
 
 @pytest.fixture
 def user():
-    return User("Shyamli", "pw12345")
+    user = User("Shyamli", "shyamli1", "pw12345")
 
 
 @pytest.fixture
