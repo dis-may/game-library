@@ -489,11 +489,11 @@ footer {
     font-weight: 0;
     margin-bottom: 5px;
     margin-top: 5px;
-
 }
 
 .review-info-info {
     margin: 0px;
+    margin-right: 10px;
     width: 50%;
     min-width: 350px;
 }
@@ -690,6 +690,11 @@ footer {
     background-color: #a30262;
 }
 
+.game-name {
+    margin-right: 5px;
+    line-height: 1;
+}
+
 .review-image {
     width: 100%;
     height: auto;
@@ -779,4 +784,24 @@ footer {
 
 .wish-odd {
     background-color: #ef7627;
+}
+
+.special-game-details {
+    background-color: #a30262;
+    text-align: center;
+}
+
+.link {
+    color: #a30262;
+}
+
+.profile-message {
+    display: block;
+    margin: 0, auto;
+    text-align: center;
+}
+
+.wishlist-link {
+    color: white;
+    text-decoration: none;
 }

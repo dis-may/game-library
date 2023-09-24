@@ -12,88 +12,112 @@
             <td>{{ session['user_name'] }}</td>
         </tr>
     </table>
-    <div class="profile-review-heading"><h4>Recently added: </h4></div>
+    <div class="profile-review-heading"><h4>Recently added to your wishlist: </h4></div>
     <div class="review_games_container_container games_container_container">
     <div class="review_games_container games_container">
 
+    {% if recently_added_games|length == 0 %}
+        <h2 class="profile-message">You have not added any games to your wishlist yet!</h2>
+    {% endif %}
+    {% for game in recently_added_games %}
     <div class="review-game-card game_card">
-        <a href="{{ url_for('profile_bp.profile_page') }}" class='card-link'></a>
+        <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id) }}" class='card-link'></a>
 
         <div class="image_container">
-            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1228870/header.jpg?t=1601679243" onerror="this.onerror=null; this.src='../static/no-image.png'" alt="Game art for" />
+            <img src="{{ game.image_url }}" onerror="this.onerror=null; this.src='../static/no-image.png'" alt="Game art" />
         </div>
 
         <div class="game_details">
             <div class="info-block">
                 <p class="headings">T I T L E</p>
-                <p class="info">Bartlow's Dread Machine</p>
+                <p class="info">{{ game.title }}</p>
             </div>
 
             <div class="info-block">
                 <p class="headings">P U B L I S H E R</p>
-                <p class="info">Beep Games, Inc.</p>
+                <p class="info">{{ game.publisher.publisher_name }}</p>
             </div>
 
         </div>
     </div>
-    <div class="review-game-card game_card">
+    {% endfor %}
+<!--    <div class="review-game-card game_card">-->
+<!--        <a href="{{ url_for('profile_bp.profile_page') }}" class='card-link'></a>-->
+
+<!--        <div class="image_container">-->
+<!--            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1228870/header.jpg?t=1601679243" onerror="this.onerror=null; this.src='../static/no-image.png'" alt="Game art for" />-->
+<!--        </div>-->
+
+<!--        <div class="game_details">-->
+<!--            <div class="info-block">-->
+<!--                <p class="headings">T I T L E</p>-->
+<!--                <p class="info">Bartlow's Dread Machine</p>-->
+<!--            </div>-->
+
+<!--            <div class="info-block">-->
+<!--                <p class="headings">P U B L I S H E R</p>-->
+<!--                <p class="info">Beep Games, Inc.</p>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+    <div class="review-game-card game_card special-game-details">
         <a href="{{ url_for('profile_bp.profile_page') }}" class='card-link'></a>
 
-        <div class="image_container">
-            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1228870/header.jpg?t=1601679243" onerror="this.onerror=null; this.src='../static/no-image.png'" alt="Game art for" />
-        </div>
-
         <div class="game_details">
-            <div class="info-block">
-                <p class="headings">T I T L E</p>
-                <p class="info">Bartlow's Dread Machine</p>
-            </div>
-
-            <div class="info-block">
-                <p class="headings">P U B L I S H E R</p>
-                <p class="info">Beep Games, Inc.</p>
-            </div>
-
-        </div>
-    </div>
-    <div class="review-game-card game_card">
-        <a href="{{ url_for('profile_bp.profile_page') }}" class='card-link'></a>
-
-        <div class="game_details">
-            <div class="info-block">
-                <p class="headings">S E E &nbsp M O R E</p>
-            </div>
+            <a class="wishlist-link" href="{{ url_for('wishlist_bp.get_wishlist') }}">
+                <div class="info-block">
+                    <p class="headings">G O &nbsp T O &nbsp W I S H L I S T </p>
+                </div>
+            </a>
         </div>
     </div>
     </div>
     </div>
     <div class="profile-review-heading"><h4>My reviews: </h4></div>
+        {% if reviews|length == 0 %}
+        <h2 class="profile-message">You have not posted any reviews! Browse games <a class="link" href="{{ url_for('games_bp.games_page') }}">here</a></h2>
+        {% endif %}
+        {% for review in reviews %}
         <div class="review">
             <div class="review-image-container">
-                <img class="review-image" src="https://cdn.akamai.steamstatic.com/steam/apps/7940/header.jpg?t=1646762118" alt="game image"/>
+                <img class="review-image" src="{{ review.game.image_url }}" alt="game image"/>
             </div>
             <div class="review-info-info">
                 <div class="review-info">
-                    <p class="game-name username" ><b>Game:</b> &nbsp; <a href="#">Xpand Rally</a></p>
-                    <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>
-                    <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>
+                    <p class="game-name username" ><b>Game:</b> &nbsp;
+                        <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=review.game.game_id) }}">
+                            {{ review.game.title }}
+                        </a>
+                    </p>
+                    <div class="rating"><p class="star"><b>Rating:</b> &nbsp</p>
+
+                        {% for stars in range(review.rating) %}
+                            <p class="star">★</p>
+                        {% endfor %}
+                        {% for stars in range(5 - review.rating) %}
+                            <p class="star">☆</p>
+                        {% endfor %}
+                    </div>
+                    <p class="date"><b>Posted on:</b> &nbsp; {{ review.timestamp.strftime('%a %d %b %Y, %I:%M%p') }}</p>
                 </div>
-                <p class="comment">I love this game so much! From the bottom of my heart</p>
+                <p class="comment"> {{ review.comment }}</p>
             </div>
         </div>
-        <div class="review">
-            <div class="review-image-container">
-                <img class="review-image" src="https://cdn.akamai.steamstatic.com/steam/apps/7940/header.jpg?t=1646762118" alt="game image"/>
-            </div>
-            <div class="review-info-info">
-                <div class="review-info">
-                    <p class="game-name username" ><b>Game:</b> &nbsp; <a href="#">Xpand Rally</a></p>
-                    <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>
-                    <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>
-                </div>
-                <p class="comment">I love this game so much! From the bottom of my heart</p>
-            </div>
-        </div>
+        {% endfor %}
+<!--        <div class="review">-->
+<!--            <div class="review-image-container">-->
+<!--                <img class="review-image" src="https://cdn.akamai.steamstatic.com/steam/apps/7940/header.jpg?t=1646762118" alt="game image"/>-->
+<!--            </div>-->
+<!--            <div class="review-info-info">-->
+<!--                <div class="review-info">-->
+<!--                    <p class="game-name username" ><b>Game:</b> &nbsp; <a href="#">Xpand Rally</a></p>-->
+<!--                    <p class="rating"><b>Rating:</b> &nbsp; ★★★★★</p>-->
+<!--                    <p class="date"><b>Posted on:</b> &nbsp; 17 September 2023</p>-->
+<!--                </div>-->
+<!--                <p class="comment">I love this game so much! From the bottom of my heart</p>-->
+<!--            </div>-->
+<!--        </div>-->
 </div>
 
 {% endblock %}
