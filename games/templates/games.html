@@ -15,21 +15,19 @@
         </div>
 
         <div class="game_details">
-                {% if 'user_name' in session %}
-                    <form method="post" action={{ url_for('wishlist_bp.add_to_wishlist') }}>
-                    <input type="hidden" name="current_game" value={{ game.game_id }} >
+            {% if 'user_name' in session %}
+                    <form method="post" action="{{ url_for('wishlist_bp.add_to_wishlist') }}">
+                    <input type="hidden" name="current_game" value="{{ game.game_id }}">
                     <input type="submit" class="wishlist-image">
-{#                        <img src="../static/wishlist-plain.png"#}
-{#                             class="wishlist-image"#}
-{#                             alt="Add to wishlist">#}
-{##}
-{#                        <img src="../static/wishlist-clicked.png"#}
-{#                            class="wishlist-image-clicked"#}
-{#                            alt="Remove from wishlist"#}
-{#                            style="display: none"/>#}
                     </form>
+                {% if game.game_id in session['user_name'].favourite_games %}
+                    <form method="post" action="{{ url_for('wishlist_bp.remove_from_wishlist') }}">
+                    <input type="hidden" name="current_game" value="{{ game.game_id }}">
+                    <input type="submit" class="wishlist-image">
+                    </form>
+                    {% endif %}
+            {% endif %}
 
-                {% endif %}
 
             <div class="info-block">
                 <p class="headings">T I T L E</p>

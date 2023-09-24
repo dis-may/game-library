@@ -15,6 +15,8 @@ def add_to_wishlist():
     services.add_to_wishlist(current_game_id, username, repo.repo_instance)
     return redirect(request.referrer)
 
+@wishlist_blueprint.route('/remove_from_wishlist', methods=['POST'])
+@login_required
 def remove_from_wishlist():
     username = session['user_name']
     current_game_id = int(request.form['current_game'])
