@@ -55,9 +55,14 @@ def get_wishlist():
     pagination_urls = [url_for('games_bp.games_page', page=i, sort=sort, order=order) for i in
                        range(1, total_pages + 1)]
     sort_url = url_for('games_bp.games_page')
+
+    if len(favourite_games) < 1:
+        heading = "Your wishlist is empty"
+    else:
+        heading = "Wishlist"
     return render_template('games.html', wishlist=wishlist, games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
-                           heading="Wishlist",
+                           heading=heading,
                            page=page,
                            total_pages=total_pages,
                            int=int,
