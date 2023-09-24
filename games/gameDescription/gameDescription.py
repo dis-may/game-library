@@ -55,7 +55,9 @@ def game_desc_page():
         favourite_games = utilities.get_user_wishlist(session['user_name'], repo.repo_instance)
     else:
         favourite_games = []
-
+    average_rating = services.get_average_rating(game_id, repo.repo_instance)
+    if average_rating == -1:
+        average_rating = 'No ratings yet'
     return render_template('gameDescription.html',
                            game=game,
                            genre_url_dict=genre_url_dict,
@@ -66,7 +68,8 @@ def game_desc_page():
                            user_logged_in=utilities.is_valid_user(repo.repo_instance),
                            add_review_clicked=add_review_clicked,
                            has_posted=has_posted,
-                           user_favourite_games=favourite_games
+                           user_favourite_games=favourite_games,
+                           average_rating=average_rating
                            )
 
 

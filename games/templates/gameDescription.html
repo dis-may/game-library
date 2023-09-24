@@ -36,6 +36,10 @@
                     <p class="info">${{ game.price }}</p>
                 </div>
                 <div class="info-block">
+                    <p class="headings">A V E R A G E  &nbsp R A T I N G</p>
+                    <p class="info">{{ average_rating }}</p>
+                </div>
+                <div class="info-block">
                     <p class="headings">G E N R E S</p>
                     {% for genre in game.genres %}
                         <p class="info">{{ genre.genre_name }}</p>

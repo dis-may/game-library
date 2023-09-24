@@ -82,6 +82,8 @@ class MemoryRepository(AbstractRepository):
             if user.user_name == user_name:
                 return user
 
+    def get_all_users(self):
+        return self.__users
 
 def populate(repo: AbstractRepository):
     dir_name = os.path.dirname(os.path.abspath(__file__))

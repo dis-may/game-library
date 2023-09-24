@@ -46,3 +46,16 @@ def has_posted(game_id: int, username: str, repo: AbstractRepository):
         if review.game.game_id == game_id:
             return True
     return False
+
+
+def get_average_rating(game_id: int, repo: AbstractRepository):
+    game = repo.get_game(game_id)
+    total = 0
+    count = 0
+    for review in game.reviews:
+        total += review.rating
+        count += 1
+    if count == 0:
+        return -1
+    else:
+        return total / count
