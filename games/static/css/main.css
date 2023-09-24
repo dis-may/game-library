@@ -789,6 +789,7 @@ footer {
 .special-game-details {
     background-color: #a30262;
     text-align: center;
+    border-radius: 10px;
 }
 
 .link {
