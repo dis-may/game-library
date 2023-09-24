@@ -35,10 +35,10 @@ def games_page():
 
     user_logged_in = utilities.is_valid_user(repo.repo_instance)
     if user_logged_in:
-        favourite_games = services.get_user_wishlist(session['user_name'], repo.repo_instance)
+        favourite_games = utilities.get_user_wishlist(session['user_name'], repo.repo_instance)
     else:
         favourite_games = []
-    print(favourite_games)
+
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),

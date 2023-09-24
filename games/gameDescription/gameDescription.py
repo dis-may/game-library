@@ -49,6 +49,13 @@ def game_desc_page():
         has_posted = services.has_posted(game_id, session['user_name'], repo.repo_instance)
     except KeyError:
         has_posted = False
+
+    user_logged_in = utilities.is_valid_user(repo.repo_instance)
+    if user_logged_in:
+        favourite_games = utilities.get_user_wishlist(session['user_name'], repo.repo_instance)
+    else:
+        favourite_games = []
+
     return render_template('gameDescription.html',
                            game=game,
                            genre_url_dict=genre_url_dict,
@@ -58,7 +65,8 @@ def game_desc_page():
                            submit_url=submit_url,
                            user_logged_in=utilities.is_valid_user(repo.repo_instance),
                            add_review_clicked=add_review_clicked,
-                           has_posted=has_posted
+                           has_posted=has_posted,
+                           user_favourite_games=favourite_games
                            )
 
 

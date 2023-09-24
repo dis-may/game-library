@@ -8,8 +8,4 @@ def get_sorted_game_list(repo: AbstractRepository, sort='id', order='asc'):
     return all_games_sorted
 
 
-def get_user_wishlist(user_name: str, repo: AbstractRepository):
-    user = repo.get_user(user_name)
-    user_wishlist = user.favourite_games
-    print("games/services", user_wishlist)
-    return user_wishlist
+
