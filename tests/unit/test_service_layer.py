@@ -1,6 +1,7 @@
 import pytest
 from games.domainmodel.model import Genre, User, Game, Publisher, Review, Wishlist
 
+
 from games.games import services as games_services
 from games.gameDescription import services as game_description_services
 from games.genres import services as genre_services
@@ -171,3 +172,4 @@ def test_can_get_sorted_game_list(memory_repo):
         current_id = game.game_id
         assert previous_id <= current_id
         previous_id = current_id
+
