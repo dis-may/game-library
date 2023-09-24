@@ -34,6 +34,7 @@ def games_page():
     sort_url = url_for('games_bp.games_page')
 
     user_logged_in = utilities.is_valid_user(repo.repo_instance)
+    print("user_logged_in",user_logged_in)
     if user_logged_in:
         favourite_games = utilities.get_user_wishlist(session['user_name'], repo.repo_instance)
     else:

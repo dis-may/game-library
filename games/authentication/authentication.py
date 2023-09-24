@@ -63,7 +63,7 @@ def login():
             )
             session.clear()
             session['user_name'] = user_name
-            session['name'] = name
+            session['name'] = services.get_user(user_name, repo.repo_instance).name
             return redirect(url_for('home_bp.home'))
         except services.AuthenticationException:
             error = 'Incorrect username or password.'
