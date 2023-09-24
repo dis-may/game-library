@@ -469,3 +469,67 @@ def test_genres_dataset():
     sorted_genres = sorted(genres_set)
     sorted_genre_sample = str(sorted_genres[:3])
     assert sorted_genre_sample == "[<Genre Action>, <Genre Adventure>, <Genre Animation & Modeling>]"
+
+
+def test_can_add_a_review(user, game):
+    review_text = "Slay game"
+    review = Review(user, game, 5, review_text, datetime.today())
+    user.add_review(review)
+    assert user.reviews == [review]
+    assert review in user.reviews
+
+
+def test_can_retrieve_reviews(user, game):
+    review_text = "mid game"
+    review = Review(user, game, 1, review_text, datetime.today())
+    user.add_review(review)
+    assert user.reviews == [review]
+    assert review in user.reviews
+
+
+def test_can_add_a_favourite_game(user, game):
+    user.add_favourite_game(game)
+    assert user.favourite_games == [game]
+    assert game in user.favourite_games
+
+
+def test_can_remove_a_favourite_game(user, game):
+    user.add_favourite_game(game)
+    user.remove_favourite_game(game)
+    assert user.favourite_games == []
+
+
+def test_can_add_a_wishlist_game(user, game):
+    wishlist = Wishlist(user)
+    wishlist.add_game(game)
+    assert wishlist.list_of_games() == [game]
+    assert game in wishlist.list_of_games()
+
+
+def test_can_remove_a_wishlist_game(user, game):
+    wishlist = Wishlist(user)
+    wishlist.add_game(game)
+    wishlist.remove_game(game)
+    assert wishlist.list_of_games() == []
+
+
+def test_can_iterate_over_wishlist(user, game):
+    wishlist = Wishlist(user)
+    wishlist.add_game(game)
+    wishlist_iterator = iter(wishlist)
+    assert next(wishlist_iterator) == game
+
+
+def test_can_iterate_over_reviews(user, game):
+    review_text = "mid game"
+    review = Review(user, game, 1, review_text, datetime.today())
+    user.add_review(review)
+    review_iterator = iter(user.reviews)
+    assert next(review_iterator) == review
+
+
+def test_creating_review_establishes_relationships(user, game):
+    review_text = "mid game"
+    review = Review(user, game, 1, review_text, datetime.today())
+    assert review.user is user        # Check that the Comment knows about the User.
+    assert review.game is game        # Check that the Comment knows about the Game.

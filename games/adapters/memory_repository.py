@@ -4,7 +4,7 @@ import os, csv
 
 from games.adapters.datareader.csvdatareader import GameFileCSVReader
 from games.adapters.repository import AbstractRepository
-from games.domainmodel.model import Game, Genre, Publisher, User
+from games.domainmodel.model import Game, Genre, Publisher, User, Review
 from werkzeug.security import generate_password_hash
 
 
