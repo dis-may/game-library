@@ -34,3 +34,21 @@ def test_register(client):
     # The only page which has <p>Login</p> is the login.html page, so this confirms that is redirects
     # successfully to the login page after registering
     assert b'<p>Login</p>' in response.data
+
+
+@pytest.mark.parametrize(('name', 'user_name', 'password', 'message'), (
+        (None, '', '', b'Your name is required'),
+        ('a', '', '', b'Your name is too short'),
+        ('Annie', 'a', '', b'Your user name is too short'),
+        ('longer name', 'username1', '', b'Your password is required'),
+('test', 'test', 'test', b'Your password must be at least 8 characters, and contain an upper case letter,a lower case letter and a digit'),
+        # ('fmercury', 'Test#6^0', b'Your user name is already taken - please supply another'),
+))
+def test_register_invalid_input(client, name, user_name, password, message):
+    # Check that attempting to register with invalid combinations of user name and password generate appropriate error
+    # messages.
+    response = client.post(
+        '/authentication/register',
+        data={'name': name, 'user_name': user_name, 'password': password}
+    )
+    assert message in response.data

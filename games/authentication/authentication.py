@@ -111,8 +111,7 @@ class LoginForm(FlaskForm):
 class PasswordValid:
     def __init__(self, message=None):
         if not message:
-            message = 'Your password must be at least 8 characters, and contain an upper case letter,\
-             a lower case letter and a digit'
+            message = 'Your password must be at least 8 characters, and contain an upper case letter,a lower case letter and a digit'
         self.message = message
 
     # check if the password is valid
@@ -132,7 +131,7 @@ class PasswordValid:
 class RegistrationForm(FlaskForm):
     name = StringField('Name', [
         DataRequired(message='Your name is required'),
-        Length(min=1, message='Your name is too short')])
+        Length(min=2, message='Your name is too short')])
 
     user_name = StringField('Username', [
         DataRequired(message='Your user name is required'),
