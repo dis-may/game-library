@@ -800,3 +800,8 @@ footer {
     margin: 0, auto;
     text-align: center;
 }
+
+.wishlist-link {
+    color: white;
+    text-decoration: none;
+}
