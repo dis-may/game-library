@@ -16,21 +16,18 @@
 
         <div class="game_details">
                 <div class="wishlist-image-background {{ loop.cycle('wish-odd', 'even') }}"></div>
-                {% if 'user_name' in session %}
-                    <form method="post" action={{ url_for('wishlist_bp.add_to_wishlist') }}>
-                    <input type="hidden" name="current_game" value={{ game.game_id }} >
-                    <input type="submit" class="wishlist-image">
-{#                        <img src="../static/wishlist-plain.png"#}
-{#                             class="wishlist-image"#}
-{#                             alt="Add to wishlist">#}
-{##}
-{#                        <img src="../static/wishlist-clicked.png"#}
-{#                            class="wishlist-image-clicked"#}
-{#                            alt="Remove from wishlist"#}
-{#                            style="display: none"/>#}
+                {% if game in user_favourite_games %}
+                    <form method="post" action="{{ url_for('wishlist_bp.remove_from_wishlist') }}">
+                        <input type="hidden" name="current_game" value="{{ game.game_id }}">
+                        <input type="submit" class="wishlist-image-clicked">
                     </form>
-
+                {%  else %}
+                    <form method="post" action="{{ url_for('wishlist_bp.add_to_wishlist') }}">
+                        <input type="hidden" name="current_game" value="{{ game.game_id }}">
+                        <input type="submit" class="wishlist-image">
+                    </form>
                 {% endif %}
+
 
             <div class="info-block">
                 <p class="headings">T I T L E</p>

@@ -38,6 +38,13 @@ def games_by_genre_page():
 
     sort_url = url_for('genres_bp.games_by_genre_page')
 
+    user_logged_in = utilities.is_valid_user(repo.repo_instance)
+    print("user_logged_in", user_logged_in)
+    if user_logged_in:
+        favourite_games = utilities.get_user_wishlist(session['user_name'], repo.repo_instance)
+    else:
+        favourite_games = []
+
     return render_template('games.html',
                            games_list=games_list,
                            genre_url_dict=utilities.get_genre_url_dictionary(repo.repo_instance),
@@ -50,5 +57,6 @@ def games_by_genre_page():
                            sort_url=sort_url,
                            sort=sort,
                            order=order,
-                           user_logged_in=utilities.is_valid_user(repo.repo_instance)
+                           user_logged_in=utilities.is_valid_user(repo.repo_instance),
+                           user_favourite_games=favourite_games
                            )

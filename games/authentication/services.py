@@ -30,7 +30,7 @@ def get_user(user_name: str, repo: AbstractRepository):
     if user is None:
         raise UnknownUserException
 
-    return user_to_dict(user)
+    return user
 
 
 def authenticate_user(user_name: str, password: str, repo: AbstractRepository):
@@ -41,13 +41,4 @@ def authenticate_user(user_name: str, password: str, repo: AbstractRepository):
         authenticated = check_password_hash(user.password, password)
     if not authenticated:
         raise AuthenticationException
-
-
-def user_to_dict(user: User):
-    user_dict = {
-        'name': user.name,
-        'user_name': user.user_name,
-        'password': user.password
-    }
-    return user_dict
 
