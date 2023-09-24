@@ -1,6 +1,7 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="main-body">
-    <h2>Search results for {{ heading }}</h2>
+    <h2>{{ heading }}</h2>
+
 
     {% include 'sort.html' %}
 
@@ -27,6 +28,8 @@
                         <input type="submit" class="wishlist-image">
                     </form>
                 {% endif %}
+
+
 
 
             <div class="info-block">

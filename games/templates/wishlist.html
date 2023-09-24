@@ -1,11 +1,94 @@
-{% extends 'layout.html' %}
-{% block content %}
-    <div id="content-table">
-        <table>
-            <tr>
-                <th>Game Image</th>
-                <th>Remove</th>
-            </tr>
-        </table>
+{% extends 'layout.html' %} {% block content %}
+<div class="main-body">
+    {% if user_favourite_games|length == 0 %}
+    <h2>{{ session['name'] }} your wishlist is empty</h2>
+    {% else %}
+    <h2>{{ session['name'] }}'s {{ heading }}</h2>
+    {% endif %}
+
+    <div class="games_container_container">
+    <div class="games_container">
+    {% for game in games_list %}
+    <div class="game_card {{ loop.cycle('odd', 'even') }}">
+        <a href="{{ url_for('gameDescription_bp.game_desc_page', game_id=game.game_id) }}" class='card-link'></a>
+
+        <div class="image_container">
+            <img src="{{ game.image_url }}" onerror="this.onerror=null; this.src='../static/no-image.png'" alt="Game art for {{ game.title }} " />
+        </div>
+
+        <div class="game_details">
+                <div class="wishlist-image-background {{ loop.cycle('wish-odd', 'even') }}"></div>
+                {% if game in user_favourite_games %}
+                    <form method="post" action="{{ url_for('wishlist_bp.remove_from_wishlist') }}">
+                        <input type="hidden" name="current_game" value="{{ game.game_id }}">
+                        <input type="submit" class="wishlist-image-clicked">
+                    </form>
+                {%  else %}
+                    <form method="post" action="{{ url_for('wishlist_bp.add_to_wishlist') }}">
+                        <input type="hidden" name="current_game" value="{{ game.game_id }}">
+                        <input type="submit" class="wishlist-image">
+                    </form>
+                {% endif %}
+
+
+
+
+            <div class="info-block">
+                <p class="headings">T I T L E</p>
+                <p class="info">{{ game.title }}</p>
+            </div>
+
+            <div class="info-block">
+                <p class="headings">P U B L I S H E R</p>
+                <p class="info">{{ game.publisher.publisher_name }}</p>
+            </div>
+
+            <div class="info-block">
+                <p class="headings">R E L E A S E &nbsp D A T E</p>
+                <p class="info">{{ game.release_date }}</p>
+            </div>
+
+            <div class="info-block">
+                <p class="headings">P R I C E &nbsp (U S D)</p>
+                <p class="info">
+                    {% if game.price == 0.0 %}
+                        FREE!
+                    {% else %}
+                        ${{ game.price }}
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="info-block">
+                <p class="headings">G E N R E S</p>
+                {% for genre in game.genres %}
+                    <p class="info">{{ genre.genre_name }}</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+    {% endfor %}
+    </div>
+    </div>
+
+    <div class="pagination">
+        {% for i in range(0, total_pages) %}
+            <a href="{{ pagination_urls[i] }}" class="{{ 'page_selected' if page == i+1 }}">{{ i+1 }}</a>
+        {% endfor %}
+
+        <div class="prev-next">
+            <div class="prev">
+                {% if page > 1 %}
+                    <a href="{{ pagination_urls[page-2] }}">Previous</a>
+                {% endif %}
+            </div>
+
+            <div class="next">
+                {% if page < total_pages %}
+                    <a href="{{ pagination_urls[page] }}">Next</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
