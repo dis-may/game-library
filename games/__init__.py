@@ -3,7 +3,8 @@ from pathlib import Path
 
 from flask import Flask
 import games.adapters.repository as repo
-from games.adapters.memory_repository import MemoryRepository, populate
+from games.adapters.repository_populate import populate
+from games.adapters.memory_repository import MemoryRepository
 
 
 def create_app(test_config=None):

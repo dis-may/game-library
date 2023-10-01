@@ -1,7 +1,8 @@
 import pytest
 
 from games import create_app
-from games.adapters.memory_repository import MemoryRepository, populate
+from games.adapters.repository_populate import populate
+from games.adapters.memory_repository import MemoryRepository
 
 
 # no testing data, using real data for testing so the path is the same
