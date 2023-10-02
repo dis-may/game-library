@@ -5,6 +5,12 @@ from flask import Flask
 import games.adapters.repository as repo
 from games.adapters.repository_populate import populate
 from games.adapters.memory_repository import MemoryRepository
+# from games.adapters.database_repository import SqlAlchemyRepository
+# from games.adapters.orm import metadata, map_model_to_tables
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, clear_mappers
+from sqlalchemy.pool import NullPool
 
 
 def create_app(test_config=None):
@@ -22,8 +28,42 @@ def create_app(test_config=None):
     #     app.config.from_mapping(test_config)
     #     data_path = app.config['TEST_DATA_PATH']
 
-    repo.repo_instance = MemoryRepository()  # repo_instance is a global variable in repository.py
-    populate(repo.repo_instance)
+    # repo.repo_instance = MemoryRepository()  # repo_instance is a global variable in repository.py
+    # populate(repo.repo_instance)
+
+    if app.config['REPOSITORY'] == 'memory':
+        # Create the MemoryRepository implementation for a memory-based repository.
+        repo.repo_instance = MemoryRepository()
+        # fill the content of the repository from the provided csv files (has to be done every time we start app!)
+        database_mode = False
+        populate(repo.repo_instance)
+    elif app.config['REPOSITORY'] == 'database':
+        database_uri = app.config['SQLALCHEMY_DATABASE_URI']
+        database_echo = app.config['SQLALCHEMY_ECHO']
+        database_engine = create_engine(database_uri, connect_args={"check_same_thread": False}, poolclass=NullPool,
+                                        echo=database_echo)
+        session_factory = sessionmaker(autocommit=False, autoflush=True, bind=database_engine)
+        repo.repo_instance = SqlAlchemyRepository(session_factory)
+
+        if app.config['TESTING'] == 'True' or len(database_engine.table_names()) == 0:
+            print("REPOPULATING DATABASE...")
+            # For testing, or first-time use of the web application, reinitialise the database.
+            clear_mappers()
+            metadata.create_all(database_engine)  # Conditionally create database tables.
+            for table in reversed(metadata.sorted_tables):  # Remove any data from the tables.
+                database_engine.execute(table.delete())
+
+            # Generate mappings that map domain model classes to the database tables.
+            map_model_to_tables()
+
+            populate(repo.repo_instance)
+            print("REPOPULATING DATABASE... FINISHED")
+
+        else:
+            # Solely generate mappings that map domain model classes to the database tables.
+            map_model_to_tables()
+
+
 
     # Build the application - these steps require an application context.
     with app.app_context():
