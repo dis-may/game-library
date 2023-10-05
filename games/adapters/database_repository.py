@@ -1,7 +1,6 @@
 from datetime import date
 from typing import List
 
-from sqlalchemy import desc, asc
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
 from sqlalchemy.orm import scoped_session
@@ -118,13 +117,13 @@ class SqlAlchemyRepository(AbstractRepository):
             scm.session.add(genre)
             scm.commit()
 
-    # def get_reviews(game_id, repo: AbstractRepository):
-    #     reviews = self._session_cm.query(...).all()
-    #     return reviews
-    #
-    # def add_review(game_id: int, username: str, rating: int, comment: str, repo: AbstractRepository):
-    #     super().add_review(comment)
-    #     with self._session_cm as scm:
-    #         scm.session.add(comment)
-    #         scm.commit()
+    def get_reviews(self, game_id, repo: AbstractRepository):
+        reviews = self._session_cm.query(...).all()
+        return reviews
+
+    def add_review(self, game_id: int, username: str, rating: int, comment: str, repo: AbstractRepository):
+        super().add_review(comment)
+        with self._session_cm as scm:
+            scm.session.add(comment)
+            scm.commit()
 
