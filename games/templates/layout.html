@@ -71,12 +71,16 @@
 
           // Toggle the image when clicked
           wishlistImage.addEventListener('click', function() {
-              isClicked = !isClicked;
+
+            isClicked = !isClicked;
               this.src = isClicked ? '../static/wishlist-clicked.png' : '../static/wishlist-plain.png';
-              if (isClicked) {
-                alert("Added to wishlist")
-              }
-              else {alert("Removed from wishlist")}
+                if (isClicked) {
+                    {% if user_logged_in %}
+                        alert("Added to wishlist!");
+                    {% else %}
+                        alert("Please login to add games to your wishlist!");
+                    {% endif %}
+                }
           });
       });
   });
