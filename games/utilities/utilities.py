@@ -47,5 +47,4 @@ def is_valid_user(repo: AbstractRepository):
 def get_user_wishlist(user_name: str, repo: AbstractRepository):
     user = repo.get_user(user_name)
     user_wishlist = user.favourite_games
-    print("games/services", user_wishlist)
     return user_wishlist
