@@ -1,8 +1,7 @@
 from games.domainmodel.model import Game, Publisher, Genre, User, Review, Wishlist
 
-
 from sqlalchemy import (
-    Table, MetaData, Column, Integer, String, Date, DateTime, ForeignKey
+    Table, MetaData, Column, Integer, Float, String, Text, DateTime, ForeignKey
 )
 from sqlalchemy.orm import mapper, relationship
 
@@ -11,11 +10,13 @@ metadata = MetaData()
 games_table = Table(
     'games', metadata,
     Column('game_id', Integer, primary_key=True),
-    Column('game_title', String(255), nullable=False),
-    Column('game_price', Integer, nullable=False),
-    Column('release_date', Date, nullable=False),
-    Column('game_description', String(1024), nullable=False),
-    Column('game_image_url', String(255), nullable=False),
+    Column('game_title', Text, nullable=True),
+    Column('game_price', Float, nullable=False),
+    Column('release_date', String(50), nullable=True),
+    Column('game_description', String(1024), nullable=True),
+    Column('game_image_url', String(255), nullable=True),
+    Column('game_website_url', String(255), nullable=True),
+    Column('publisher_name', ForeignKey('publishers.name'))
 )
 
 publishers_table = Table(
@@ -25,13 +26,14 @@ publishers_table = Table(
 
 genres_table = Table(
     'genres', metadata,
-    Column('genre_name', String(255), primary_key=True)
+    Column('genre_name', String(255), primary_key=True, nullable=False)
 )
 
 users_table = Table(
     'users', metadata,
     Column('user_id', Integer, primary_key=True, autoincrement=True),
-    Column('user_name', String(255), nullable=False),
+    Column('name', String(255), nullable=False),
+    Column('user_name', String(255), unique=True, nullable=False),
     Column('password', String(255), nullable=False)
 )
 
@@ -40,7 +42,7 @@ reviews_table = Table(
     Column('review_id', Integer, primary_key=True, autoincrement=True),
     Column('user_id', ForeignKey('users.user_id')),
     Column('game_id', ForeignKey('games.game_id')),
-    Column('review_text', String(1024), nullable=False),
+    Column('comment', String(1024), nullable=False),
     Column('rating', Integer, nullable=False),
     Column('timestamp', DateTime, nullable=False)
 )
@@ -83,23 +85,24 @@ def map_model_to_tables():
     })
 
     mapper(User, users_table, properties={
-        '_User__user_id': users_table.c.user_id,
+        # '_User__user_id': users_table.c.user_id,
+        '_User__name': users_table.c.name,
         '_User__user_name': users_table.c.user_name,
         '_User__password': users_table.c.password,
         '_User__reviews': relationship(Review, back_populates='_Review__user'),
-        '_User__wishlists': relationship(Wishlist, back_populates='_Wishlist__user')
+        '_User__favourite_games': relationship(Wishlist, back_populates='_Wishlist__user')
     })
 
     mapper(Review, reviews_table, properties={
-        '_Review__review_id': reviews_table.c.review_id,
-        '_Review__review_text': reviews_table.c.review_text,
+        # '_Review__review_id': reviews_table.c.review_id,
+        '_Review__comment': reviews_table.c.comment,
         '_Review__rating': reviews_table.c.rating,
         '_Review__user': relationship(User, back_populates='_User__reviews'),
         '_Review__game': relationship(Game, back_populates='_Game__reviews')
     })
 
     mapper(Wishlist, wishlists_table, properties={
-        '_Wishlist__wishlist_id': wishlists_table.c.wishlist_id,
-        '_Wishlist__user': relationship(User, back_populates='_User__wishlists'),
-        '_Wishlist__game': relationship(Game, back_populates='_Game__wishlists')
+        # '_Wishlist__wishlist_id': wishlists_table.c.wishlist_id,
+        '_Wishlist__user': relationship(User, back_populates='_User__favourite_games'),
+        '_Wishlist__game': relationship(Game, )  # back_populates='_Game__wishlists' THERE IS NO WISHLIST UNDER GAMES
     })
