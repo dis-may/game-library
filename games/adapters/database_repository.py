@@ -7,6 +7,7 @@ from sqlalchemy.orm import scoped_session
 from games.adapters.repository import AbstractRepository
 from games.domainmodel.model import Game, Genre, Publisher, User, Review
 
+
 class SessionContextManager:
     def __init__(self, session_factory):
         self.__session_factory = session_factory
@@ -38,6 +39,7 @@ class SessionContextManager:
         if not self.__session is None:
             self.__session.close()
 
+
 class SqlAlchemyRepository(AbstractRepository):
 
     def __init__(self, session_factory):
@@ -64,6 +66,9 @@ class SqlAlchemyRepository(AbstractRepository):
 
         return user
 
+    def get_all_users(self):
+        pass
+
     def add_game(self, game: Game):
         with self._session_cm as scm:
             scm.session.add(game)
@@ -78,6 +83,9 @@ class SqlAlchemyRepository(AbstractRepository):
             pass
 
         return games
+
+    def get_all_games(self) -> List[Game]:
+        pass
 
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
         if genre is None:
@@ -100,10 +108,14 @@ class SqlAlchemyRepository(AbstractRepository):
         games = self._session.query(Game).filter(Game.description.ilike(f'%{query}%')).all()
         return games
 
+    def get_number_of_games(self) -> int:
+        pass
+
     def add_publisher(self, publisher: Publisher):
         with self._session_cm as scm:
             scm.session.add(publisher)
             scm.commit()
+
     def get_publishers(self) -> List[Publisher]:
         publishers = self._session_cm.session.query(Publisher).all()
         return publishers
@@ -126,4 +138,3 @@ class SqlAlchemyRepository(AbstractRepository):
         with self._session_cm as scm:
             scm.session.add(comment)
             scm.commit()
-

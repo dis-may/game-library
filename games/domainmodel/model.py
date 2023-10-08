@@ -118,7 +118,7 @@ class Game:
     @price.setter
     def price(self, price: float):
         if isinstance(price, (int, float)) and price >= 0:
-            self.__price = price
+            self.__price = float(price)
         else:
             raise ValueError("Price must be a positive number!")
 
