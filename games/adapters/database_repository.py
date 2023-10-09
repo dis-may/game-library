@@ -71,7 +71,7 @@ class SqlAlchemyRepository(AbstractRepository):
 
     def add_game(self, game: Game):
         with self._session_cm as scm:
-            scm.session.add(game)
+            scm.session.merge(game)
             scm.commit()
 
     def get_game(self, game_id: int) -> Game:
@@ -113,7 +113,7 @@ class SqlAlchemyRepository(AbstractRepository):
 
     def add_publisher(self, publisher: Publisher):
         with self._session_cm as scm:
-            scm.session.add(publisher)
+            scm.session.merge(publisher)
             scm.commit()
 
     def get_publishers(self) -> List[Publisher]:
@@ -126,7 +126,7 @@ class SqlAlchemyRepository(AbstractRepository):
 
     def add_genre(self, genre: Genre):
         with self._session_cm as scm:
-            scm.session.add(genre)
+            scm.session.merge(genre)
             scm.commit()
 
     def get_reviews(self, game_id, repo: AbstractRepository):

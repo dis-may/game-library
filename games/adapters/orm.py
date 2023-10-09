@@ -76,8 +76,8 @@ def map_model_to_tables():
         '_Game__image_url': games_table.c.game_image_url,
         '_Game__publisher': relationship(Publisher),
         '_Game__reviews': relationship(Review, back_populates='_Review__game'),
-        '_Game__genres': relationship(Genre, secondary=game_genres_table),
-        '_Game__wishlists': relationship(Wishlist, back_populates='_Wishlist__game')
+        '_Game__genres': relationship(Genre, secondary=game_genres_table, ),
+        # '_Game__wishlists': relationship(Wishlist, back_populates='_Wishlist__game')
     })
 
     mapper(Genre, genres_table, properties={
@@ -104,5 +104,5 @@ def map_model_to_tables():
     mapper(Wishlist, wishlists_table, properties={
         # '_Wishlist__wishlist_id': wishlists_table.c.wishlist_id,
         '_Wishlist__user': relationship(User, back_populates='_User__favourite_games'),
-        '_Wishlist__game': relationship(Game, )  # back_populates='_Game__wishlists' THERE IS NO WISHLIST UNDER GAMES
+        '_Wishlist__game': relationship(Game)  # back_populates='_Game__wishlists' THERE IS NO WISHLIST UNDER GAMES
     })
