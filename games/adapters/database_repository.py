@@ -77,7 +77,7 @@ class SqlAlchemyRepository(AbstractRepository):
     def get_game(self, game_id: int) -> Game:
         games = None
         try:
-            games = self._session_cm.session.query(Game).filter(Game._Game__id == id).one()
+            games = self._session_cm.session.query(Game).filter(Game._Game__game_id == game_id).one()
         except NoResultFound:
             # Ignore any exception and return None.
             pass
