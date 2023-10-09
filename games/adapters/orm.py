@@ -97,6 +97,7 @@ def map_model_to_tables():
         # '_Review__review_id': reviews_table.c.review_id,
         '_Review__comment': reviews_table.c.comment,
         '_Review__rating': reviews_table.c.rating,
+        '_Review__timestamp': reviews_table.c.timestamp,
         '_Review__user': relationship(User, back_populates='_User__reviews'),
         '_Review__game': relationship(Game, back_populates='_Game__reviews')
     })

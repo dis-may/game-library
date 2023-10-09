@@ -28,9 +28,10 @@ def add_review(game_id: int, username: str, rating: int, comment: str, repo: Abs
     if user is None:
         raise UnknownUserException
 
-    make_review(user, game, rating, comment)
+    review = make_review(user, game, rating, comment)
     # right now reviews are not stored in the memory repo in their own list
     # reviews are linked to the game and user object
+    repo.add_review(review)
 
 
 def get_reviews(game_id, repo: AbstractRepository):
