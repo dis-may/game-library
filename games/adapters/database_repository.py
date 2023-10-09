@@ -85,7 +85,8 @@ class SqlAlchemyRepository(AbstractRepository):
         return games
 
     def get_all_games(self) -> List[Game]:
-        pass
+        games = self._session_cm.session.query(Game).all()
+        return games
 
     def get_games_by_genre(self, genre: Genre) -> List[Game]:
         if genre is None:
