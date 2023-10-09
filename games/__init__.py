@@ -64,8 +64,6 @@ def create_app(test_config=None):
             # Solely generate mappings that map domain model classes to the database tables.
             map_model_to_tables()
 
-
-
     # Build the application - these steps require an application context.
     with app.app_context():
         # Register blueprints.
