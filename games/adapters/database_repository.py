@@ -98,15 +98,15 @@ class SqlAlchemyRepository(AbstractRepository):
             return games
 
     def get_games_by_title_search(self, query: str) -> List[Game]:
-        games = self._session.query(Game).filter(Game.title.ilike(f'%{query}%')).all()
+        games = self._session_cm.session.query(Game).filter(Game._Game__game_title.ilike(f'%{query}%')).all()
         return games
 
     def get_games_by_publisher_search(self, query: str) -> List[Game]:
-        games = self._session.query(Game).filter(Game.publisher.publisher_name.ilike(f'%{query}%')).all()
+        games = self._session_cm.session.query(Game).filter(getattr(Game, 'publisher_name').ilike(f'%{query}%')).all()
         return games
 
     def get_games_by_description_search(self, query: str) -> List[Game]:
-        games = self._session.query(Game).filter(Game.description.ilike(f'%{query}%')).all()
+        games = self._session_cm.session.query(Game).filter(Game._Game__description.ilike(f'%{query}%')).all()
         return games
 
     def get_number_of_games(self) -> int:
