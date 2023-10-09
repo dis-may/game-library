@@ -130,12 +130,13 @@ class SqlAlchemyRepository(AbstractRepository):
             scm.session.merge(genre)
             scm.commit()
 
-    def get_reviews(self, game_id, repo: AbstractRepository):
-        reviews = self._session_cm.query(...).all()
+    def get_reviews(self) -> List[Review]:
+        reviews = self._session_cm.session.query(Review).all()
         return reviews
 
-    def add_review(self, game_id: int, username: str, rating: int, comment: str, repo: AbstractRepository):
-        super().add_review(comment)
+    def add_review(self, comment: Review):
+        print("add_review called")
+        # super().add_review(comment)
         with self._session_cm as scm:
             scm.session.add(comment)
             scm.commit()
