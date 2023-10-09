@@ -93,7 +93,7 @@ class SqlAlchemyRepository(AbstractRepository):
             return games
         else:
             # Return articles matching target_date; return an empty list if there are no matches.
-            games = self._session_cm.session.query(Game).filter(Game._Game__Genre == genre).all()
+            games = self._session_cm.session.query(Game).filter(Game._Game__genres.contains(genre)).all()
             return games
 
     def get_games_by_title_search(self, query: str) -> List[Game]:
