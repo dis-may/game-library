@@ -140,3 +140,9 @@ class SqlAlchemyRepository(AbstractRepository):
         with self._session_cm as scm:
             scm.session.merge(review)
             scm.commit()
+
+    def update_user(self, user: User):
+        with self._session_cm as scm:
+            scm.session.merge(user)
+            scm.commit()
+

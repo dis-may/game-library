@@ -96,6 +96,10 @@ class AbstractRepository(abc.ABC):
             raise RepositoryException("Review not correctly attached to a Game")
 
     @abc.abstractmethod
-    def get_reviews(self, game_id):
+    def get_reviews(self) -> List[Review]:
         """Returns all reviews for a game"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def update_user(self, user: User):
         raise NotImplementedError

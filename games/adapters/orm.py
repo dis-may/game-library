@@ -1,4 +1,4 @@
-from games.domainmodel.model import Game, Publisher, Genre, User, Review, Wishlist
+from games.domainmodel.model import Game, Publisher, Genre, User, Review
 
 from sqlalchemy import (
     Table, MetaData, Column, Integer, Float, String, Text, DateTime, ForeignKey
@@ -90,7 +90,7 @@ def map_model_to_tables():
         '_User__user_name': users_table.c.user_name,
         '_User__password': users_table.c.password,
         '_User__reviews': relationship(Review, back_populates='_Review__user'),
-        '_User__favourite_games': relationship(Wishlist, back_populates='_Wishlist__user')
+        '_User__favourite_games': relationship(Game, secondary=wishlists_table)
     })
 
     mapper(Review, reviews_table, properties={
@@ -102,8 +102,8 @@ def map_model_to_tables():
         '_Review__game': relationship(Game, back_populates='_Game__reviews')
     })
 
-    mapper(Wishlist, wishlists_table, properties={
-        # '_Wishlist__wishlist_id': wishlists_table.c.wishlist_id,
-        '_Wishlist__user': relationship(User, back_populates='_User__favourite_games'),
-        '_Wishlist__game': relationship(Game)  # back_populates='_Game__wishlists' THERE IS NO WISHLIST UNDER GAMES
-    })
+    # mapper(Wishlist, wishlists_table, properties={
+    #     # '_Wishlist__wishlist_id': wishlists_table.c.wishlist_id,
+    #     '_Wishlist__user': relationship(User),
+    #     '_Wishlist__game': relationship(Game),  # back_populates='_Game__wishlists' THERE IS NO WISHLIST UNDER GAMES
+    # })
