@@ -88,7 +88,10 @@ class MemoryRepository(AbstractRepository):
     def add_review(self, review: Review):
         pass
 
-    def get_reviews(self, game_id: int):
+    def get_reviews(self):
+        pass
+
+    def update_user(self, user: User):
         pass
 
 # def populate(repo: AbstractRepository):
