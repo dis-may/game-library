@@ -17,7 +17,9 @@ def add_to_wishlist(game_id: int, username: str, repo: AbstractRepository):
     user = repo.get_user(username)
     if user is None:
         raise UnknownUserException
+
     user.add_favourite_game(current_game)
+    repo.add_to_wishlist(user, current_game)
 
 
 def remove_from_wishlist(game_id: int, username: str, repo: AbstractRepository):
@@ -41,6 +43,3 @@ def get_sorted_game_list(repo: AbstractRepository, sort='id', order='asc'):
     all_games = repo.get_all_games()
     all_games_sorted = utilities.sort_a_games_list(all_games, sort, order)
     return all_games_sorted
-
-
-

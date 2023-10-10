@@ -91,6 +91,12 @@ class MemoryRepository(AbstractRepository):
     def get_reviews(self, game_id: int):
         pass
 
+    def get_wishlist(self, user: User):
+        pass
+
+    def add_to_wishlist(self, game: Game, user: User):
+        pass
+
 # def populate(repo: AbstractRepository):
 #     dir_name = os.path.dirname(os.path.abspath(__file__))
 #     games_file_name = os.path.join(dir_name, "data/games.csv")

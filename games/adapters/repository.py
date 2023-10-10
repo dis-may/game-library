@@ -99,3 +99,16 @@ class AbstractRepository(abc.ABC):
     def get_reviews(self, game_id):
         """Returns all reviews for a game"""
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_wishlist(self, user: User):
+        """Returns the wishlist of a user"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def add_to_wishlist(self, game: Game, user: User):
+        """Adds a game to a user's wishlist"""
+        if game.wishlists is None or game not in Game.wishlists:
+            raise RepositoryException("Game not correctly attached to a Wishlist")
+        if user.wishlist is None or user not in User.wishlist:
+            raise RepositoryException("User not correctly attached to a Wishlist")

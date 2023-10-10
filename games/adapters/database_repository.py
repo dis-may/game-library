@@ -140,3 +140,12 @@ class SqlAlchemyRepository(AbstractRepository):
         with self._session_cm as scm:
             scm.session.merge(review)
             scm.commit()
+
+    def get_wishlist(self, user: User):
+        wishlist = self._session_cm.session.query(User).filter(User._User__user_name == user.user_name).one().favourite_games
+        return wishlist
+
+    def add_to_wishlist(self, user: User):
+        with self._session_cm as scm:
+            scm.session.merge(user)
+            scm.commit()
