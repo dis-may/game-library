@@ -29,7 +29,7 @@ def test_repository_does_not_retrieve_a_non_existent_user(session_factory):
     assert user is None
 
 
-# def test_repository_can_retrieve_article_count(session_factory):
-#     repo = SqlAlchemyRepository(session_factory)
-#     number_of_games = repo.get_number_of_articles()
-#     assert number_of_games == ...
+def test_repository_can_retrieve_article_count(session_factory):
+    repo = SqlAlchemyRepository(session_factory)
+    number_of_games = repo.get_number_of_articles()
+    assert number_of_games == 877
