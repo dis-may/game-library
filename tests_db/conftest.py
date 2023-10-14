@@ -9,10 +9,10 @@ from games.adapters.orm import metadata, map_model_to_tables
 from utils import get_project_root
 
 TEST_DATA_PATH_DATABASE_FULL = get_project_root() / "games" / "adapters" / "data"
-TEST_DATA_PATH_DATABASE_LIMITED = get_project_root() / "tests" / "data"
+# TEST_DATA_PATH_DATABASE_LIMITED = get_project_root() / "tests" / "data"
 
 TEST_DATABASE_URI_IN_MEMORY = 'sqlite://'
-TEST_DATABASE_URI_FILE = 'sqlite:///games-test.db'
+TEST_DATABASE_URI_FILE = 'sqlite:///games.db'
 
 
 @pytest.fixture
@@ -26,7 +26,8 @@ def database_engine():
     # Create the database session factory using sessionmaker (this has to be done once, in a global manner)
     session_factory = sessionmaker(autocommit=False, autoflush=True, bind=engine)
     # Create the SQLAlchemy DatabaseRepository instance for an sqlite3-based repository.
-    repository_populate.populate(TEST_DATA_PATH_DATABASE_LIMITED)
+    repo_instance = database_repository.SqlAlchemyRepository(session_factory)
+    repository_populate.populate(repo_instance)
     yield engine
     metadata.drop_all(engine)
 
@@ -42,9 +43,11 @@ def session_factory():
     # Create the database session factory using sessionmaker (this has to be done once, in a global manner)
     session_factory = sessionmaker(autocommit=False, autoflush=True, bind=engine)
     # Create the SQLAlchemy DatabaseRepository instance for an sqlite3-based repository.
-    repository_populate.populate(TEST_DATA_PATH_DATABASE_FULL)
+    repo_instance = database_repository.SqlAlchemyRepository(session_factory)
+    repository_populate.populate(repo_instance)
     yield session_factory
     metadata.drop_all(engine)
+
 
 @pytest.fixture
 def empty_session():
