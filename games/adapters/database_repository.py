@@ -110,7 +110,8 @@ class SqlAlchemyRepository(AbstractRepository):
         return games
 
     def get_number_of_games(self) -> int:
-        pass
+        number_of_games = self._session_cm.session.query(Game).count()
+        return number_of_games
 
     def add_publisher(self, publisher: Publisher):
         with self._session_cm as scm:
