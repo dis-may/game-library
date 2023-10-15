@@ -67,7 +67,8 @@ class SqlAlchemyRepository(AbstractRepository):
         return user
 
     def get_all_users(self):
-        pass
+        users = self._session_cm.session.query(User).all()
+        return users
 
     def add_game(self, game: Game):
         with self._session_cm as scm:
@@ -136,7 +137,6 @@ class SqlAlchemyRepository(AbstractRepository):
         return reviews
 
     def add_review(self, review: Review):
-        print("add_review called")
         # super().add_review(comment)
         with self._session_cm as scm:
             scm.session.merge(review)
