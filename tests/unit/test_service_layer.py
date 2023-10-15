@@ -1,5 +1,5 @@
 import pytest
-from games.domainmodel.model import Genre, User, Game, Publisher, Review, Wishlist
+from games.domainmodel.model import Genre, User, Game, Publisher, Review
 
 
 from games.games import services as games_services

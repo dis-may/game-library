@@ -1,6 +1,6 @@
 import pytest
 import os
-from games.domainmodel.model import Publisher, Genre, Game, Review, User, Wishlist
+from games.domainmodel.model import Publisher, Genre, Game, Review, User
 from games.adapters.datareader.csvdatareader import GameFileCSVReader
 from datetime import datetime
 
@@ -369,53 +369,6 @@ def game():
     return Game(1, "Domino Game")
 
 
-@pytest.fixture
-def wishlist(user):
-    return Wishlist(user)
-
-
-def test_wishlist_initialization(wishlist):
-    user = User("YourName", "YourUsername", "YourPassword")
-    wishlist = Wishlist(user)
-    assert len(wishlist.list_of_games()) == 0
-
-
-def test_add_game(wishlist, game):
-    wishlist.add_game(game)
-    assert len(wishlist.list_of_games()) == 1
-    assert wishlist.list_of_games()[0] == game
-
-
-def test_remove_game(wishlist, game):
-    wishlist.add_game(game)
-    wishlist.remove_game(game)
-    assert len(wishlist.list_of_games()) == 0
-
-
-def test_select_game(wishlist, game):
-    wishlist.add_game(game)
-    assert wishlist.select_game(0) == game
-
-
-def test_select_game_out_of_index(wishlist):
-    assert wishlist.select_game(0) is None
-
-
-def test_first_game_in_list(wishlist, game):
-    wishlist.add_game(game)
-    assert wishlist.first_game_in_list() == game
-
-
-def test_first_game_in_empty_list(wishlist):
-    assert wishlist.first_game_in_list() is None
-
-
-def test_wishlist_iter(wishlist, game):
-    wishlist.add_game(game)
-    wishlist_iterator = iter(wishlist)
-    assert next(wishlist_iterator) == game
-
-
 # Unit tests for CSVReader
 def create_csv_reader():
     dir_name = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -492,27 +445,6 @@ def test_can_remove_a_favourite_game(user, game):
     user.add_favourite_game(game)
     user.remove_favourite_game(game)
     assert user.favourite_games == []
-
-
-def test_can_add_a_wishlist_game(user, game):
-    wishlist = Wishlist(user)
-    wishlist.add_game(game)
-    assert wishlist.list_of_games() == [game]
-    assert game in wishlist.list_of_games()
-
-
-def test_can_remove_a_wishlist_game(user, game):
-    wishlist = Wishlist(user)
-    wishlist.add_game(game)
-    wishlist.remove_game(game)
-    assert wishlist.list_of_games() == []
-
-
-def test_can_iterate_over_wishlist(user, game):
-    wishlist = Wishlist(user)
-    wishlist.add_game(game)
-    wishlist_iterator = iter(wishlist)
-    assert next(wishlist_iterator) == game
 
 
 def test_can_iterate_over_reviews(user, game):

@@ -292,53 +292,53 @@ class User:
         return self.__user_name < other.user_name
 
 
-class Wishlist:
-    def __init__(self, user: User):
-        if not isinstance(user, User):
-            raise ValueError("User must be an instance of User class")
-        self.__user = user
-
-        self.__list_of_games = []
-
-    def list_of_games(self):
-        return self.__list_of_games
-
-    def size(self):
-        size_wishlist = len(self.__list_of_games)
-        if size_wishlist > 0:
-            return size_wishlist
-
-    def add_game(self, game: Game):
-        if isinstance(game, Game) and game not in self.__list_of_games:
-            self.__list_of_games.append(game)
-
-    def first_game_in_list(self):
-        if len(self.__list_of_games) > 0:
-            return self.__list_of_games[0]
-        else:
-            return None
-
-    def remove_game(self, game):
-        if isinstance(game, Game) and game in self.__list_of_games:
-            self.__list_of_games.remove(game)
-
-    def select_game(self, index):
-        if 0 <= index < len(self.__list_of_games):
-            return self.__list_of_games[index]
-        else:
-            return None
-
-    def __iter__(self):
-        self.__current = 0
-        return self
-
-    def __next__(self):
-        if self.__current >= len(self.__list_of_games):
-            raise StopIteration
-        else:
-            self.__current += 1
-            return self.__list_of_games[self.__current - 1]
-
+# class Wishlist:
+#     def __init__(self, user: User):
+#         if not isinstance(user, User):
+#             raise ValueError("User must be an instance of User class")
+#         self.__user = user
+#
+#         self.__list_of_games = []
+#
+#     def list_of_games(self):
+#         return self.__list_of_games
+#
+#     def size(self):
+#         size_wishlist = len(self.__list_of_games)
+#         if size_wishlist > 0:
+#             return size_wishlist
+#
+#     def add_game(self, game: Game):
+#         if isinstance(game, Game) and game not in self.__list_of_games:
+#             self.__list_of_games.append(game)
+#
+#     def first_game_in_list(self):
+#         if len(self.__list_of_games) > 0:
+#             return self.__list_of_games[0]
+#         else:
+#             return None
+#
+#     def remove_game(self, game):
+#         if isinstance(game, Game) and game in self.__list_of_games:
+#             self.__list_of_games.remove(game)
+#
+#     def select_game(self, index):
+#         if 0 <= index < len(self.__list_of_games):
+#             return self.__list_of_games[index]
+#         else:
+#             return None
+#
+#     def __iter__(self):
+#         self.__current = 0
+#         return self
+#
+#     def __next__(self):
+#         if self.__current >= len(self.__list_of_games):
+#             raise StopIteration
+#         else:
+#             self.__current += 1
+#             return self.__list_of_games[self.__current - 1]
+#
 
 class Review:
     def __init__(self, user: User, game: Game, rating: int, comment: str, timestamp: datetime):
