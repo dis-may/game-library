@@ -15,7 +15,7 @@ games_table = Table(
     Column('release_date', String(50), nullable=True),
     Column('game_description', String(1024), nullable=True),
     Column('game_image_url', String(255), nullable=True),
-    Column('game_website_url', String(255), nullable=True),
+    # Column('game_website_url', String(255), nullable=True),
     Column('publisher_name', ForeignKey('publishers.name'))
 )
 
