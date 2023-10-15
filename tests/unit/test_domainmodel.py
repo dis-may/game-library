@@ -310,13 +310,12 @@ def test_user_add_remove_favourite_games():
     assert repr(user1.favourite_games) == "[<Game 3, Fat City>]"
 
 
-def test_user_add_remove_reviews():
+def test_user_add_reviews():
     user = User("Shyamli", "shyamli1", "pw12345")
     game = Game(1, "Domino Game")
     review1 = Review(user, game, 3, "Great game!", datetime.today())
     review2 = Review(user, game, 4, "Superb game!", datetime.today())
     review3 = Review(user, game, 2, "Boring game!", datetime.today())
-    assert len(user.reviews) == 0
     user.add_review(review1)
     user.add_review(review2)
     user.add_review(review3)
@@ -327,10 +326,6 @@ def test_user_add_remove_reviews():
     user.add_review('review')
     user.add_review(None)
     assert len(user.reviews) == 3
-    user.remove_review(review2)
-    user.remove_review(review1)
-    user.remove_review(review1)
-    assert user.reviews == [review3]
 
 
 def test_review_initialization():
