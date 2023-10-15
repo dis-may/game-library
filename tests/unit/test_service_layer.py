@@ -1,5 +1,5 @@
 import pytest
-from games.domainmodel.model import Genre, User, Game, Publisher, Review, Wishlist
+from games.domainmodel.model import Genre, User, Game, Publisher, Review
 
 
 from games.games import services as games_services
@@ -117,7 +117,6 @@ def test_get_games_by_description(memory_repo):
     assert str(games_list2) == game_string
 
 
-<<<<<<< HEAD
 def test_can_add_to_wishlist(memory_repo):
     # test that a game can be added to a user's wishlist
     game_id = 3010
@@ -173,6 +172,3 @@ def test_can_get_sorted_game_list(memory_repo):
         current_id = game.game_id
         assert previous_id <= current_id
         previous_id = current_id
-
-=======
->>>>>>> 60a0ce7b5f195ec007bf8b6b785a64958293d89d

@@ -1,7 +1,7 @@
 import pytest
 from games.adapters.repository_populate import populate
 from games.adapters.memory_repository import MemoryRepository
-from games.domainmodel.model import Game, Publisher, Genre, Review, Wishlist, User
+from games.domainmodel.model import Game, Publisher, Genre, Review, User
 from datetime import datetime
 
 
