@@ -22,15 +22,11 @@ def create_app(test_config=None):
 
     # Configure the app from configuration-file settings.
     app.config.from_object('config.Config')
-    # data_path = Path('games') / 'adapters' / 'data'
 
-    # if app.config['TESTING'] == 'True':
-    #     # Load test configuration, and override any configuration settings.
-    #     app.config.from_mapping(test_config)
-    #     data_path = app.config['TEST_DATA_PATH']
+    if test_config is not None:
+        # Load test configuration, and override any configuration settings.
+        app.config.from_mapping(test_config)
 
-    # repo.repo_instance = MemoryRepository()  # repo_instance is a global variable in repository.py
-    # populate(repo.repo_instance)
 
     if app.config['REPOSITORY'] == 'memory':
         # Create the MemoryRepository implementation for a memory-based repository.

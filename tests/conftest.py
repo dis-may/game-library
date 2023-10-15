@@ -29,16 +29,20 @@ def memory_repo():
 def app():
     app = create_app({
         'TESTING': True,
+        'REPOSITORY': 'memory',
         'WTF_CSRF_ENABLED': False,
-        'SESSION_COOKIE_SECURE': False,  # Disable secure cookies for testing
-        'SESSION_COOKIE_HTTPONLY': True,  # Enable httpOnly cookies
+        # 'SESSION_COOKIE_SECURE': False,  # Disable secure cookies for testing
+        # 'SESSION_COOKIE_HTTPONLY': True,  # Enable httpOnly cookies
+
     })
 
     yield app
 
+
 @pytest.fixture
 def client(app):
     return app.test_client()
+
 
 class AuthenticationManager:
     def __init__(self, client):
