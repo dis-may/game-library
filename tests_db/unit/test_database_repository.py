@@ -3,8 +3,7 @@ from datetime import date, datetime
 import pytest
 
 from games.adapters.database_repository import SqlAlchemyRepository
-from games.domainmodel.model import Publisher, Genre, Game, Review, User, make_review
-from games.adapters.repository import RepositoryException
+from games.domainmodel.model import Publisher, Genre, Game, User, make_review
 
 
 def test_repository_can_add_and_retrieve_a_user(session_factory):
