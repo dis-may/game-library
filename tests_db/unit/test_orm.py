@@ -34,21 +34,7 @@ def insert_users(empty_session, values):
 
 def insert_game(empty_session):
     game_desc = """Xpand Rally is a breathtaking game that gives you the true to life experience of driving powerful 
-    rally cars amidst photorealistic sceneries. Realistic weather effects, rolling hills, and animated scenery all add
-     to game's visual perfection. Xpand Rally also features highly detailed models of modern rally cars and handling 
-     physics developed with the help of rally sport professionals which further enhance the realism of driving experience. 
-     Xpand Rally combines the best elements of Rally and Rally Cross racing in one unique gaming experience. The game offers 
-     a career mode based on time trials during both individual races and World Championship Series which will satisfy 
-     traditional Rally fans. The Rally Cross fans won't be disappointed either - they can challenge several opponents
-      in head to head racing during competitions based on real and fictitious race events. Xpand Rally, as the only title
-       on the market, brings the economy factor into a rally game. The player starts with a junk car and competes in 
-       races to earn money and acquire upgrades, repair damage, tweak performance and pay the race entry fees. Along with 
-       the tuning-up, the car's condition affects its handling. Due to accurate damage system, it is highly dependent on
-        the player's driving skills. The physical handling model is also influenced by car parts configuration and 
-        provides both authentic feel and joy of driving. The interactive race track surroundings with enhanced game 
-        physics and the innovative approach to changing daytime and weather conditions, both influencing the car handling, 
-        are other hallmarks of Xpand Rally that distinguish it from other racing games. For the first time among rally games 
-        Xpand Rally includes a complete set of easy-to-use editing tools enabling to create new tracks, cars or even game mods."""
+    rally cars amidst photorealistic sceneries. """
     empty_session.execute(
         'INSERT INTO games (game_id, game_title, game_price, release_date, game_description, game_image_url, publisher_name) VALUES '
         '(:game_id, "Xpand Rally", :game_price, "Aug 24, 2006", '
@@ -58,6 +44,33 @@ def insert_game(empty_session):
         {'game_id': 3010, 'game_price': 4.99, 'game_description': game_desc}
     )
     row = empty_session.execute('SELECT game_id from games').fetchone()
+    return row[0]
+
+
+def insert_games(empty_session):
+    # inserts two games instead of just one
+    empty_session.execute(
+        'INSERT INTO games (game_id, game_title, game_price, release_date, game_description, game_image_url, publisher_name) '
+        'VALUES '
+        '(3010, "Xpand Rally", 4.99, "Aug 24, 2006", '
+        '"placeholder game description for game 1", '
+        '"https://cdn.akamai.steamstatic.com/steam/apps/3010/header.jpg?t=1639506578", '
+        '"Techland"), '
+        '(7940, "Call of Duty", 9.99, "Nov 12, 2007", '
+        '"placeholder game description for game 2", '
+        '"https://cdn.akamai.steamstatic.com/steam/apps/7940/header.jpg?t=1646762118", '
+        '"Activision") '
+    )
+    rows = list(empty_session.execute('SELECT game_id from games'))
+    keys = tuple(row[0] for row in rows)
+    return keys
+
+
+def insert_publisher(empty_session):
+    empty_session.execute(
+        'INSERT INTO publishers (name) VALUES ("Concerned Ape")'
+    )
+    row = empty_session.execute('SELECT name from publishers').fetchone()
     return row[0]
 
 
@@ -74,6 +87,11 @@ def insert_game_genre_associations(empty_session, game_key, genre_keys):
     stmt = 'INSERT INTO game_genres (game_id, genre_name) VALUES (:game_id, :genre_name)'
     for genre_key in genre_keys:
         empty_session.execute(stmt, {'game_id': game_key, 'genre_name': genre_key})
+
+
+def insert_wishlist_entry(empty_session, user_key, game_key):
+    statement = 'INSERT INTO wishlists (user_id, game_id) VALUES (:user_id, :game_id)'
+    empty_session.execute(statement, {'user_id': user_key, 'game_id': game_key})
 
 
 def insert_reviewed_game(empty_session):
@@ -104,6 +122,10 @@ def make_game():
 def make_user():
     user = User("Martha", 'marthajones', "Password123")
     return user
+
+def make_publisher():
+    publisher = Publisher("Concerned Ape")
+    return publisher
 
 
 def make_genre():
@@ -174,6 +196,28 @@ def test_loading_of_reviewed_game(empty_session):
         assert comment.game_id == game.game_id
 
 
+def test_loading_of_publisher(empty_session):
+    publisher_key = insert_publisher(empty_session)
+    expected_publisher = make_publisher()
+    fetched_publisher = empty_session.query(Publisher).one()
+    assert expected_publisher == fetched_publisher
+    assert publisher_key == fetched_publisher.publisher_name
+
+
+def test_loading_of_wishlist(empty_session):
+    # the wishlist table here is basically a user games association table
+    game_keys = insert_games(empty_session)
+    user_key = insert_user(empty_session)
+    for game_key in game_keys:
+        insert_wishlist_entry(empty_session, user_key, game_key)
+
+    user = empty_session.query(User).get(user_key)
+    games = [empty_session.query(Game).get(key) for key in game_keys]
+
+    for game in games:
+        assert game in user.favourite_games # this is where the wishlist is stored in the domain model
+
+
 def test_saving_of_review(empty_session):
     game_key = insert_game(empty_session)
     user_key = insert_user(empty_session, ("Missy", "missy", "Password1234"))
@@ -182,13 +226,10 @@ def test_saving_of_review(empty_session):
     game = rows[0]
     user = empty_session.query(User).filter(User._User__user_name == "missy").one()
 
-    # Create a new Comment that is bidirectionally linked with the User and Game.
+    # Create a new Review that is bidirectionally linked with the User and Game.
     comment_text = "I love this game so much!"
     review = make_review(user, game, 3, comment_text)
 
-    # Note: if the bidirectional links between the new Comment and the User and
-    # Article objects hadn't been established in memory, they would exist following
-    # committing the addition of the Comment to the database.
     empty_session.add(review)
     empty_session.commit()
 
@@ -203,33 +244,39 @@ def test_saving_of_game(empty_session):
     empty_session.commit()
 
     rows = list(empty_session.execute('SELECT game_id, game_title, game_price FROM games'))
+    # check that the Game object can be saved correctly in the games table
     assert rows == [(3010, "Xpand Rally", 4.99)]
+
+
+def test_saving_of_publisher(empty_session):
+    publisher = make_publisher()
+    empty_session.add(publisher)
+    empty_session.commit()
+    rows = list(empty_session.execute('SELECT name FROM publishers'))
+    # test that the Publisher object can be saved correctly in the publishers table
+    assert rows[0] == (publisher.publisher_name,)
 
 
 def test_saving_genre_game(empty_session):
     game = make_game()
     genre = make_genre()
 
-    # Establish the bidirectional relationship between the Article and the Tag.
-    # make_genre_association(game, genre)
+    # game knows about genres, but genres does not know about games
+    # hence only need to add genre to the game
     game.add_genre(genre)
-
-    # Persist the Article (and Tag).
-    # Note: it doesn't matter whether we add the Tag or the Article. They are connected
-    # bidirectionally, so persisting either one will persist the other.
     empty_session.add(game)
     empty_session.commit()
 
-    # Test test_saving_of_article() checks for insertion into the articles table.
+    # checks for insertion into the articles table.
     rows = list(empty_session.execute('SELECT game_id FROM games'))
     game_key = rows[0][0]
 
-    # Check that the tags table has a new record.
+    # Check that the genres table has a new record.
     rows = list(empty_session.execute('SELECT genre_name FROM genres'))
     genre_key = rows[0][0]
     assert rows[0][0] == "Free to Play"
 
-    # Check that the article_tags table has a new record.
+    # Check that the game_genres table has a new record.
     rows = list(empty_session.execute('SELECT game_id, genre_name from game_genres'))
     game_foreign_key = rows[0][0]
     genre_foreign_key = rows[0][1]
@@ -238,29 +285,60 @@ def test_saving_genre_game(empty_session):
     assert genre_key == genre_foreign_key
 
 
+def test_saving_game_publisher(empty_session):
+    game = make_game()
+    publisher = make_publisher()
+    game.publisher = publisher
+    empty_session.add(game)
+    empty_session.commit()
+    game_rows = list(empty_session.execute('SELECT game_id, publisher_name FROM games'))
+    publisher_rows = list(empty_session.execute('SELECT name FROM publishers'))
+    assert game.game_id == game_rows[0][0]
+    assert publisher.publisher_name == publisher_rows[0][0] # testing that it is saved
+    # test that by adding a game, the publisher table is also populated with the correct value
+    assert game_rows[0][1] == publisher_rows[0][0]
+
+
 def test_save_reviewed_game(empty_session):
-    # Create Article User objects.
     game = make_game()
     user = make_user()
 
-    # Create a new Comment that is bidirectionally linked with the User and Article.
+    # Create a new review that is bidirectionally linked with the User and Game
     comment_text = "this game is the best"
     review = make_review(user, game, 5, comment_text)
 
-    # Save the new Article.
+    # Save the new game only to the session
     empty_session.add(game)
     empty_session.commit()
 
-    # Test test_saving_of_article() checks for insertion into the articles table.
+    # get the game key by reading from the table, which should have inserted correctly
     rows = list(empty_session.execute('SELECT game_id FROM games'))
-    article_key = rows[0][0]
+    game_key = rows[0][0]
 
-    # Test test_saving_of_users() checks for insertion into the users table.
+    # get the user key by reading from the user table, which should have also inserted correctly
     rows = list(empty_session.execute('SELECT user_id FROM users'))
     user_key = rows[0][0]
 
-    # Check that the comments table has a new record that links to the articles and users
-    # tables.
+    # Check that the reviews table has also had a new entry added
     rows = list(empty_session.execute('SELECT user_id, game_id, comment FROM reviews'))
-    assert rows == [(user_key, article_key, comment_text)]
+    assert rows == [(user_key, game_key, comment_text)]
 
+
+def test_save_wishlist(empty_session):
+    game = make_game()
+    user = make_user()
+    user.add_favourite_game(game)
+    empty_session.add(user)
+    empty_session.commit()
+
+    # get the game key from the game table, which should have inserted correctly
+    rows = list(empty_session.execute('SELECT game_id FROM games'))
+    game_key = rows[0][0]
+
+    # get the user key from the table, which should have inserted correctly
+    rows = list(empty_session.execute('SELECT user_id FROM users'))
+    user_key = rows[0][0]
+
+    # Check that the wishlist table has a new record that links the user and game tables
+    rows = list(empty_session.execute('SELECT user_id, game_id FROM wishlists'))
+    assert rows == [(user_key, game_key)]

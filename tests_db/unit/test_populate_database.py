@@ -10,6 +10,22 @@ def test_database_populate_inspect_table_names(database_engine):
                                            'wishlists']
 
 
+def test_database_populate_select_all_games_genres(database_engine):
+    inspector = inspect(database_engine)
+    name = inspector.get_table_names()[0]
+    with database_engine.connect() as connection:
+        # query for records in table games_genres
+        select_statement = select([metadata.tables[name]])
+        result = connection.execute(select_statement)
+
+        all_games_genres = []
+        for row in result:
+            all_games_genres.append((row['game_id'], row['genre_name'],))
+
+        assert (7940, 'Action',) in all_games_genres
+        assert (870000, 'Casual',) in all_games_genres
+
+
 def test_database_populate_select_all_games(database_engine):
     inspector = inspect(database_engine)
     name_of_games_table = inspector.get_table_names()[1]
@@ -102,4 +118,21 @@ def test_database_populate_select_all_users(database_engine):
             all_users.append(row['user_name'])
 
         assert all_users == []  # no users are prepopulated in the database!
+
+
+def test_database_populate_select_all_wishlists(database_engine):
+    # Get table information
+    inspector = inspect(database_engine)
+    name_of_wishlists_table = inspector.get_table_names()[6]
+
+    with database_engine.connect() as connection:
+        # query for records in table wishlists
+        select_statement = select([metadata.tables[name_of_wishlists_table]])
+        result = connection.execute(select_statement)
+
+        all_wishlist_entries = []
+        for row in result:
+            all_wishlist_entries.append(row['wishlist_id'])
+
+        assert all_wishlist_entries == []  # no wishlist entries are prepopulated in the database!
 
